@@ -5,27 +5,21 @@
  *    this.neighbors = neighbors === undefined ? [] : neighbors;
  * };
  */
-let visited = new Map()
+
 /**
  * @param {Node} node
  * @return {Node}
  */
 var cloneGraph = function(node) {
-    
+    if (node === null) return null
 
-    if (node === null) return node
-
-    if (visited.has(node)) {
-        return visited.get(node)
+    const map = new Map()
+    const clone = root => {
+        if (!map.has(root.val)) {
+            map.set(root.val, new Node(root.val))
+            map.get(root.val).neighbors = root.neighbors.map(clone)
+        }
+        return map.get(root.val)
     }
-
-    let cloneNode = new Node(node.val, [])
-
-    visited.set(node, cloneNode)
-
-    for (let neighbor of node.neighbors) {
-        cloneNode.neighbors.push(cloneGraph(neighbor))
-    }
-
-    return cloneNode
+    return clone(node)
 };
