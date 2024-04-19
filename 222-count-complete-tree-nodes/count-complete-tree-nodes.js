@@ -11,6 +11,24 @@
  * @return {number}
  */
 var countNodes = function(root) {
-    if (!root) return 0
-    return 1 + countNodes(root.right) + countNodes(root.left);
-} 
+
+    function leftDepth(node) {
+        if (!node) return 0
+        return leftDepth(node.left) + 1
+    }
+
+    function rightDepth(node) {
+        if (!node) return 0
+        return rightDepth(node.right) + 1
+    }
+
+    function traverse(node) {
+        const leftHeight = leftDepth(node)
+        const rightHeight = rightDepth(node)
+
+        if (leftHeight === rightHeight) return Math.pow(2, leftHeight) - 1
+        return traverse(node.left) + traverse(node.right) + 1
+    }
+
+    return traverse(root)
+};
