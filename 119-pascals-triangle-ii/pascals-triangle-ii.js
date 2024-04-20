@@ -8,10 +8,8 @@ var getRow = function(rowIndex) {
 
     for (let k = 1; k <= rowIndex; k++) {
         next = prev * (rowIndex - k + 1) / k
-        prev = next
         res.push(next)
+        prev = next
     }
     return res
 };
-
-// (n - r + 1) / r
