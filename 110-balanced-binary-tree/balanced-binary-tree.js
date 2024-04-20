@@ -11,15 +11,15 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    if (root === null) return true
+    if (root == null) return -1
 
     let diff = Math.abs(height(root.left) - height(root.right))
 
     return diff < 2 && isBalanced(root.left) && isBalanced(root.right)
 };
 
-const height = (node) => {
-    if (node === null) return -1
+function height(root) {
+    if (root === null) return -1
 
-    return 1 + Math.max(height(node.left), height(node.right))
+    return 1 + Math.max(height(root.left), height(root.right))
 }
