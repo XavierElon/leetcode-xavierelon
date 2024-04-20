@@ -11,15 +11,17 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    if (root === null) return -1
-
-    let diff = Math.abs(height(root.left) - height(root.right))
-
-    return diff < 2 && isBalanced(root.left) && isBalanced(root.right)
+    return dfsHeight(root) !== -1
 };
 
-function height(root) {
-    if (root === null) return -1
+function dfsHeight(root) {
+    if (root === null) return 0
 
-    return 1 + Math.max(height(root.left), height(root.right))
+    let leftHeight = dfsHeight(root.left)
+    if (leftHeight === -1) return -1
+    let rightHeight = dfsHeight(root.right)
+    if (rightHeight === -1) return -1
+
+    if (Math.abs(leftHeight - rightHeight) > 1) return -1
+    return Math.max(leftHeight, rightHeight) + 1
 }
