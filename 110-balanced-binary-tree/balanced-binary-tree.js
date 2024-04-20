@@ -22,6 +22,6 @@ function dfsHeight(root) {
     let rightHeight = dfsHeight(root.right)
     if (rightHeight === -1) return -1
 
-    if (Math.abs(leftHeight - rightHeight) > 1) return -1
-    return Math.max(leftHeight, rightHeight) + 1
+    if (Math.abs(rightHeight - leftHeight) > 1) return -1
+    return Math.max(rightHeight, leftHeight) + 1
 }
