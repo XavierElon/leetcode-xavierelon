@@ -13,12 +13,10 @@ var intersection = function(nums1, nums2) {
         if (nums1[i] === nums2[k]) {
             if(res[res.length-1] !== nums1[i]) {
                 res.push(nums1[i])
-            while (nums1[i] === nums1[i+1]) i++
-            while (nums2[k] === nums2[k+1]) k++
+            }
             i++
             k++
-            }
-            
+    
         } else if (nums1[i] < nums2[k]) {
             i++
         } else k++
