@@ -11,7 +11,7 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    if (root == null) return -1
+    if (root === null) return -1
 
     let diff = Math.abs(height(root.left) - height(root.right))
 
