@@ -14,5 +14,5 @@ var getRow = function(rowIndex) {
 
         prev = curr
     }
-    return prev
+    return curr
 };
