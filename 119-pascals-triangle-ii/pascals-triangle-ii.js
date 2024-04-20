@@ -3,13 +3,16 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-    let res = [1]
-    let prev = 1
+    let curr = []
+    let prev = [1]
 
-    for (let k = 1; k <= rowIndex; k++) {
-        next = prev * (rowIndex - k + 1) / k
-        res.push(next)
-        prev = next
+    for (let i = 0; i <= rowIndex; i++) {
+        curr = new Array(i+1).fill(1)
+        for (let j = 1; j < i; j++) {
+            curr[j] = prev[j-1] + prev[j]
+        }
+
+        prev = curr
     }
-    return res
+    return prev
 };
