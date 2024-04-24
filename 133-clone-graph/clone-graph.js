@@ -11,9 +11,9 @@
  * @return {Node}
  */
 var cloneGraph = function(node) {
-    if (node === null) return null
-
+    if (node === null) return
     const map = new Map()
+
     const clone = root => {
         if (!map.has(root.val)) {
             map.set(root.val, new Node(root.val))
@@ -21,5 +21,6 @@ var cloneGraph = function(node) {
         }
         return map.get(root.val)
     }
+
     return clone(node)
 };
