@@ -21,9 +21,11 @@ var canFinish = function(numCourses, prerequisites) {
     }
 
     let count = 0
+
     while (queue.length > 0) {
         const course = queue.shift()
         count++
+
         for (const nextCourse of adjList[course]) {
             indegree[nextCourse]--
             if (indegree[nextCourse] === 0) {
