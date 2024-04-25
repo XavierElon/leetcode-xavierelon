@@ -11,7 +11,7 @@
  * @return {Node}
  */
 var cloneGraph = function(node) {
-    if (node === null) return
+    if (node == null) return
     const map = new Map()
 
     const clone = root => {
