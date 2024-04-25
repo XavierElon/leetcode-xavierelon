@@ -40,7 +40,7 @@ MyQueue.prototype.peek = function() {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-    return this.input.length === 0 && !this.output.length
+    return !this.input.length && !this.output.length
 };
 
 /** 
