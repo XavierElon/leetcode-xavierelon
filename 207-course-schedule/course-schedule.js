@@ -11,7 +11,6 @@ var canFinish = function(numCourses, prerequisites) {
         indegree[course]++
         adjList[prereq].push(course)
     }
-    console.log(adjList)
 
     const queue = []
     for (let i = 0; i < numCourses; i++) {
