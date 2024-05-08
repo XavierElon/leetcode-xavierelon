@@ -7,7 +7,7 @@ var evalRPN = function(tokens) {
     '+': (a, b) => a + b,
     '-': (a, b) => a - b,
     '*': (a, b) => a * b,
-    '/': (a, b) => ~~(a / b)
+    '/': (a, b) => (a / b) | 0
   };
 
   const stack = [];
