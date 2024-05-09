@@ -11,13 +11,12 @@ var lengthOfLongestSubstring = function(s) {
     if (s.length === 1) return 1
 
     for (let i = 0; i < s.length; i++) {
-        while(set.has(s[i])) {
+        while (set.has(s[i])) {
             set.delete(s[left])
             left++
         }
         set.add(s[i])
         maxSize = Math.max(maxSize, i - left + 1)
     }
-
     return maxSize
 };
