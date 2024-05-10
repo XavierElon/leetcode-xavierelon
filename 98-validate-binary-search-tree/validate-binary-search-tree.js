@@ -11,11 +11,11 @@
  * @return {boolean}
  */
 var isValidBST = function(root, low = null, high = null) {
-    if (root === null) return true
+   if (root === null) return true
 
-    if ((low !== null && root.val <= low) || (high !== null && root.val >= high)) {
-        return false
-    }
+   if ((low !== null && root.val <= low) || (high !== null && root.val >= high)) {
+    return false
+   } 
 
-    return isValidBST(root.left, low, root.val) && isValidBST(root.right, root.val, high)
+   return isValidBST(root.left, low, root.val) && isValidBST(root.right, root.val, high)
 };
