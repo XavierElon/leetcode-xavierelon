@@ -3,26 +3,34 @@
  * @return {number}
  */
 var numIslands = function(grid) {
-    let count = 0
-
-    for (let row = 0; row < grid.length; row++) {
-        for (let col = 0; col < grid[row].length; col++) {
-            if (grid[row][col] == '1') {
-                count++
-                explore(row, col, grid)
+    let num = 0
+    grid.map((r, x) => {
+        r.map((c, y) => {
+            if (grid[x][y] === '1') {
+                num++
+                removeIslandBFS(grid, x, y)
             }
-        }
-    }
-    return count
+        })
+    })
+    return num
 };
 
-function explore(row, col, grid) {
-    if (row < 0 || col < 0 || row >= grid.length || col >= grid[row].length || grid[row][col] == '0') {
+const removeIslandBFS = (grid, x, y) => {
+    let stack = []
+    stack.push({x, y})
+    while (stack.length > 0) {
+        const {x, y} = stack.pop()
+        grid[x][y] = '0'
+        add(stack, grid, x+1, y)
+        add(stack, grid, x-1, y)
+        add(stack, grid, x, y+1)
+        add(stack, grid, x, y-1)
+    }
+}
+
+const add = (stack, grid, x, y) => {
+    if (x < 0 || y < 0 || x >= grid.length || y >= grid[x].length || grid[x][y] == '0') {
         return
     }
-    grid[row][col] = '0'
-    explore(row, col+1, grid)
-    explore(row, col-1, grid)
-    explore(row+1, col, grid)
-    explore(row-1, col, grid)
+    stack.push({x, y})
 }
