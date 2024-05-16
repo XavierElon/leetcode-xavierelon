@@ -4,14 +4,15 @@
  */
 var numIslands = function(grid) {
     let num = 0
-    grid.map((r, x) => {
-        r.map((c, y) => {
-            if (grid[x][y] === '1') {
+    
+    for (let row = 0; row < grid.length; row++) {
+        for (let col = 0; col < grid[row].length; col++) {
+            if (grid[row][col] == '1') {
                 num++
-                removeIslandBFS(grid, x, y)
+                removeIslandBFS(grid, row, col)
             }
-        })
-    })
+        }
+    }
     return num
 };
 
