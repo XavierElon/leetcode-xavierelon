@@ -3,21 +3,19 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    const length = nums.length;
-    const leftProducts = new Array(length).fill(1)
-    const rightProducts = new Array(length).fill(1)
-    const answer = new Array(length)
+    const length = nums.length
+    const answer = new Array(length).fill(1)
 
-    for (let i = 1; i < length; i++) {
-        leftProducts[i] = leftProducts[i-1] * nums[i-1]
-    }
-
-    for (let i = length - 2; i >= 0; i--) {
-        rightProducts[i] = rightProducts[i+1] * nums[i+1]
-    }
-
+    let leftProduct = 1
     for (let i = 0; i < length; i++) {
-        answer[i] = leftProducts[i] * rightProducts[i]
+        answer[i] = leftProduct
+        leftProduct *= nums[i]
+    }
+
+    let rightProduct = 1
+    for (let i = length - 1; i >= 0; i--) {
+        answer[i] *= rightProduct
+        rightProduct *= nums[i]
     }
 
     return answer
