@@ -7,10 +7,9 @@
 var matrixReshape = function(mat, r, c) {
     const rows = mat.length
     const cols = mat[0].length
-    if (r * c !== rows * cols) {
-        return mat
-    }
-    
+
+    if (r * c !== rows * cols) return mat
+
     const result = []
     let row = []
 
@@ -19,7 +18,7 @@ var matrixReshape = function(mat, r, c) {
             row.push(mat[i][j])
             if (row.length === c) {
                 result.push(row)
-                row=[]
+                row = []
             }
         }
     }
