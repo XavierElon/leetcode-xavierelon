@@ -5,9 +5,7 @@
  * @return {string}
  */
 var encode = function(strs) {
-    const newStrs = strs.map(str => `${str.length}#${str}`).join('')
-    console.log(newStrs)
-    return newStrs
+    return strs.map(str => `${str.length}#${str}`).join('')
 };
 
 /**
@@ -19,18 +17,16 @@ var encode = function(strs) {
 var decode = function(s) {
     const result = []
     let i = 0
-    console.log('s = ' + s)
 
     while (i < s.length) {
         let j = i
-        while (s[j] !== '#') j++
+        while (s[i] !== '#') i++
+        const start = i + 1
 
-        const length = parseInt(s.slice(i, j))
-        result.push(s.slice(j + 1, j + 1 + length))
-        i = j + 1 + length
+        const length = parseInt(s.slice(j, i))
+        result.push(s.slice(start, start + length))
+        i = start + length
     }
-    console.log('result = ' + result)
-
     return result
 };
 
