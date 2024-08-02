@@ -10,13 +10,19 @@ var matrixReshape = function(mat, r, c) {
     if (r * c !== rows * cols) {
         return mat
     }
-    const flattened = mat.flat()
+    
+    const result = []
+    let row = []
 
-    const res = new Array(r).fill(0).map(() => new Array(c))
-
-    for (let index = 0; index < flattened.length; index++) {
-        res[Math.floor(index/c)][index%c] = flattened[index]
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            row.push(mat[i][j])
+            if (row.length === c) {
+                result.push(row)
+                row=[]
+            }
+        }
     }
 
-    return res
+    return result
 };
