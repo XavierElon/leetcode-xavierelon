@@ -18,7 +18,6 @@ var topKFrequent = function(nums, k) {
     for (let i = buckets.length - 1; i >= 0 && result.length < k; i--) {
         result.push(...buckets[i])
     }
-    console.log(result)
 
     return result
 };
