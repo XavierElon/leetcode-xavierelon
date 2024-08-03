@@ -12,7 +12,7 @@ var isValidSudoku = function(board) {
             const num = board[i][j]
             if (num === '.') continue
 
-            const boxIndex = Math.floor(i / 3) * 3 + Math.floor(j / 3)
+            const boxIndex = Math.floor(i/3) * 3 + Math.floor(j/3)
 
             if (rows[i].has(num) || cols[j].has(num) || boxes[boxIndex].has(num)) return false
 
