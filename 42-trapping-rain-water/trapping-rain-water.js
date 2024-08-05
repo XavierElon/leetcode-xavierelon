@@ -16,19 +16,15 @@ var trap = function(height) {
                 leftMax = height[left]
             } else {
                 water += leftMax - height[left]
-                console.log('left water = ' + water)
             }
-            console.log('left = ' + left)
             left++
         } else {
             if (height[right] >= rightMax) {
                 rightMax = height[right]
             } else {
                 water += rightMax - height[right]
-                console.log('right water = ' + water)
 
             }
-            console.log('right = ' + right)
             right--
         }
     }
