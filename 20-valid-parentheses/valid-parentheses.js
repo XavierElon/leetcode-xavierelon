@@ -4,24 +4,26 @@
  */
 var isValid = function(s) {
     if (s.length === 0) return true
-    if (s.length % 2 === 1) return false
+    if (s.length % 2 !== 0) return false
 
     let stack = []
 
     for (let i = 0; i < s.length; i++) {
-        if (s.charAt(i) === '(' || s.charAt(i) === '[' || s.charAt(i) === '{') {
+        if (s.charAt(i) === '[' || s.charAt(i) === '(' || s.charAt(i) === '{') {
             stack.push(s.charAt(i))
         } else {
             if (stack.length === 0) return false
-            const top = stack.pop()
+            const topChar = stack.pop()
             const c = s.charAt(i)
-            
-            if (c === ')' && top !== '(') return false
-            if (c === ']' && top !== '[') return false
-            if (c === '}' && top !== '{') return false
+
+            if (c === ']' && topChar !== '[') return false
+            if (c === ')' && topChar !== '(') return false
+            if (c === '}' && topChar !== '{') return false
+
         }
     }
     return stack.length === 0
+
 };
 
 console.assert(isValid("") === true, "Empty string should be valid");
