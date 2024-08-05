@@ -5,9 +5,7 @@
 var trap = function(height) {
     let left = 0
     let right = height.length - 1
-    let leftMax = 0
-    let rightMax = 0
-    let water = 0
+    let leftMax = 0, rightMax = 0, water = 0
 
     while (left < right) {
         if (height[left] <= height[right]) {
