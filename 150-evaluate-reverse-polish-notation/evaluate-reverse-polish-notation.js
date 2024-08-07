@@ -3,24 +3,32 @@
  * @return {number}
  */
 var evalRPN = function(tokens) {
-    const ops = {
-        '+': (a, b) => a + b,
-        '-': (a, b) => a - b,
-        '*': (a, b) => a * b,
-        '/': (a, b) => a / b >= 0 ? Math.floor(a / b) : Math.ceil(a / b)
-    }
-
     const stack = []
 
-    for (let n of tokens) {
-        if (ops[n] != null) {
+    tokens.forEach((token) => {
+        if (!isNaN(token)) {
+            stack.push(Number(token))
+        } else {
             const b = stack.pop()
             const a = stack.pop()
-            stack.push(ops[n](a, b))
-        } else {
-            stack.push(Number(n))
-        }
-    }
 
-    return stack[0]
+            switch (token) {
+                case '+':
+                    stack.push(a + b)
+                    break
+                case '-':
+                    stack.push(a - b)
+                    break
+                case '*':
+                    stack.push(a * b)
+                    break
+                case '/':
+                    stack.push(Math.trunc(a / b))
+                    break
+            }
+        }
+    })
+    return stack.pop()
+
+    
 };
