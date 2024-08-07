@@ -4,10 +4,8 @@
  */
 var longestConsecutive = function(nums) {
     const numSet = new Set(nums)
-    console.log(numSet)
 
     let maxSequence = 0
-
     for (const num of nums) {
         if (!numSet.has(num - 1)) {
             let currentNum = num
@@ -17,7 +15,6 @@ var longestConsecutive = function(nums) {
                 currentNum++
                 currentSequence++
             }
-
             maxSequence = Math.max(currentSequence, maxSequence)
         }
     }
