@@ -20,11 +20,11 @@ function isBalanced(root: TreeNode | null): boolean {
     const leftHeight: number = getHeight(root.left)
     const rightHeight: number = getHeight(root.right)
 
-    if (Math.abs(rightHeight - leftHeight) > 1) return false
-    return true
+    return Math.abs(rightHeight - leftHeight) <= 1
 };
 
-const getHeight = (node: TreeNode | null) => {
+const getHeight = (node: TreeNode | null): number => {
     if (node === null) return 0
+
     return 1 + Math.max(getHeight(node.left), getHeight(node.right))
 }
