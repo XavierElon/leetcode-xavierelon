@@ -5,6 +5,7 @@
 var evalRPN = function(tokens) {
     const stack = []
 
+
     tokens.forEach((token) => {
         if (!isNaN(token)) {
             stack.push(Number(token))
@@ -23,12 +24,9 @@ var evalRPN = function(tokens) {
                     stack.push(a * b)
                     break
                 case '/':
-                    stack.push(Math.trunc(a / b))
-                    break
+                    stack.push(a / b > 0 ? Math.floor(a / b ) : Math.ceil(a / b))
             }
         }
     })
     return stack.pop()
-
-    
 };
