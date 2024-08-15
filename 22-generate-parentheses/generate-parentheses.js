@@ -6,9 +6,9 @@ var generateParenthesis = function(n) {
     const result = []
 
     const backtrack = (current, open, close) => {
-        if (current.length === n * 2) {
-             result.push(current)
-             return
+        if (current.length / 2 === n) {
+            result.push(current)
+            return
         }
 
         if (open < n) {
@@ -21,6 +21,5 @@ var generateParenthesis = function(n) {
     }
 
     backtrack('', 0, 0)
-
     return result
 };
