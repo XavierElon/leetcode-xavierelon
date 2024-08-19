@@ -7,7 +7,7 @@ var dailyTemperatures = function(temperatures) {
     const stack = []
 
     for (let i = 0; i < temperatures.length; i++) {
-        while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length-1]]) {
+        while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
             let prevIndex = stack.pop()
             res[prevIndex] = i - prevIndex
         }
