@@ -2,21 +2,22 @@ function nextGreaterElement(n: number): number {
     const digits: string[] = n.toString().split('')
     const length: number = digits.length
 
-    let i: number = length - 2
-    while (i >= 0 && digits[i] >= digits[i + 1]) {
-        i--
+    let pivotIndex: number = length - 2
+    while (pivotIndex >= 0 && digits[pivotIndex] >= digits[pivotIndex + 1]) {
+        pivotIndex--
     }
 
-    if (i < 0) return -1
+    if (pivotIndex < 0) return -1
 
-    let j: number = length - 1
-    while (digits[j] <= digits[i]) {
-        j--
+    let swapIndex: number = length - 1
+    while (digits[swapIndex] <= digits[pivotIndex]) {
+        swapIndex--
     }
 
-    [digits[i], digits[j]] = [digits[j], digits[i]]
+    [digits[pivotIndex], digits[swapIndex]] = [digits[swapIndex], digits[pivotIndex]]
 
-    const result: string = digits.slice(0, i + 1).concat(digits.slice(i+1).reverse()).join('')
+    const result: string = digits.slice(0, pivotIndex + 1).concat(digits.slice(pivotIndex + 1).reverse()).join('')
+
     const nextGreaterNum: number = parseInt(result, 10)
 
     return nextGreaterNum <= 2 ** 31 - 1 ? nextGreaterNum : -1
