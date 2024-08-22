@@ -3,10 +3,10 @@ function nextGreaterElements(nums: number[]): number[] {
     const result: Array<number> = new Array(length).fill(-1)
     const stack: number[] = []
 
-    for (let i = 0; i < 2 * length; i++) {
+    for (let i = 0; i < length * 2; i++) {
         const currentIndex: number = i % length
 
-        while (stack.length > 0 && nums[stack[stack.length -1]] < nums[currentIndex]) {
+        while (stack.length > 0 && nums[stack[stack.length-1]] < nums[currentIndex]) {
             const index: number = stack.pop()
             result[index] = nums[currentIndex]
         }
