@@ -1,7 +1,7 @@
 function permute(nums: number[]): number[][] {
     const results: number[][] = []
 
-    function backtrack(currentPermutation: number[], used: boolean[]): void {
+    const backtrack = (currentPermutation: number[], used: boolean[]) => {
         if (currentPermutation.length === nums.length) {
             results.push([...currentPermutation])
             return
@@ -9,7 +9,7 @@ function permute(nums: number[]): number[][] {
 
         for (let i = 0; i < nums.length; i++) {
             if (used[i]) continue
-
+            
             currentPermutation.push(nums[i])
             used[i] = true
 
