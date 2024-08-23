@@ -9,7 +9,7 @@ function permute(nums: number[]): number[][] {
 
         for (let i = 0; i < nums.length; i++) {
             if (used[i]) continue
-            
+
             currentPermutation.push(nums[i])
             used[i] = true
 
