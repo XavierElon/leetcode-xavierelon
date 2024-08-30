@@ -1,16 +1,16 @@
 function areNumbersAscending(s: string): boolean {
-    let tokens = s.split(' ')
-    let previousNumber = -1
+    let tokens: string[] = s.split(' ')
+    let previousNumber: number = -1
 
     for (const token of tokens) {
-        const num = parseInt(token)
+        const num: number = parseInt(token)
 
         if (!isNaN(num)) {
-            if (num <= previousNumber) {
-                return false
-            }
+            if (num <= previousNumber) return false
+
             previousNumber = num
         }
     }
+
     return true
 };
