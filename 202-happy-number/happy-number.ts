@@ -7,7 +7,7 @@ function isHappy(n: number): boolean {
         let current = n
         let sum = 0
 
-        while (current != 0) {
+        while (current !== 0) {
             sum += (current % 10) * (current % 10)
             current = Math.floor(current / 10)
         }
