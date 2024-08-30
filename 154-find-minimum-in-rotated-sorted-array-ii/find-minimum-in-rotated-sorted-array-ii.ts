@@ -13,5 +13,6 @@ function findMin(nums: number[]): number {
             right--
         }
     }
+
     return nums[left]
 };
