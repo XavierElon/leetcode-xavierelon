@@ -13,10 +13,18 @@
  */
 
 function evaluateTree(root: TreeNode | null): boolean {
-    switch(root.val) {
-        case 0: return false
-        case 1: return true
-        case 2: return evaluateTree(root.left) || evaluateTree(root.right)
-        case 3: return evaluateTree(root.left) && evaluateTree(root.right)
+    if (!root) return false
+
+    if (root.left === null && root.right === null) {
+        return root.val === 1
+    }
+
+    const leftNode: boolean = evaluateTree(root.left)
+    const rightNode: boolean = evaluateTree(root.right)
+
+    if (root.val === 2) {
+        return leftNode || rightNode
+    } else if (root.val === 3) {
+        return leftNode && rightNode
     }
 };
