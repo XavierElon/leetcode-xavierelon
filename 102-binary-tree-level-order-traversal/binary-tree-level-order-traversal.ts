@@ -23,16 +23,13 @@ function levelOrder(root: TreeNode | null): number[][] {
         const level: number[] = []
 
         for (let i = 0; i < levelSize; i++) {
-        const currentNode: TreeNode = queue.shift()
-        level.push(currentNode.val)
+            const currentNode: TreeNode = queue.shift()
+            level.push(currentNode.val)
 
-        if (currentNode.left) queue.push(currentNode.left)
-        if (currentNode.right) queue.push(currentNode.right)
-    }
-
-
-    result.push(level)
+            if (currentNode.left) queue.push(currentNode.left)
+            if (currentNode.right) queue.push(currentNode.right)
+        }
+        result.push(level)
     }
     return result
 };
-
