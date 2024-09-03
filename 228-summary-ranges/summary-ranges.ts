@@ -15,6 +15,6 @@ function summaryRanges(nums: number[]): string[] {
             result.push(`${nums[start]}->${nums[i]}`)
         }
         i++
-    }
+    } 
     return result
 };
