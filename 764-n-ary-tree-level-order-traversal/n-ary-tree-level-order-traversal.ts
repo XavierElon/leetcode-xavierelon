@@ -19,10 +19,10 @@ function levelOrder(root: _Node | null): number[][] {
     const queue: _Node[] = [root]
 
     while (queue.length > 0) {
-        const currentSize = queue.length
+        const levelSize: number = queue.length
         const level: number[] = []
 
-        for (let i = 0; i < currentSize; i++) {
+        for (let i = 0; i < levelSize; i++) {
             const currentNode: _Node = queue.shift()
             level.push(currentNode.val)
 
