@@ -3,9 +3,9 @@ function largeGroupPositions(s: string): number[][] {
     let i: number = 0
 
     while (i < s.length) {
-        let j = i
+        let j: number = i
 
-        while (j < s.length && s[i] === s[j]) {
+        while (j < s.length && s[j] === s[i]) {
             j++
         }
 
@@ -15,6 +15,5 @@ function largeGroupPositions(s: string): number[][] {
 
         i = j
     }
-
     return result
 };
