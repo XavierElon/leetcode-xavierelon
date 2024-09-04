@@ -5,7 +5,6 @@ function minimumDeletions(s: string): number {
     for (let char of s) {
         if (char === 'b') {
             bCount++
-
         } else {
             deletionCount = Math.min(deletionCount + 1, bCount)
         }
