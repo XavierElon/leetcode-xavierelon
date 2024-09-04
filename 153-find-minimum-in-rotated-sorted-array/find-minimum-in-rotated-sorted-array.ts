@@ -11,6 +11,5 @@ function findMin(nums: number[]): number {
             right = mid
         }
     }
-
-    return nums[right]
+    return nums[left]
 };
