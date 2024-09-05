@@ -13,30 +13,36 @@
  */
 
 function isCousins(root: TreeNode | null, x: number, y: number): boolean {
-    const queue = new Array()
+    if (!root) return false;
 
-    queue.push([root, null])
+    const queue: [TreeNode, TreeNode | null, number][] = [[root, null, 0]];
+    let xInfo: [TreeNode | null, number] | null = null;
+    let yInfo: [TreeNode | null, number] | null = null;
 
     while (queue.length > 0) {
-        let xIsInLevel = [false, null]
-        let yIsInLevel = [false, null]
-        const length = queue.length
+        const length = queue.length;
 
+        // Process all nodes at the current depth level
         for (let i = 0; i < length; i++) {
-            const [node, parent] = queue.shift()
+            const [node, parent, depth] = queue.shift()!;
 
-            if (node.val === x) xIsInLevel = [true, parent]
-            if (node.val === y) yIsInLevel = [true, parent]
+            if (node.val === x) xInfo = [parent, depth];
+            if (node.val === y) yInfo = [parent, depth];
 
-            if (xIsInLevel[0] == true && yIsInLevel[0] == true && xIsInLevel[1] != yIsInLevel[1]) {
-                return true
-            }
-
-            if (node.left) queue.push([node.left, node.val])
-            if (node.right) queue.push([node.right, node.val])
+            if (node.left) queue.push([node.left, node, depth + 1]);
+            if (node.right) queue.push([node.right, node, depth + 1]);
         }
-        if (xIsInLevel[0] && !yIsInLevel[0] || !xIsInLevel[0] && yIsInLevel[0]) return false
+
+        // After processing the whole level, check if both x and y were found
+        if (xInfo && yInfo) {
+            const [xParent, xDepth] = xInfo;
+            const [yParent, yDepth] = yInfo;
+            return xDepth === yDepth && xParent !== yParent; // Return true if they are cousins
+        }
+
+        // If one of x or y was found at this level but not both, they can't be cousins
+        if (xInfo || yInfo) return false;
     }
 
-    return false
-};
+    return false; // In case neither x nor y was found
+}
