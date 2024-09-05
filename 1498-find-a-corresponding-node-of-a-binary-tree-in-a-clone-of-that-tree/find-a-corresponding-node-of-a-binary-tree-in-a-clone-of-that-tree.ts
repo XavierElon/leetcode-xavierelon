@@ -15,7 +15,7 @@
 function getTargetCopy(original: TreeNode | null, cloned: TreeNode | null, target: TreeNode | null): TreeNode | null {
     if (original === null || cloned === null || target === null) return null
 
-    if (cloned.val === target.val) return cloned
+    if (original === target) return cloned
 
     return getTargetCopy(original.left, cloned.left, target) || getTargetCopy(original.right, cloned.right, target)
 };
