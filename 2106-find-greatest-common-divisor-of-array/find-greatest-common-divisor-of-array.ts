@@ -1,4 +1,4 @@
-function gcd(a: number, b: number): number {
+const gcd = (a: number, b: number) => {
     return b === 0 ? a : gcd(b, a % b)
 }
 
