@@ -1,8 +1,8 @@
 function reverseVowels(s: string): string {
-    const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])
-    let arr = s.split('')
+    const vowels: Set<string> = new Set(['a', 'e', 'i', 'o','u', 'A', 'E', 'I', 'O', 'U'])
+    let arr: string[] = s.split('')
     let left: number = 0
-    let right: number = arr.length - 1
+    let right: number = s.length-1
 
     while (left < right) {
         if (!vowels.has(arr[left])) left++
