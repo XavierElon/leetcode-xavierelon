@@ -8,9 +8,9 @@ function canPlaceFlowers(flowerbed: number[], n: number): boolean {
             flowerbed[i] = 1
             count++
 
-            // if (count >= n) {
-            //     return true
-            // }
+            if (count >= n) {
+                return true
+            }
         }
     }
     return count >= n
