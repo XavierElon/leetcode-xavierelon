@@ -1,5 +1,5 @@
 function reverseWords(s: string): string {
-    let trimmedStr = s.trim()
+    let trimmedStr: string = s.trim()
     let words: string[] = []
     let word: string = ''
 
