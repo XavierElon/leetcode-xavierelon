@@ -4,9 +4,9 @@ function kidsWithCandies(candies: number[], extraCandies: number): boolean[] {
 
     for (let i = 0; i < candies.length; i++) {
         if (candies[i] + extraCandies >= maxCandies) {
-            result.push(true)
+            result[i] = true
         } else {
-            result.push(false)
+            result[i] = false
         }
     }
 
