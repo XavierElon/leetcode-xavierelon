@@ -7,5 +7,6 @@ function isSubsequence(s: string, t: string): boolean {
         }
         j++
     }
-    return i === s.length
+    if (i === s.length) return true
+    else return false
 };
