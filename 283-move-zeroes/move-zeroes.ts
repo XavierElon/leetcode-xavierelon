@@ -6,7 +6,7 @@ function moveZeroes(nums: number[]): void {
 
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] !== 0) {
-            nums[lastNonZero++] = nums[i] 
+            nums[lastNonZero++] = nums[i]
         }
     }
 
