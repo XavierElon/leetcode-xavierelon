@@ -14,9 +14,8 @@ function findMaxConsecutiveOnes(nums: number[]): number {
             }
             left++
         }
-
         maxLength = Math.max(maxLength, right - left + 1)
     }
-    return maxLength
 
+    return maxLength
 };
