@@ -17,8 +17,9 @@ function maxVowels(s: string, k: number): number {
         }
         if (vowels.has(s[i - k])) {
             currentVowelCount--
+        
         }
-        maxVowelCount = Math.max(maxVowelCount, currentVowelCount)
+        maxVowelCount = Math.max(currentVowelCount, maxVowelCount)
     }
 
     return maxVowelCount
