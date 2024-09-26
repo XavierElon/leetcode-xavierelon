@@ -8,8 +8,7 @@ function minSubArrayLen(target: number, nums: number[]): number {
 
         while (sum >= target) {
             minLength = Math.min(minLength, right - left + 1)
-            sum -= nums[left]
-            left++
+            sum -= nums[left++]
         }
     }
 
