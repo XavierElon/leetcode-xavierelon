@@ -8,6 +8,5 @@ function removeStars(s: string): string {
             stack.pop()
         }
     }
-
     return stack.join('')
 };
