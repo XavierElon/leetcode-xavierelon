@@ -6,6 +6,7 @@ function asteroidCollision(asteroids: number[]): number[] {
 
         while (asteroid < 0 && stack.length > 0 && stack[stack.length - 1] > 0) {
             const top: number = stack[stack.length - 1]
+
             if (top < -asteroid) {
                 stack.pop()
                 continue
@@ -18,9 +19,8 @@ function asteroidCollision(asteroids: number[]): number[] {
                 break
             }
         }
-        if (!collision) {
-            stack.push(asteroid)
-        }
+
+        if (!collision) stack.push(asteroid)
     }
 
     return stack
