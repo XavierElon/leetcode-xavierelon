@@ -17,12 +17,13 @@ class MyQueue {
                 this.output.push(this.input.pop())
             }
         }
+
         return this.output.pop()
     }
 
     peek(): number {
         if (this.output.length === 0) {
-            while(this.input.length > 0) {
+            while (this.input.length > 0) {
                 this.output.push(this.input.pop())
             }
         }
