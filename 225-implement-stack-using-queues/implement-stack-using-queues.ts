@@ -1,27 +1,47 @@
 class MyStack {
-    private queue: number[]
+    private queue1: number[]
+    private queue2: number[]
+
     constructor() {
-        this.queue = []
+        this.queue1 = []
+        this.queue2 = []    
     }
 
     push(x: number): void {
-        this.queue.push(x)
-
-        for (let i = 0; i < this.queue.length - 1; i++) {
-            this.queue.push(this.queue.shift())
-        }
+        this.queue1.push(x)
     }
 
     pop(): number {
-        return this.queue.shift()
+        while (this.queue1.length > 1) {
+            this.queue2.push(this.queue1.shift())
+        }
+
+        const poppedElement = this.queue1.shift()
+
+        const temp = this.queue1;
+        this.queue1 = this.queue2;
+        this.queue2 = temp;
+        return poppedElement
+        
     }
 
     top(): number {
-        return this.queue[0]
+        while (this.queue1.length > 1) {
+            this.queue2.push(this.queue1.shift())
+        }
+
+        const topElement = this.queue1[0]
+        this.queue2.push(this.queue1.shift())
+
+        const temp = this.queue1;
+        this.queue1 = this.queue2;
+        this.queue2 = temp;
+
+        return topElement
     }
 
     empty(): boolean {
-        return this.queue.length === 0
+        return this.queue1.length === 0
     }
 }
 
