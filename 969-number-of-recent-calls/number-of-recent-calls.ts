@@ -1,22 +1,20 @@
 class RecentCounter {
-    private pings: number[]
+    private requests: number[]
     private start: number
 
     constructor() {
-        this.pings = []
-        this.start = 0
+        this.requests = []
+        this.start = 0    
     }
 
     ping(t: number): number {
-        this.pings.push(t)
+        this.requests.push(t)
 
-        const lowerBound = t - 3000
-
-        while (this.start < this.pings.length && this.pings[this.start] < lowerBound) {
+        while (this.requests[this.start] < t - 3000) {
             this.start++
         }
 
-        return this.pings.length - this.start
+        return this.requests.length - this.start
     }
 }
 
