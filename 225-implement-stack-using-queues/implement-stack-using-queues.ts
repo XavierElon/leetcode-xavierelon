@@ -1,39 +1,27 @@
 class MyStack {
-    private queue1: number[]
-    private queue2: number[]
-
+    private queue: number[]
     constructor() {
-        this.queue1 = []
-        this.queue2 = []   
+        this.queue = []
     }
 
     push(x: number): void {
-        this.queue2.push(x)
+        this.queue.push(x)
 
-        while (this.queue1.length > 0) {
-            this.queue2.push(this.queue1.shift())
+        for (let i = 0; i < this.queue.length - 1; i++) {
+            this.queue.push(this.queue.shift())
         }
-
-        [this.queue1, this.queue2] = [this.queue2, this.queue1]
     }
 
     pop(): number {
-        if (this.empty()) {
-            throw new Error('Stack is empty')
-        }
-        return this.queue1.shift()
+        return this.queue.shift()
     }
 
     top(): number {
-        if (this.empty()) {
-            throw new Error('Stack is empty')
-        }
-
-        return this.queue1[0]
+        return this.queue[0]
     }
 
     empty(): boolean {
-        return this.queue1.length === 0
+        return this.queue.length === 0
     }
 }
 
