@@ -4,35 +4,31 @@ class MyQueue {
 
     constructor() {
         this.input = []
-        this.output = []    
+        this.output = []     
     }
 
     push(x: number): void {
+        while (this.output.length > 0) {
+            this.input.push(this.output.pop())
+        }
+
         this.input.push(x)
+
+        while (this.input.length > 0) {
+            this.output.push(this.input.pop())
+        }
     }
 
     pop(): number {
-        if (this.output.length === 0) {
-            while (this.input.length > 0) {
-                this.output.push(this.input.pop())
-            }
-        }
-
         return this.output.pop()
     }
 
     peek(): number {
-        if (this.output.length === 0) {
-            while (this.input.length > 0) {
-                this.output.push(this.input.pop())
-            }
-        }
-
         return this.output[this.output.length - 1]
     }
 
     empty(): boolean {
-        return !this.input.length && !this.output.length
+        return this.output.length === 0
     }
 }
 
