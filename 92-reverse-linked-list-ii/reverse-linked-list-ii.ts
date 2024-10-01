@@ -15,24 +15,24 @@ function reverseBetween(head: ListNode | null, left: number, right: number): Lis
 
     let dummy: ListNode = new ListNode(0)
     dummy.next = head
-    let prev: ListNode | null = dummy
+    let prev: ListNode = dummy
 
     for (let i = 1; i < left; i++) {
-        if (prev) prev = prev.next
+        prev = prev.next
     }
 
-    let current: ListNode | null = prev!.next
-    let next: ListNode | null = null
     let prevSublist: ListNode | null = null
+    let current: ListNode | null = prev.next
+    let next: ListNode | null = null
 
     for (let i = 0; i < right - left + 1; i++) {
         next = current.next
-        current!.next = prevSublist
+        current.next = prevSublist
         prevSublist = current
         current = next
-    }
-
-    prev.next.next = current
+    } 
+    let startNode = prev.next
+    startNode.next = current
     prev.next = prevSublist
 
     return dummy.next
