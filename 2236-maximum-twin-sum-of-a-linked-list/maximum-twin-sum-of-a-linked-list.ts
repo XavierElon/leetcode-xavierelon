@@ -21,26 +21,29 @@ function pairSum(head: ListNode | null): number {
         fast = fast.next.next
     }
 
+    let current: ListNode = slow
     let prev: ListNode | null = null
-    let current: ListNode | null = slow
+    let next: ListNode | null = null
 
     while (current !== null) {
-        let nextTemp: ListNode = current.next
+        next = current.next
         current.next = prev
         prev = current
-        current = nextTemp
+        current = next
     }
 
-    let maxTwinSum: number = 0
     let firstHalf: ListNode | null = head
     let secondHalf: ListNode | null = prev
+    let maxTwinNumber: number = 0
+    console.log(firstHalf)
+    console.log(secondHalf)
 
     while (secondHalf !== null) {
-        const twinSum: number = firstHalf.val + secondHalf.val
-        maxTwinSum = Math.max(maxTwinSum, twinSum)
+        const twinNumber: number = firstHalf.val + secondHalf.val
+        maxTwinNumber = Math.max(maxTwinNumber, twinNumber)
         firstHalf = firstHalf.next
         secondHalf = secondHalf.next
-    }
+    } 
 
-    return maxTwinSum
+    return maxTwinNumber
 };
