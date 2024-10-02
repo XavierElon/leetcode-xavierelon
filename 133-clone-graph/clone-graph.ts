@@ -14,26 +14,21 @@
 
 
 function cloneGraph(node: _Node | null): _Node | null {
-	if (node === null) return null
+	if (node === null) return
 
-    const visited = new Map<_Node, _Node>()
-    const queue: _Node[] = []
+    const map: Map<_Node, _Node> = new Map();
 
-    const clone = new _Node(node.val)
-    visited.set(node, clone)
-    queue.push(node)
+    const dfs = (n: _Node): _Node => {
+        if (map.has(n)) return map.get(n)
 
-    while (queue.length > 0) {
-        const n = queue.shift()
+        const clone: _Node = new _Node(n.val)
+        map.set(n, clone)
 
         for (const neighbor of n.neighbors) {
-            if (!visited.has(neighbor)) {
-                visited.set(neighbor, new _Node(neighbor.val))
-                queue.push(neighbor)
-            }
-            visited.get(n).neighbors.push(visited.get(neighbor))
+            clone.neighbors.push(dfs(neighbor))
         }
+        return clone
     }
 
-    return clone
+    return dfs(node)
 };
