@@ -13,17 +13,15 @@
  */
 
 function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
-    
-
     const getLeaves = (root: TreeNode, leaves: number[]): void => {
-        if (!root) return
+        if (root === null) return
 
         if (root.left === null && root.right === null) {
             leaves.push(root.val)
         }
 
-        getLeaves(root.left, leaves)
-        getLeaves(root.right, leaves)
+        if (root.left) getLeaves(root.left, leaves)
+        if (root.right) getLeaves(root.right, leaves)
     }
 
     const leaves1: number[] = []
