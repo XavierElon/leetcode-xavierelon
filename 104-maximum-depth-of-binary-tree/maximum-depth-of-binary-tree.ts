@@ -15,18 +15,5 @@
 function maxDepth(root: TreeNode | null): number {
     if (!root) return 0
 
-    let depth: number = 0
-    const queue: TreeNode[] = [root]
-
-    while (queue.length > 0) {
-        const levelSize = queue.length
-        for (let i = 0; i < levelSize; i++) {
-            const node: TreeNode = queue.shift()
-            if (node.left) queue.push(node.left)
-            if (node.right) queue.push(node.right)
-        }
-        depth++
-    }
-
-    return depth
+    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
 };
