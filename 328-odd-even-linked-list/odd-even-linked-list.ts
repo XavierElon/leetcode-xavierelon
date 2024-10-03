@@ -11,19 +11,19 @@
  */
 
 function oddEvenList(head: ListNode | null): ListNode | null {
-  if (head === null || head.next === null) return head
+    if (head === null || head.next === null) return head
 
-  let odd: ListNode = head
-  let even: ListNode = head.next
-  let evenHead: ListNode = head.next
+    let odd: ListNode = head
+    let even: ListNode = head.next
+    let evenHead: ListNode = head.next
 
-  while (even !== null && even.next !== null) {
-    odd.next = even.next
-    odd = odd.next
+    while (even !== null && even.next !== null) {
+        odd.next = even.next
+        odd = odd.next
 
-    even.next = odd.next
-    even = even.next
-  }  
-  odd.next = evenHead
-  return head
+        even.next = odd.next
+        even = even.next
+    }
+    odd.next = evenHead
+    return head
 };
