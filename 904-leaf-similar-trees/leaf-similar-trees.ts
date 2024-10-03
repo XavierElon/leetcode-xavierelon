@@ -13,8 +13,10 @@
  */
 
 function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
-    const getLeaves = (root: TreeNode | null, leaves: number[]): void => {
-        if (root === null) return
+    
+
+    const getLeaves = (root: TreeNode, leaves: number[]): void => {
+        if (!root) return
 
         if (root.left === null && root.right === null) {
             leaves.push(root.val)
@@ -30,5 +32,5 @@ function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
     getLeaves(root1, leaves1)
     getLeaves(root2, leaves2)
 
-    return leaves1.join(',') === leaves2.join(',') 
+    return leaves1.join(',') === leaves2.join(',')
 };
