@@ -14,16 +14,13 @@
 
 function pathSum(root: TreeNode | null, targetSum: number): number {
     const prefixSums: Map<number, number> = new Map()
-
     prefixSums.set(0, 1)
-
     let count: number = 0
 
     function dfs(node: TreeNode | null, currentSum: number): void {
-        if (node === null) return
+        if (root === null) return
 
         currentSum += node.val
-
         const neededSum: number = currentSum - targetSum
         if (prefixSums.has(neededSum)) {
             count += prefixSums.get(neededSum)
@@ -35,7 +32,7 @@ function pathSum(root: TreeNode | null, targetSum: number): number {
         if (node.right !== null) dfs(node.right, currentSum)
 
         prefixSums.set(currentSum, prefixSums.get(currentSum) - 1)
-     }
+    }
 
     dfs(root, 0)
     return count
