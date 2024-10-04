@@ -20,25 +20,22 @@ function maxLevelSum(root: TreeNode | null): number {
     let maxLevel: number = 1
     let currentLevel: number = 1
 
-
     while (queue.length > 0) {
-        const levelSize: number = queue.length
         let currentSum: number = 0
+        const levelSize: number = queue.length
 
         for (let i = 0; i < levelSize; i++) {
-            const currentNode: TreeNode = queue.shift()
+            const node: TreeNode = queue.shift()
+            currentSum += node.val
 
-            currentSum += currentNode.val
-            if (currentNode.left) queue.push(currentNode.left)
-            if (currentNode.right) queue.push(currentNode.right)
+            if (node.left) queue.push(node.left)
+            if (node.right) queue.push(node.right)
         }
-
         if (currentSum > maxSum) {
             maxSum = currentSum
             maxLevel = currentLevel
         }
         currentLevel++
     }
-
     return maxLevel
 };
