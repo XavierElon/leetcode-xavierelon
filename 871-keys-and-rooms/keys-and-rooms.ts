@@ -1,15 +1,21 @@
 function canVisitAllRooms(rooms: number[][]): boolean {
-    const visited: boolean[] = new Array(rooms.length).fill(false)
-    let count: number = 0
+    const n: number = rooms.length
+    const visited: boolean[] = new Array(n).fill(false)
+    const queue: number[] = [0]
+    visited[0] = true
+    let visitedCount: number = 1
 
-    function dfs(room: number): void {
-        visited[room] = true
-        count++
-        for (const key of rooms[room]) {
-            if (!visited[key]) dfs(key)
+    while (queue.length > 0) {
+        const currentRoom = queue.shift() as number
+
+        for (const key of rooms[currentRoom]) {
+            if (!visited[key]) {
+                visited[key] = true
+                queue.push(key)
+                visitedCount++
+            }
         }
     }
 
-    dfs(0)
-    return count === rooms.length
+    return visitedCount === n
 };
