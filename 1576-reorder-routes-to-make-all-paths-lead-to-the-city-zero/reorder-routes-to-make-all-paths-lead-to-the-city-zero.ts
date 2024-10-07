@@ -10,7 +10,7 @@ function minReorder(n: number, connections: number[][]): number {
         adjList.get(v).push([u, 0])
     }
 
-    console.log(adjList)
+    // console.log(adjList)
     
     function dfs(city: number): void {
         visited[city] = true
