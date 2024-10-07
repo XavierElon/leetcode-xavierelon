@@ -1,7 +1,7 @@
 function minReorder(n: number, connections: number[][]): number {
     const adjList: Map<number, number[][]> = new Map()
-    let reorders: number = 0
     const visited: boolean[] = new Array(n).fill(false)
+    let reorders: number = 0
 
     for (const [u, v] of connections) {
         if (!adjList.has(u)) adjList.set(u, [])
@@ -10,8 +10,6 @@ function minReorder(n: number, connections: number[][]): number {
         adjList.get(v).push([u, 0])
     }
 
-    // console.log(adjList)
-    
     function dfs(city: number): void {
         visited[city] = true
 
@@ -24,6 +22,5 @@ function minReorder(n: number, connections: number[][]): number {
     }
 
     dfs(0)
-
     return reorders
 };
