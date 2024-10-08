@@ -7,6 +7,5 @@ function containsDuplicate(nums: number[]): boolean {
         }
         seen.add(num)
     }
-
     return false
 };
