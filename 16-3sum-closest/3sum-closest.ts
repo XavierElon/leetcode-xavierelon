@@ -1,5 +1,6 @@
 function threeSumClosest(nums: number[], target: number): number {
     nums.sort((a, b) => a - b)
+
     let closestSum: number = Infinity
 
     for (let i = 0; i < nums.length - 2; i++) {
