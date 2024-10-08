@@ -12,7 +12,7 @@ function convert(s: string, numRows: number): string {
             goingDown = !goingDown
         }
 
-        currentRow += goingDown ? 1 : - 1
+        currentRow += goingDown ? 1 : -1
     }
 
     return rows.join('')
