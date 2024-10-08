@@ -5,10 +5,10 @@ function convert(s: string, numRows: number): string {
     let currentRow: number = 0
     let goingDown: boolean = false
 
-    for (const char of s) {
+    for (let char of s) {
         rows[currentRow] += char
 
-        if (currentRow === 0 || currentRow === numRows - 1) {
+        if (currentRow === 0 || currentRow === numRows-1) {
             goingDown = !goingDown
         }
 
