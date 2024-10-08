@@ -1,15 +1,16 @@
 function containsNearbyDuplicate(nums: number[], k: number): boolean {
-    const seen: Set<number> = new Set()
-    
-    for (let i = 0; i < nums.length; i++) {
-        if (seen.has(nums[i])) return true
+        const seen: Set<number> = new Set()
 
-        seen.add(nums[i])
+        for (let i = 0; i < nums.length; i++) {
+            if (seen.has(nums[i])) {
+                return true
+            }
 
-        if (seen.size > k) {
-            seen.delete(nums[i - k])
-        } 
-    }
+            seen.add(nums[i])
 
+            if (seen.size > k) {
+                seen.delete(nums[i - k])
+            }
+        }
     return false
 };
