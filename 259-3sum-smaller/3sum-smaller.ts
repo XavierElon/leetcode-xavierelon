@@ -6,7 +6,7 @@ function threeSumSmaller(nums: number[], target: number): number {
 
     for (let i = 0; i < n - 2; i++) {
         let left: number = i + 1
-        let right: number = n - 1
+        let right = n - 1
 
         while (left < right) {
             const sum: number = nums[i] + nums[left] + nums[right]
