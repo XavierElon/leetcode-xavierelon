@@ -1,19 +1,33 @@
 function search(nums: number[], target: number): boolean {
-        let left: number = 0
-        let right: number = nums.length - 1;
+    if (nums.length === 0) return false;
 
-    while (left < right) {
-        let mid = Math.floor((right + left) / 2); // lower mid
-        if (nums[mid] === target) return true
-        if (nums[mid] === nums[left]) left++
-        if (nums[mid] == nums[right]) right--; // the only difference between Q.33
-        else if (nums[mid] < nums[right]) { // right part sorted
-            if (target > nums[mid] && target <= nums[right]) left = mid + 1;
-            else right = mid
-        } else{
-            if (target > nums[mid] || target < nums[left]) left = mid + 1;
-            else right = mid;
-        } 
+    let left: number = 0;
+    let right: number = nums.length - 1;
+
+    while (left <= right) {
+        const mid: number = Math.floor((left + right) / 2);
+
+        if (nums[mid] === target) return true;
+        if (nums[left] === nums[mid]) left++
+        if (nums[mid] === nums[right]) right--
+
+        // If left to mid is sorted
+        if (nums[left] < nums[mid]) {
+            if (nums[left] <= target && target < nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        // If mid to right is sorted
+        else if (nums[mid] < nums[right]) {
+            if (nums[mid] < target && target <= nums[right]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
     }
-    return nums[left]==target;
+
+    return nums[left] === target
 };
