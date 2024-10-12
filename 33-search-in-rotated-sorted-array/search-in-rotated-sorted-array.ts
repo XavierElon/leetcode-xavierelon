@@ -9,7 +9,7 @@ function search(nums: number[], target: number): number {
 
         if (nums[left] <= nums[mid]) {
             if (nums[left] <= target && target < nums[mid]) {
-                right = mid -1
+                right = mid - 1
             } else {
                 left = mid + 1
             }
