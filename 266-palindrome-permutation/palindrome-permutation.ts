@@ -6,7 +6,7 @@ function canPermutePalindrome(s: string): boolean {
         map.set(char, (map.get(char) || 0) + 1)
     }
 
-    for (const [char, count] of map) {
+    for (const char of map.keys()) {
         if (map.get(char) % 2 !== 0) {
             oddCount++
             if (oddCount > 1) {
