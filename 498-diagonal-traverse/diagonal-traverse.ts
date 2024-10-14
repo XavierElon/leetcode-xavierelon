@@ -1,32 +1,31 @@
 function findDiagonalOrder(mat: number[][]): number[] {
     if (mat.length === 0) return []
-    const rows: number = mat.length
-    const cols: number = mat[0].length
-    const diagonals: Map<number, number[]> = new Map()
-
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            const key = i + j
-            if (!diagonals.has(key)) {
-                diagonals.set(key, [])
-            }
-            diagonals.get(key).push(mat[i][j])
-        }
-    }
-
+    const m: number = mat.length
+    const n: number = mat[0].length
     const result: number[] = []
-
-    for (let k = 0; k <= rows + cols - 2; k++) {
-        if (diagonals.has(k)) {
-            const diagonal = diagonals.get(k)
-
-            if (k % 2 === 0) {
-                result.push(...diagonal.reverse())
-            } else {
-                result.push(...diagonal)
-            }
+    const diagonals: number[][] = Array.from({ length: m + n - 1 }, () => []);
+    
+    // Step 1: Group elements by their diagonal (i + j)
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            const key = i + j;
+            diagonals[key].push(mat[i][j]);
         }
     }
 
+    for (let k = 0; k < diagonals.length; k++) {
+        const diagonal = diagonals[k]
+
+        if (k % 2 === 0) {
+            for (let p = diagonal.length - 1; p >= 0; p--) {
+                result.push(diagonal[p])
+            }
+        } else {
+            for (let p = 0; p < diagonal.length; p++) {
+                result.push(diagonal[p])
+            }
+        }
+    }
     return result
+
 };
