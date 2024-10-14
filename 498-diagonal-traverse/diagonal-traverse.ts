@@ -3,19 +3,17 @@ function findDiagonalOrder(mat: number[][]): number[] {
     const m: number = mat.length
     const n: number = mat[0].length
     const result: number[] = []
-    const diagonals: number[][] = Array.from({ length: m + n - 1 }, () => []);
-    
-    // Step 1: Group elements by their diagonal (i + j)
+    const diagonals: number[][] = Array.from({ length: m + n - 1 }, () => [])
+
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
-            const key = i + j;
-            diagonals[key].push(mat[i][j]);
+            const key: number = i + j
+            diagonals[key].push(mat[i][j])
         }
     }
 
     for (let k = 0; k < diagonals.length; k++) {
-        const diagonal = diagonals[k]
-
+        const diagonal: number[] = diagonals[k]
         if (k % 2 === 0) {
             for (let p = diagonal.length - 1; p >= 0; p--) {
                 result.push(diagonal[p])
@@ -26,6 +24,6 @@ function findDiagonalOrder(mat: number[][]): number[] {
             }
         }
     }
-    return result
 
+    return result
 };
