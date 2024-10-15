@@ -82,28 +82,20 @@ class MaxHeap {
 }
 
 function scheduleCourse(courses: number[][]): number {
-    // Step 1: Sort courses by their lastDay
-    courses.sort((a, b) => a[1] - b[1]);
+    courses.sort((a, b) => a[1] -b[1])
+    let totalTime: number = 0
+    const maxHeap = new MaxHeap()
 
-    // Step 2: Initialize totalTime and a max heap
-    let totalTime = 0;
-    const maxHeap = new MaxHeap();
-
-    // Step 3: Iterate through the sorted courses
     for (const [duration, lastDay] of courses) {
         if (totalTime + duration <= lastDay) {
-            // Take the course
-            totalTime += duration;
-            maxHeap.insert(duration);
-        } else if (maxHeap.size() > 0 && maxHeap.peek()! > duration) {
-            // Replace the longest course taken so far
-            totalTime -= maxHeap.extractMax()!;
-            totalTime += duration;
-            maxHeap.insert(duration);
+            totalTime += duration
+            maxHeap.insert(duration)
+        } else if (maxHeap.size() > 0 && maxHeap.peek() > duration) {
+            totalTime -= maxHeap.extractMax()
+            totalTime += duration
+            maxHeap.insert(duration)
         }
-        // Else, skip the course
     }
 
-    // Step 4: Return the number of courses taken
-    return maxHeap.size();
+    return maxHeap.size()
 }
