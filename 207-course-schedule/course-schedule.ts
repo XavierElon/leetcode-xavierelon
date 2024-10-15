@@ -16,9 +16,9 @@ function canFinish(numCourses: number, prerequisites: number[][]): boolean {
     }
 
     while (queue.length > 0) {
-        const course = queue.shift()
+        const course: number = queue.shift()
         count++
-        for (const nextCourse of adjList[course]) {
+        for (let nextCourse of adjList[course]) {
             indegree[nextCourse]--
             if (indegree[nextCourse] === 0) {
                 queue.push(nextCourse)
