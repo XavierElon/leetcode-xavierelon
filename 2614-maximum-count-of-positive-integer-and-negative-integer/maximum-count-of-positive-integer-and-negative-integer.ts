@@ -1,12 +1,27 @@
 function maximumCount(nums: number[]): number {
-    let negCount: number = 0
-    let posCount: number = 0
+    const firstNonNegative: number = binarySearch(nums, 0)
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] < 0) negCount++
-        else if (nums[i] > 0) posCount++
-        else continue
-    }
+    const negCount = firstNonNegative
+
+    const firstPositive: number = binarySearch(nums, 1)
+    
+    const posCount: number = nums.length - firstPositive
 
     return Math.max(negCount, posCount)
 };
+
+function binarySearch(nums: number[], target: number): number {
+    let left: number = 0
+    let right: number = nums.length
+
+    while (left < right) {
+        const mid: number = Math.floor((left + right) / 2)
+        if (nums[mid] < target) {
+            left = mid + 1
+        } else {
+            right = mid
+        }
+    }
+
+    return left
+}
