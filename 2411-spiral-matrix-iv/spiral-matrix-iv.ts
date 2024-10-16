@@ -11,31 +11,31 @@
  */
 
 function spiralMatrix(m: number, n: number, head: ListNode | null): number[][] {
-    const matrix: number[][] = Array.from({ length: m}, () => Array(n).fill(-1))
+    const matrix: number[][] = Array.from({ length: m }, () => Array(n).fill(-1))
     let left: number = 0
     let right: number = n - 1
     let top: number = 0
     let bottom: number = m - 1
     let current: ListNode = head
 
-    while (top <= bottom && left <= right && current !== null) {
+    while (current !== null && left <= right && top <= bottom) {
         // Right
-        for (let i = left; i <= right && current; i++) {
+        for (let i = left; i <= right && current !== null; i++) {
             matrix[top][i] = current.val
             current = current.next
         }
         top++
 
         // Down
-        for (let i = top; i <= bottom && current; i++) {
+        for (let i = top; i <= bottom && current !== null; i++) {
             matrix[i][right] = current.val
             current = current.next
         }
         right--
 
         // Left
-        if (bottom >= top) {
-            for (let i = right; i >= left && current; i--) {
+        if (top <= bottom) {
+            for (let i = right; i >= left && current !== null; i--) {
                 matrix[bottom][i] = current.val
                 current = current.next
             }
@@ -44,7 +44,7 @@ function spiralMatrix(m: number, n: number, head: ListNode | null): number[][] {
 
         // Up
         if (left <= right) {
-            for (let i = bottom; i >= top && current; i--) {
+            for (let i = bottom; i >= top && current !== null; i--) {
                 matrix[i][left] = current.val
                 current = current.next
             }
