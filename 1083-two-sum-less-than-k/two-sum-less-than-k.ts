@@ -1,11 +1,11 @@
 function twoSumLessThanK(nums: number[], k: number): number {
-    nums.sort((a, b) => a - b)
+    nums.sort((a, b) => a - b) 
     let maxSum: number = -1
 
     function binarySearch(left: number, right: number, target: number): number {
         while (left <= right) {
             const mid: number = Math.floor((left + right) / 2)
-            
+
             if (nums[mid] < target) {
                 left = mid + 1
             } else {
@@ -21,5 +21,6 @@ function twoSumLessThanK(nums: number[], k: number): number {
             maxSum = Math.max(maxSum, nums[i] + nums[j])
         }
     }
+
     return maxSum
 };
