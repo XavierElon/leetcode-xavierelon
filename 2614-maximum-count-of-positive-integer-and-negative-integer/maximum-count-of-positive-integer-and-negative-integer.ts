@@ -1,10 +1,10 @@
 function maximumCount(nums: number[]): number {
     const firstNonNegative: number = binarySearch(nums, 0)
 
-    const negCount = firstNonNegative
+    const negCount: number = firstNonNegative
 
-    const firstPositive: number = binarySearch(nums, 1)
-    
+    const firstPositive: number = binarySearch(nums, 1) 
+
     const posCount: number = nums.length - firstPositive
 
     return Math.max(negCount, posCount)
@@ -16,12 +16,12 @@ function binarySearch(nums: number[], target: number): number {
 
     while (left < right) {
         const mid: number = Math.floor((left + right) / 2)
+
         if (nums[mid] < target) {
             left = mid + 1
         } else {
             right = mid
         }
     }
-
     return left
 }
