@@ -3,7 +3,7 @@ function search(nums: number[], target: number): number {
     let right: number = nums.length - 1
 
     while (left <= right) {
-        const mid: number = Math.floor((left + right) / 2)
+        const mid: number = Math.floor((left + right) / 2) 
 
         if (nums[mid] === target) {
             return mid
@@ -13,6 +13,5 @@ function search(nums: number[], target: number): number {
             right = mid - 1
         }
     }
-
     return -1
 };
