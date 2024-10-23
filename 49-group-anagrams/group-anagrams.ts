@@ -1,15 +1,15 @@
 function groupAnagrams(strs: string[]): string[][] {
-    const anagramGroups: Map<string, string[]> = new Map()
+    const map: Map<string, string[]> = new Map()
 
-    for (let str of strs) {
+    for (const str of strs) {
         const sortedStr = str.split('').sort().join('')
 
-        if (!anagramGroups.has(sortedStr)) {
-            anagramGroups.set(sortedStr, [])
+        if (map.has(sortedStr)) {
+            map.get(sortedStr).push(str)
+        } else {
+            map.set(sortedStr, [str])
         }
-
-        anagramGroups.get(sortedStr).push(str)
     }
 
-    return Array.from(anagramGroups.values())
+    return Array.from(map.values())
 };
