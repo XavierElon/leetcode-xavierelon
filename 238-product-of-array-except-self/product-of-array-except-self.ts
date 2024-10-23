@@ -1,5 +1,5 @@
 function productExceptSelf(nums: number[]): number[] {
-    let result: Array<number> = new Array(nums.length).fill(1)
+    let result: number[] = new Array(nums.length).fill(1)
     let leftProduct: number = 1
     let rightProduct: number = 1
 
