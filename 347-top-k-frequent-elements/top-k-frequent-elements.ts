@@ -17,9 +17,7 @@ function topKFrequent(nums: number[], k: number): number[] {
         if (bucket[i].length > 0) {
             for (const num of bucket[i]) {
                 result.push(num)
-                if (result.length === k) {
-                    return result
-                }
+                if (result.length === k) return result
             }
         }
     }
