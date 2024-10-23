@@ -15,5 +15,6 @@ function longestConsecutive(nums: number[]): number {
             maxSequence = Math.max(currentSequence, maxSequence)
         }
     }
+
     return maxSequence
 };
