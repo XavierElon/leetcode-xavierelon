@@ -1,6 +1,5 @@
 function longestConsecutive(nums: number[]): number {
     const numSet: Set<number> = new Set(nums)
-
     let maxSequence: number = 0
 
     for (const num of nums) {
@@ -9,10 +8,10 @@ function longestConsecutive(nums: number[]): number {
             let currentSequence: number = 1
 
             while (numSet.has(currentNum + 1)) {
-                currentSequence++
                 currentNum++
+                currentSequence++
             }
-            maxSequence = Math.max(currentSequence, maxSequence)
+            maxSequence = Math.max(maxSequence, currentSequence)
         }
     }
 
