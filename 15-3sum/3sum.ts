@@ -1,9 +1,9 @@
 function threeSum(nums: number[]): number[][] {
     const result: number[][] = []
-
+    
     nums.sort((a, b) => a - b)
 
-    for (let i = 0; i < nums.length - 2; i++) {
+    for (let i = 0; i < nums.length -2; i++) {
         if (i > 0 && nums[i] === nums[i-1]) continue
 
         let left: number = i + 1
