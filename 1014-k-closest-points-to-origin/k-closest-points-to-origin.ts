@@ -1,8 +1,7 @@
 function kClosest(points: number[][], k: number): number[][] {
     points.sort((a, b) => {
-        const distA = squaredDistance(a)
-        const distB = squaredDistance(b)
-        return distA - distB
+     
+        return squaredDistance(a) - squaredDistance(b)
     })   
 
     return points.slice(0, k)
