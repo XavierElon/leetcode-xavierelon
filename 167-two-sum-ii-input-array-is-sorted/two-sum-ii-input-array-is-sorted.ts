@@ -7,13 +7,10 @@ function twoSum(numbers: number[], target: number): number[] {
 
         if (sum === target) {
             return [left + 1, right + 1]
-        }
-
-        if (sum < target) {
+        } else if (sum < target) {
             left++
         } else {
             right--
         }
-
     }
 };
