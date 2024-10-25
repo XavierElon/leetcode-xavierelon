@@ -6,7 +6,7 @@ function trap(height: number[]): number {
     let water: number = 0
 
     while (left < right) {
-        if (height[left] <= height[right]) {
+        if (height[left] < height[right]) {
             if (height[left] > leftMax) {
                 leftMax = height[left]
             } else {
@@ -22,5 +22,6 @@ function trap(height: number[]): number {
             right--
         }
     }
+
     return water
 };
