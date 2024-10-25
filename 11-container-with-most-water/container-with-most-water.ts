@@ -5,8 +5,8 @@ function maxArea(height: number[]): number {
 
     while (left < right) {
         const width: number = right - left
-        const containerHeight: number = Math.min(height[left], height[right])
-        maxWater = Math.max(maxWater, containerHeight * width)
+        const containerHeight = Math.min(height[left], height[right])
+        maxWater = Math.max(maxWater, width * containerHeight)
 
         if (height[left] < height[right]) {
             left++
@@ -14,6 +14,5 @@ function maxArea(height: number[]): number {
             right--
         }
     }
-
     return maxWater
 };
