@@ -1,28 +1,43 @@
 function evalRPN(tokens: string[]): number {
     const stack: number[] = []
+    const operators = new Set(['+', '-', '*', '/'])
 
-    tokens.forEach((token) => {
-        if (!isNaN(Number(token))) {
-            stack.push(Number(token))
+    for (const token of tokens) {
+        if (!operators.has(token)) {
+            stack.push(parseInt(token, 10))
         } else {
             const b = stack.pop()
             const a = stack.pop()
 
+            if (a === undefined || b === undefined) {
+                throw new Error("Invalid Exprssion")
+            }
+
+            let result: number
+
             switch (token) {
                 case '+':
-                    stack.push(a + b)
+                    result = a + b
                     break
                 case '-':
-                    stack.push(a - b)
+                    result = a - b
                     break
                 case '*':
-                    stack.push(a * b)
+                    result = a * b
                     break
                 case '/':
-                    stack.push(a / b > 0 ? Math.floor(a / b) : Math.ceil(a / b))
+                    result = Math.trunc(a / b)
                     break
+                default: throw new Error('Unknown operator: ${token}')
             }
+
+            stack.push(result)
         }
-    })
-    return stack.pop()
+    }
+
+    if (stack.length !== 1) {
+        throw new Error('Invalid Expression')
+    }
+
+    return stack[0]
 };
