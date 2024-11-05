@@ -4,7 +4,7 @@ class MinStack {
 
     constructor() {
         this.mainStack = []
-        this.minStack = []
+        this.minStack = []    
     }
 
     push(val: number): void {
@@ -17,25 +17,24 @@ class MinStack {
 
     pop(): void {
         if (this.mainStack.length === 0) {
-            throw new Error('Stack is empty')
+            throw new Error('Stack is Empty')
         }
-
         const popped = this.mainStack.pop()
-        if (popped === this.getMin()) {
+        if (this.getMin() === popped) {
             this.minStack.pop()
         }
     }
 
     top(): number {
         if (this.mainStack.length === 0) {
-            throw new Error('Stack is empty')
+            throw new Error('Stack is Empty')
         }
         return this.mainStack[this.mainStack.length - 1]
     }
 
     getMin(): number {
         if (this.minStack.length === 0) {
-            throw new Error('Stack is empty')
+            throw new Error('Stack is Empty')
         }
         return this.minStack[this.minStack.length - 1]
     }
