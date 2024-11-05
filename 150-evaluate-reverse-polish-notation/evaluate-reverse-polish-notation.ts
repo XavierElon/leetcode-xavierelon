@@ -10,7 +10,7 @@ function evalRPN(tokens: string[]): number {
             const a = stack.pop()
 
             if (a === undefined || b === undefined) {
-                throw new Error("Invalid Exprssion")
+                throw new Error('Invalid Expression')
             }
 
             let result: number
@@ -28,13 +28,11 @@ function evalRPN(tokens: string[]): number {
                 case '/':
                     result = Math.trunc(a / b)
                     break
-                default: throw new Error('Unknown operator: ${token}')
+                default: throw new Error(`Unknown operator :${token}`)
             }
-
             stack.push(result)
         }
     }
-
     if (stack.length !== 1) {
         throw new Error('Invalid Expression')
     }
