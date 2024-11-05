@@ -5,14 +5,13 @@ function isValid(s: string): boolean {
     const stack: string[] = []
 
     for (const char of s) {
-        if (char === '[' || char === '(' || char === '{') {
+        if (char === '(' || char === '{' || char === '[') {
             stack.push(char)
         } else {
             const top: string = stack.pop()
-
-            if (char === ']' && top !== '[') return false
-            if (char === '}' && top !== '{') return false
             if (char === ')' && top !== '(') return false
+            if (char === '}' && top !== '{') return false
+            if (char === ']' && top !== '[') return false
         }
     }
 
