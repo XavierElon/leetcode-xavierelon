@@ -1,8 +1,8 @@
 function generateParenthesis(n: number): string[] {
-    const result = []
+    const result: string[] = []
 
-    const backtrack = (current, open, close) => {
-        if (current.length / 2 === n) {
+    const backtrack = (current: string, open: number, close: number) => {
+        if (current.length / n === 2) {
             result.push(current)
             return
         }
