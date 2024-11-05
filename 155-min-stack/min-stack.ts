@@ -9,7 +9,6 @@ class MinStack {
 
     push(val: number): void {
         this.mainStack.push(val)
-
         if (this.minStack.length === 0 || val <= this.getMin()) {
             this.minStack.push(val)
         }
@@ -17,26 +16,26 @@ class MinStack {
 
     pop(): void {
         if (this.mainStack.length === 0) {
-            throw new Error('Stack is Empty')
+            throw new Error('Stack is empty.')
         }
-        const popped = this.mainStack.pop()
-        if (this.getMin() === popped) {
+        const popped: number = this.mainStack.pop()
+        if (popped === this.getMin()) {
             this.minStack.pop()
         }
     }
 
     top(): number {
         if (this.mainStack.length === 0) {
-            throw new Error('Stack is Empty')
+            throw new Error('Stack is empty.')
         }
         return this.mainStack[this.mainStack.length - 1]
     }
 
     getMin(): number {
         if (this.minStack.length === 0) {
-            throw new Error('Stack is Empty')
+            throw new Error('Stack is empty.')
         }
-        return this.minStack[this.minStack.length - 1]
+        return this.minStack[this.minStack.length-1]
     }
 }
 
