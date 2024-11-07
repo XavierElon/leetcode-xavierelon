@@ -12,7 +12,7 @@ function carFleet(target: number, position: number[], speed: number[]): number {
     for (const car of cars) {
         const time: number = (target - car.position) / car.speed
 
-        if (stack.length === 0 || time > stack[stack.length-1]) stack.push(time)
+        if (stack.length === 0 || time > stack[stack.length - 1]) stack.push(time)
     }
 
     return stack.length
