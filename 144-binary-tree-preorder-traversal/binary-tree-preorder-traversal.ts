@@ -14,11 +14,10 @@
 
 function preorderTraversal(root: TreeNode | null): number[] {
     if (!root) return []
-
     const res: number[] = []
     const stack: TreeNode[] = [root]
 
-    while (stack.length) {
+    while (stack.length > 0) {
         const node = stack.pop() as TreeNode
         res.push(node.val)
 
