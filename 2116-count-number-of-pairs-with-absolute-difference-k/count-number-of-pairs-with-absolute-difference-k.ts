@@ -13,6 +13,5 @@ function countKDifference(nums: number[], k: number): number {
 
         frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1)
     }
-
     return count
 };
