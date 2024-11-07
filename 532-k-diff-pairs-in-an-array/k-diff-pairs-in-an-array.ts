@@ -11,9 +11,7 @@ function findPairs(nums: number[], k: number): number {
 
     if (k === 0) {
         for (const [num, freq] of frequencyMap.entries()) {
-            if (freq >= 2) {
-                count++
-            }
+            if (freq >= 2) count++
         }
     } else {
         for (const num of frequencyMap.keys()) {
