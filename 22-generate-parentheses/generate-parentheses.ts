@@ -2,7 +2,7 @@ function generateParenthesis(n: number): string[] {
     const result: string[] = []
 
     const backtrack = (current: string, open: number, close: number) => {
-        if (current.length / n === 2) {
+        if (current.length / 2 === n) {
             result.push(current)
             return
         }
