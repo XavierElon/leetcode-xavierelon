@@ -1,18 +1,19 @@
 function maximumBags(capacity: number[], rocks: number[], additionalRocks: number): number {
-    let arr = []
-    let ans: number = 0
+    const needed: number[] = capacity.map((cap, idx) => cap - rocks[idx])
 
-    for (const rock in rocks) {
-        arr.push(capacity[rock] - rocks[rock])
+    needed.sort((a, b) => a - b)
+    console.log(needed)
+
+    let filledBags: number = 0
+
+    for (const rocksNeeded of needed) {
+        if (additionalRocks >= rocksNeeded) {
+            filledBags++
+            additionalRocks -= rocksNeeded
+        } else {
+            break
+        }
     }
 
-    arr.sort((a, b) => a - b)
-
-    for (let val of arr) {
-        additionalRocks -= val
-        if (additionalRocks < 0) break
-        ans += 1
-    }
-
-    return ans
+    return filledBags
 };
