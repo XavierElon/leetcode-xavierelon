@@ -1,20 +1,21 @@
 function splitArray(nums: number[], k: number): number {
     
-    const isSplittable = (capacity: number): boolean => {
-        let requiredSubarrays: number = 1
-        let currentSum: number = 0
+    const canSplit = (capacity: number): boolean => {
+        let subarrays: number = 1
+        let sum: number = 0
 
-        for (const weight of nums) {
-            if (currentSum + weight > capacity) {
-                requiredSubarrays++
-                currentSum = weight
-
-                if (requiredSubarrays > k) {
+        for (const num of nums) {
+            if (num + sum > capacity) {
+                subarrays++
+                sum = num
+                if (subarrays > k) {
                     return false
                 }
             } else {
-                currentSum += weight
+                sum += num
             }
+
+       
         }
         return true
     }
@@ -24,7 +25,7 @@ function splitArray(nums: number[], k: number): number {
 
     while (left < right) {
         const mid: number = Math.floor((left + right) / 2)
-        if (isSplittable(mid)) {
+        if (canSplit(mid)) {
             right = mid
         } else {
             left = mid + 1
