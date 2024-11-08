@@ -7,10 +7,10 @@ function maximumUnits(boxTypes: number[][], truckSize: number): number {
         if (remainingTruckSize === 0) {
             break
         }
-        const boxesToLoad = Math.min(numberOfBoxes, remainingTruckSize)
 
-        totalUnits += boxesToLoad * numberOfUnitsPerBox
-        remainingTruckSize -= boxesToLoad
+        const minBoxes: number = Math.min(numberOfBoxes, remainingTruckSize)
+        totalUnits += minBoxes * numberOfUnitsPerBox
+        remainingTruckSize -= minBoxes
     }
 
     return totalUnits
