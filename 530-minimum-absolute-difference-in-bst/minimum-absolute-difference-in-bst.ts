@@ -13,25 +13,22 @@
  */
 
 function getMinimumDifference(root: TreeNode | null): number {
-    let minDiff = Infinity
-    let prev: number | null = null
+    let minDiff: number = Infinity
+    let prev = null
 
     function inorder(node: TreeNode | null) {
-        if (node === null) return
+        if (!node) return
 
         inorder(node.left)
 
         if (prev !== null) {
             const currentDiff = node.val - prev
-            if (currentDiff < minDiff) {
-                minDiff = currentDiff
-            }
+            if (currentDiff < minDiff) minDiff = currentDiff
         }
-
         prev = node.val
-
         inorder(node.right)
     }
+
     inorder(root)
     return minDiff
 };
