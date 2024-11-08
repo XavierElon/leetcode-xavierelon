@@ -3,7 +3,6 @@ function maximumBags(capacity: number[], rocks: number[], additionalRocks: numbe
     let ans: number = 0
 
     for (const rock in rocks) {
-        console.log(rock)
         arr.push(capacity[rock] - rocks[rock])
     }
 
