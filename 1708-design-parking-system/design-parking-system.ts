@@ -15,8 +15,7 @@ class ParkingSystem {
         if (this.parkingSlots[index] > 0) {
             this.parkingSlots[index]--
             return true
-        }
-
+        }   
         return false
     }
 }
