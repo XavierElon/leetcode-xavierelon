@@ -1,7 +1,7 @@
 function minimumOperations(nums: number[]): number {
-    const positiveNums = nums.filter(num => num > 0)
+    const positiveNumbers: number[] = nums.filter((x => x > 0))
 
-    const uniquePositiveNums: Set<number> = new Set(positiveNums)
+    const uniqueSet: Set<number> = new Set(positiveNumbers)
 
-    return uniquePositiveNums.size
+    return uniqueSet.size
 };
