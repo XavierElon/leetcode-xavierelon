@@ -18,7 +18,6 @@ function copyRandomList(head: _Node | null): _Node | null {
     if (!head) return null
 
     let current: _Node | null = head
-
     while (current !== null) {
         const newNode: _Node = new _Node(current.val, current.next, null)
         current.next = newNode
@@ -42,8 +41,10 @@ function copyRandomList(head: _Node | null): _Node | null {
         if (copyCurrent.next !== null) {
             copyCurrent.next = copyCurrent.next.next
         }
+
         current = current.next
         copyCurrent = copyCurrent.next
     }
+
     return copyHead
-}; 
+};
