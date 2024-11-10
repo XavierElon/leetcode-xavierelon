@@ -9,7 +9,7 @@ class ParkingSystem {
         const index: number = carType - 1
 
         if (index < 0 || index >= this.parkingSlots.length) {
-            throw new Error("Invalid Car Type")
+            throw new Error('Invalid Car Type')
         }
 
         if (this.parkingSlots[index] > 0) {
