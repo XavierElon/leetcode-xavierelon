@@ -13,12 +13,12 @@ class TicTacToe {
 
     move(row: number, col: number, player: number): number {
         const currentPlayer: number = player === 1 ? 1 : -1
-        const n = this.rows.length
+        const n: number = this.rows.length
 
         this.rows[row] += currentPlayer
         this.cols[col] += currentPlayer
         if (row === col) this.diagonals += currentPlayer
-        if (col === this.rows.length - row - 1) this.antiDiagonals += currentPlayer
+        if (col === this.cols.length - row - 1 ) this.antiDiagonals += currentPlayer
 
         if (Math.abs(this.rows[row]) === n || Math.abs(this.cols[col]) === n || Math.abs(this.diagonals) === n || Math.abs(this.antiDiagonals) === n) return player
 
