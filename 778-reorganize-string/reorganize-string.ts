@@ -8,7 +8,7 @@ function reorganizeString(s: string): string {
     const sortedArray: Array<[string, number]> = Array.from(frequencyMap.entries()).sort((a, b) => b[1] - a[1])
 
     const maxCount: number = sortedArray[0][1]
-    if (maxCount > Math.ceil(s.length / 2)) return ''
+    if (maxCount > Math.ceil(s.length /2)) return ''
 
     const ans: string[] = []
     let index: number = 0
@@ -20,6 +20,5 @@ function reorganizeString(s: string): string {
             index += 2
         }
     }
-
     return ans.join('')
 };
