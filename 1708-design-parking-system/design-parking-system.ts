@@ -8,14 +8,15 @@ class ParkingSystem {
     addCar(carType: number): boolean {
         const index: number = carType - 1
 
-        if (index < 0 || index >= this.parkingSlots.length) {
+        if (index >= this.parkingSlots.length) {
             throw new Error('Invalid Car Type')
         }
-
+        
         if (this.parkingSlots[index] > 0) {
             this.parkingSlots[index]--
             return true
-        }   
+        }
+
         return false
     }
 }
