@@ -1,18 +1,23 @@
 function maximumBags(capacity: number[], rocks: number[], additionalRocks: number): number {
-    const needed: number[] = capacity.map((cap, idx) => cap - rocks[idx])
+    let arr: number [] = []
 
-    needed.sort((a, b) => a - b)
+    for (let i = 0; i < capacity.length; i++) {
+        arr.push(capacity[i] - rocks[i])
+    }
 
-    let bagCount: number = 0
+    arr.sort((a, b) => a - b)
+    console.log(arr)
 
-    for (const rocksNeeded of needed) {
-        if (rocksNeeded <= additionalRocks) {
-            bagCount++
-            additionalRocks -= rocksNeeded
+    let count: number = 0
+
+    for (const rock of arr) {
+        if (rock <= additionalRocks) {
+            additionalRocks -= rock
+            count++
         } else {
             break
         }
     }
 
-    return bagCount
+    return count
 };
