@@ -3,6 +3,7 @@ function groupAnagrams(strs: string[]): string[][] {
 
     for (const str of strs) {
         const sortedStr: string = str.split('').sort().join('')
+
         if (map.has(sortedStr)) {
             map.get(sortedStr).push(str)
         } else {
