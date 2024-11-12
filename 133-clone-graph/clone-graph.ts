@@ -21,9 +21,7 @@ function cloneGraph(node: _Node | null): _Node | null {
 function clone(node: _Node | null, visited: Map<_Node, _Node>): _Node | null {
     if (node === null) return null
 
-    if (visited.has(node)) {
-        return visited.get(node)
-    }
+    if (visited.has(node)) return visited.get(node)
 
     const copy: _Node = new _Node(node.val)
 
@@ -34,4 +32,4 @@ function clone(node: _Node | null, visited: Map<_Node, _Node>): _Node | null {
     }
 
     return copy
-}   
+}
