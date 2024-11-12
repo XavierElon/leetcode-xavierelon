@@ -13,13 +13,6 @@
 
 
 function cloneTree(root: Node | null): Node | null {
-  return dfs(root);
+  if (!root) return null;
+  return new Node(root.val, root.children.map(cloneTree));
 };
-
-function dfs(root: Node | null){
-  if(!root) return null;
-  const copy = new Node(root.val);
-  for(const child of root.children)
-    copy.children.push(dfs(child));
-  return copy;
-}
