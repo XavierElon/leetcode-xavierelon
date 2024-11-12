@@ -47,6 +47,6 @@ function copyRandomList(head: _Node | null): _Node | null {
         current = current.next
         copyCurrent = copyCurrent.next
     }
-
     return copyHead
+
 };
