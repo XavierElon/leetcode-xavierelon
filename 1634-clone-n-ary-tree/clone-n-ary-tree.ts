@@ -12,7 +12,18 @@
  */
 
 
-function cloneTree(root: Node | null): Node | null {
-  if (!root) return null;
-  return new Node(root.val, root.children.map(cloneTree));
+function cloneTree(root: _Node | null): _Node | null {
+    return dfs(root)
 };
+
+function dfs(node: _Node | null): _Node | null {
+    if (node === null) return null
+
+    const copy: _Node = new _Node(node.val)
+
+    for (const child of node.children) {
+        copy.children.push(dfs(child))
+    } 
+
+    return copy
+}
