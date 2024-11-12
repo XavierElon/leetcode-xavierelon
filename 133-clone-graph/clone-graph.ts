@@ -14,13 +14,12 @@
 
 
 function cloneGraph(node: _Node | null): _Node | null {
-    const visited: Map<_Node, _Node> = new Map<_Node, _Node>()
+	const visited: Map<_Node, _Node> = new Map<_Node, _Node>()
     return clone(node, visited)
 };
 
-// Helper function
-function clone (node: _Node | null, visited: Map<_Node, _Node>): _Node | null {
-    if (node === null) return node
+function clone(node: _Node | null, visited: Map<_Node, _Node>): _Node | null {
+    if (node === null) return null
 
     if (visited.has(node)) {
         return visited.get(node)
@@ -35,4 +34,4 @@ function clone (node: _Node | null, visited: Map<_Node, _Node>): _Node | null {
     }
 
     return copy
-}
+}   
