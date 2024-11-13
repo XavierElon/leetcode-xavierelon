@@ -15,12 +15,12 @@
 function inorderTraversal(root: TreeNode | null): number[] {
     const res: number[] = []
 
-    function inorder(root: TreeNode | null) {
-        if (!root) return
+    const inorder = (node: TreeNode | null): void => {
+        if (node === null) return
 
-        inorder(root.left)
-        res.push(root.val)
-        inorder(root.right)
+        inorder(node.left)
+        res.push(node.val)
+        inorder(node.right)
     }
 
     inorder(root)
