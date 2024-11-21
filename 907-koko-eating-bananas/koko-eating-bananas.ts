@@ -6,20 +6,21 @@ function minEatingSpeed(piles: number[], h: number): number {
 
             if (hours > h) return false
         }
+
         return hours <= h
     }
 
-    let left: number = 1
+    let left: number = 0
     let right: number = Math.max(...piles)
 
-    while (left < right) {
+    while (left <= right) {
         const mid: number = Math.floor((left + right) / 2)
+
         if (canEatAll(mid)) {
-            right = mid
+            right = mid - 1
         } else {
             left = mid + 1
         }
     }
-
     return left
 };
