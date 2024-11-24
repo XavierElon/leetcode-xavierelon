@@ -12,6 +12,5 @@ function minSubArrayLen(target: number, nums: number[]): number {
             sum -= nums[left++]
         }
     }
-
     return minLength === Infinity ? 0 : minLength
 };
