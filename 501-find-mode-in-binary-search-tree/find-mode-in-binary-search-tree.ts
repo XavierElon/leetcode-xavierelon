@@ -13,20 +13,20 @@
  */
 
 function findMode(root: TreeNode | null): number[] {
-    if (root === null) return []
+    if (!root) return[]
 
-    let currentVal = null
+    let currentVal = 0
     let currentCount = 0
     let maxCount = 0
     let modes: number[] = []
 
     function inOrder(node: TreeNode | null): void {
-        if (node === null) return
+        if (!node) return
 
         inOrder(node.left)
 
-        if (currentVal === node.val) {
-            currentCount += 1
+        if (node.val === currentVal) {
+            currentCount++
         } else {
             currentVal = node.val
             currentCount = 1
