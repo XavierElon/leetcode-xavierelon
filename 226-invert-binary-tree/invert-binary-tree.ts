@@ -14,11 +14,23 @@
 
 function invertTree(root: TreeNode | null): TreeNode | null {
     if (root === null) return null
-    let temp = root.left
-    root.left = root.right
-    root.right = temp
-    if (root.left) invertTree(root.left)
-    if (root.right) invertTree(root.right)
+    const queue: TreeNode[] = [root]
+
+    while (queue.length > 0) {
+        const currentNode: TreeNode = queue.shift()
+
+        let temp = currentNode.left
+        currentNode.left = currentNode.right
+        currentNode.right = temp
+
+        if (currentNode.left !== null) {
+            queue.push(currentNode.left)
+        }
+
+        if (currentNode.right !== null) {
+            queue.push(currentNode.right)
+        }
+    }
 
     return root
 };
