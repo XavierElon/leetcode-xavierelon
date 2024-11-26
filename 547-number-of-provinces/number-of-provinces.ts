@@ -1,11 +1,10 @@
 function findCircleNum(isConnected: number[][]): number {
-    const n: number = isConnected.length
-    const visited: boolean[] = new Array(n).fill(false)
-    let provinceCount: number = 0
+    const n = isConnected.length
+    const visited: Array<boolean> = new Array(n).fill(false)
+    let provinceCount = 0
 
     function dfs(city: number): void {
         visited[city] = true
-
         for (let adjacentCity = 0; adjacentCity < n; adjacentCity++) {
             if (isConnected[city][adjacentCity] === 1 && !visited[adjacentCity]) {
                 dfs(adjacentCity)
