@@ -1,16 +1,16 @@
 function threeSumClosest(nums: number[], target: number): number {
-    nums.sort((a, b) => a - b)
-
+    const result: number[][] = []
+    nums.sort((a, b) => a - b) 
     let closestSum: number = Infinity
 
     for (let i = 0; i < nums.length - 2; i++) {
-         let left: number = i + 1
-         let right: number = nums.length - 1
+        let left: number = i + 1
+        let right: number = nums.length - 1
 
-         while (left < right) {
+        while (left < right) {
             const currentSum: number = nums[i] + nums[left] + nums[right]
 
-            if (Math.abs(currentSum - target) < Math.abs(closestSum - target)) {
+            if (Math.abs(target - currentSum) < Math.abs(target - closestSum)) {
                 closestSum = currentSum
             }
 
@@ -21,7 +21,7 @@ function threeSumClosest(nums: number[], target: number): number {
             } else {
                 return currentSum
             }
-         }
+        }
     }
 
     return closestSum
