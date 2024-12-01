@@ -26,5 +26,6 @@ var trap = function(height) {
             right--
         }
     }
+
     return water
 };
