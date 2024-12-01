@@ -5,19 +5,18 @@
 var isValid = function(s) {
     if (s.length === 0) return true
     if (s.length % 2 !== 0) return false
-
+    
     const stack = []
 
-    for (let i = 0; i < s.length; i++) {
-        const c = s.charAt(i)
-        if (c === '[' || c === '{' || c === '(') {
-            stack.push(s.charAt(i))
+    for (const char of s) {
+        if (char === '(' || char === '{' || char === '[') {
+            stack.push(char)
         } else {
+            console.log(stack)
             const top = stack.pop()
-
-            if (c === ']' && top !== '[') return false
-            if (c === '}' && top !== '{') return false
-            if (c === ')' && top !== '(') return false
+            if (char === ')' && top !== '(') return false
+            if (char === '}' && top !== '{') return false
+            if (char === ']' && top !== '[') return false
         }
     }
 
