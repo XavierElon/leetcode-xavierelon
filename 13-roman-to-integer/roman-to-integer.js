@@ -2,6 +2,8 @@
  * @param {string} s
  * @return {number}
  */
+
+ // IX = 9
 var romanToInt = function(s) {
     const map = {
         'I': 1,
@@ -13,7 +15,7 @@ var romanToInt = function(s) {
         'M': 1000
     }
     let sum = 0
-    
+
     for (let i = 0; i < s.length; i++) {
         if (i > 0 && s.charAt(i-1) === 'I' && (s.charAt(i) === 'V' || s.charAt(i) === 'X')) {
             sum -= 2
@@ -24,7 +26,9 @@ var romanToInt = function(s) {
         if (i > 0 && s.charAt(i-1) === 'C' && (s.charAt(i) === 'D' || s.charAt(i) === 'M')) {
             sum -= 200
         }
+
         sum += map[s.charAt(i)]
     }
+
     return sum
 };
