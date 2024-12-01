@@ -11,7 +11,16 @@ var isPalindrome = function(s) {
 
     s = filterNonAlphabet(s)
 
-    let reversedStr = s.split('').reverse().join('')
+    let left = 0
+    let right = s.length -1
 
-    return reversedStr === s
+    while (left < right) {
+        if (s[left] !== s[right]) {
+            return false
+        }
+        left++
+        right--
+    }
+
+    return true
 };
