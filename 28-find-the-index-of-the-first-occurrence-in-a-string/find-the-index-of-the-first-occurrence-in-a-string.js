@@ -5,13 +5,13 @@
  */
 var strStr = function(haystack, needle) {
     if (haystack.length < needle.length) return -1
-    if (haystack.length === '' || needle.length === '') return 0
+    if (haystack.length === 0 || needle.length === 0) return 0
 
     for (let windowStart = 0; windowStart < haystack.length - needle.length + 1; windowStart++) {
         if (haystack[windowStart] === needle[0]) {
             for (let i = 0; i < needle.length; i++) {
                 if (needle[i] !== haystack[windowStart + i]) {
-                    break
+                     break
                 } else if (i === needle.length - 1) {
                     return windowStart
                 }
