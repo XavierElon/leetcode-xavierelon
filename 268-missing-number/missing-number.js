@@ -3,11 +3,12 @@
  * @return {number}
  */
 var missingNumber = function(nums) {
-    let res = new Array(nums.length + 1).fill(-1)
+    let expectedSum = nums.length * (nums.length + 1) / 2
+    let actualSum = 0
 
-    for (const num of nums) {
-        res[num] = num
+    for (let i = 0; i < nums.length; i++) {
+        actualSum += nums[i]
     }
 
-    return res.indexOf(-1)
+    return expectedSum - actualSum
 };
