@@ -6,27 +6,22 @@
 var isAnagram = function(s, t) {
     if (s.length !== t.length) return false
 
-    let freq = new Array(52).fill(0)
+    const map = new Map()
 
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] >= 'a' && s[i] <= 'z') {
-            freq[s.charCodeAt(i) - 'a'.charCodeAt(0)]++
-        }
-        else if (s[i] >= 'A' && s[i] <= 'Z') {
-            freq[s.charCodeAt(i) - 'A'.charCodeAt(0)]++
-        }
+    for (const char of s) {
+        map.set(char, (map.get(char) || 0) + 1)
+    }
 
-        if (t[i] >= 'a' && s[i] <= 'z') {
-            freq[t.charCodeAt(i) - 'a'.charCodeAt(0)]--
-        }
-        else if (t[i] >= 'A' && t[i] <= 'Z') {
-            freq[t.charCodeAt(i) - 'A'.charCodeAt(0)]--
+    for (const char of t) {
+        if (!map.has(char)) {
+            return false
+        } else {
+            map.set(char, (map.get(char) || 0) - 1)
+            if (map.get(char) === 0) {
+                map.delete(char)
+            }
         }
     }
 
-    for (let i = 0; i < freq.length; i++) {
-        if (freq[i] !== 0) return false 
-    }
-
-    return true
+    return map.size === 0
 };
