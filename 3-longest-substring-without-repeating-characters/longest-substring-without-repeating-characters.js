@@ -3,12 +3,9 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    let set = new Set()
+    const set = new Set()
+    let max = 0
     let left = 0
-    let maxSize = 0
-
-    if (s.length === 0) return 0
-    if (s.length === 1) return 1
 
     for (let i = 0; i < s.length; i++) {
         while (set.has(s[i])) {
@@ -16,7 +13,8 @@ var lengthOfLongestSubstring = function(s) {
             left++
         }
         set.add(s[i])
-        maxSize = Math.max(maxSize, i - left + 1)
+        max = Math.max(i - left + 1, max)
     }
-    return maxSize
+
+    return max
 };
