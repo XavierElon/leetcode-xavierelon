@@ -15,15 +15,15 @@ var addTwoNumbers = function(l1, l2) {
     let current = dummy
     let carry = 0
 
-    while (l1 !== null || l2 !== null || carry === 1) {
+    while (l1 || l2 || carry === 1) {
         let sum = 0
 
-        if (l1 !== null) {
+        if (l1) {
             sum += l1.val
             l1 = l1.next
         }
 
-        if (l2 !== null) {
+        if (l2) {
             sum += l2.val
             l2 = l2.next
         }
@@ -31,7 +31,7 @@ var addTwoNumbers = function(l1, l2) {
         sum += carry
 
         carry = Math.floor(sum / 10)
-
+        
         let node = new ListNode(sum % 10)
         current.next = node
         current = current.next
