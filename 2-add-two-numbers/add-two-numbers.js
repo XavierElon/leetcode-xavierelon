@@ -31,7 +31,7 @@ var addTwoNumbers = function(l1, l2) {
         sum += carry
 
         carry = Math.floor(sum / 10)
-        
+
         let node = new ListNode(sum % 10)
         current.next = node
         current = current.next
