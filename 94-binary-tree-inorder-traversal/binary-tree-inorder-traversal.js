@@ -12,20 +12,16 @@
  */
 var inorderTraversal = function(root) {
     if (!root) return []
-
     const res = []
-    const stack = []
-    let current = root
 
-    while (stack.length !== 0 || current) {
-        if (current !== null) {
-            stack.push(current)
-            current = current.left
-        } else {
-            current = stack.pop()
-            res.push(current.val)
-            current = current.right
-        }
+    function inorder (node) {
+        if (node === null) return
+        inorder(node.left)
+        res.push(node.val)
+        inorder(node.right)
     }
+
+    inorder(root)
+
     return res
 };
