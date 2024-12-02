@@ -13,11 +13,11 @@ var compareVersion = function(version1, version2) {
         const num1 = i < parts1.length ? parts1[i] : 0
         const num2 = i < parts2.length ? parts2[i] : 0
 
+        if (num1 < num2) {
+            return -1
+        }
         if (num1 > num2) {
             return 1
-        }
-        if (num2 > num1) {
-            return -1
         }
     }
 
