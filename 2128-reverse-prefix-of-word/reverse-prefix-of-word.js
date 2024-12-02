@@ -14,7 +14,6 @@ var reversePrefix = function(word, ch) {
         }
     }
 
-    console.log(index)
     if (index !== -1) {
         let chars = word.split('')
         let left = 0
