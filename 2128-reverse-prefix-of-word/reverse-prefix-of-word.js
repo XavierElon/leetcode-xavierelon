@@ -21,6 +21,7 @@ var reversePrefix = function(word, ch) {
         reversedSegment += stack.pop()
     }
 
-    const remaining = word.slice(index + 1)
-    return reversedSegment + remaining
+    let remaining = word.slice(index + 1)
+    reversedSegment += remaining
+    return reversedSegment
 };
