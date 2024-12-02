@@ -23,8 +23,8 @@ var reverseBetween = function(head, left, right) {
     }
 
     let current = start.next
-    let next = null
     let prev = null
+    let next = null
 
     for (let i = 0; i < right - left + 1; i++) {
         next = current.next
