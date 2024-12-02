@@ -16,13 +16,13 @@ var reverseBetween = function(head, left, right) {
 
     let dummy = new ListNode(0)
     dummy.next = head
-    let prev = dummy
-
+    let start = dummy
+    
     for (let i = 1; i < left; i++) {
-        prev = prev.next
+        start = start.next
     }
 
-    let current = prev.next
+    let current = start.next
     let next = null
     let prevSublist = null
 
@@ -32,10 +32,9 @@ var reverseBetween = function(head, left, right) {
         prevSublist = current
         current = next
     }
-
-    let startNode = prev.next
+    let startNode = start.next
     startNode.next = current
-    prev.next = prevSublist
+    start.next = prevSublist
 
     return dummy.next
 };
