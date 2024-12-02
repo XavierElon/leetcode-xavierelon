@@ -4,30 +4,23 @@
  * @return {string}
  */
 var reversePrefix = function(word, ch) {
-    let index = -1
-    let reversedWord
+    const index = word.indexOf(ch)
 
-    for (let i = 0; i < word.length; i++) {
-        if (word[i] === ch) {
-            index = i
-            break
-        }
+    if (index === -1) {
+        return word
     }
 
-    if (index !== -1) {
-        let chars = word.split('')
-        let left = 0
-        let right = index
+    const stack = []
 
-        while (left < right) {
-            let temp = chars[left]
-            chars[left] = chars[right]
-            chars[right] = temp
-            left++
-            right--
-        }
-        return chars.join('')
+    for (let i = 0; i <= index; i++) {
+        stack.push(word[i])
     }
 
-    return word
+    let reversedSegment = ''
+    while (stack.length > 0) {
+        reversedSegment += stack.pop()
+    }
+
+    const remaining = word.slice(index + 1)
+    return reversedSegment + remaining
 };
