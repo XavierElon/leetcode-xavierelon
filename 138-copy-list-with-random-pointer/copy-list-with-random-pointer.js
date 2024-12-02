@@ -14,6 +14,7 @@
 var copyRandomList = function(head) {
       if (!head) return null
     
+    // Create current
     let current = head
 
     // Create copy nodes and insert them after original nodes
@@ -27,6 +28,7 @@ var copyRandomList = function(head) {
 
     // [Node1] -> [Copy of Node1] -> [Node2] -> [Copy of Node2] -> [Node3] -> [Copy of Node3] -> null
 
+    // Reset current head
     current = head
 
     // Set up random 
