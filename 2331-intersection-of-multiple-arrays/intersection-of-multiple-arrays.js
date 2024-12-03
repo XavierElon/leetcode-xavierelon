@@ -7,10 +7,8 @@ var intersection = function(nums) {
     const map = new Map()
 
     for (let i = 0; i < nums.length; i++) {
-        const uniqueElements = new Set(nums[i])
-
-        for (let num of uniqueElements) {
-            map.set(num, (map.get(num) || 0) + 1)
+        for (let j = 0; j < nums[i].length; j++) {
+            map.set(nums[i][j], (map.get(nums[i][j]) || 0) + 1)
         }
     }
 
