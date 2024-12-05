@@ -12,7 +12,7 @@ var nextPermutation = function(nums) {
         }
     }
 
-    nums.reverse()
+    reverse(0)
 
     function swap(i, j) {
         [nums[i], nums[j]] = [nums[j], nums[i]]
