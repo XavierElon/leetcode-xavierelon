@@ -8,9 +8,8 @@ var pivotIndex = function(nums) {
 
     for (let i = 0; i < nums.length; i++) {
         const rightSum = totalSum - leftSum - nums[i]
-        if (leftSum === rightSum) return i
+        if (rightSum === leftSum) return i
         leftSum += nums[i]
     }
-
     return -1
 };
