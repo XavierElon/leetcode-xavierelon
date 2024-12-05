@@ -3,17 +3,14 @@
  * @return {number[]}
  */
 var arrayRankTransform = function(arr) {
-    const sorted = [...arr].sort((a, b) => a - b)
+    if (arr.length === 0) return []
+
+    const uniqueSorted = Array.from(new Set([...arr])).sort((a, b) => a - b)
 
     const rankMap = new Map()
-    let rank = 1
+    uniqueSorted.forEach((num, index) => rankMap.set(num, index + 1))
 
-    for (let i = 0; i < sorted.length; i++) {
-        if (!rankMap.has(sorted[i])) {
-            rankMap.set(sorted[i], rank)
-            rank++
-        }
-    }
-
-    return arr.map(num => rankMap.get(num))
+    const result = arr.map(num =>rankMap.get(num))
+    
+    return result
 };
