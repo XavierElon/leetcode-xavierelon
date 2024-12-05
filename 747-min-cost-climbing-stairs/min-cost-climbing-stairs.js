@@ -4,19 +4,24 @@
  */
 var minCostClimbingStairs = function(cost) {
     const n = cost.length
+    const memo = new Array(n).fill(-1)
 
-    if (n === 0) return 0
-    if (n === 1) return cost[0]
-    if (n === 2) return Math.min(cost[0], cost[1])
+    function climb(i) {
+        if (i >= n) return 0
 
-    const dp = new Array(n + 1).fill(0)
+        if (memo[i] !== -1) return memo[i]
 
-    dp[0] = 0
-    dp[1] = 0
+        const costCurrent = cost[i]
 
-    for (let i = 2; i <= n; i++) {
-        dp[i] = Math.min(dp[i-1] + cost[i-1], dp[i-2] + cost[i-2])
+        const costOneStep = climb(i + 1)
+        const costTwoSteps = climb(i + 2)
+
+        const minCost = costCurrent + Math.min(costOneStep, costTwoSteps)
+
+        memo[i] = minCost
+
+        return minCost
     }
 
-    return dp[n]
+    return Math.min(climb(0), climb(1))
 };
