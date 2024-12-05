@@ -12,7 +12,7 @@ var canMakeSubsequence = function(str1, str2) {
     let j = 0
 
     const getNextChar = (c) => {
-        return c === 'z' ? 'a' : String.fromCharCode(c.charCodeAt(0) + 1)
+        return c === 'z' ? 'a' : String.fromCharCode(c.charCodeAt(0) + 1) 
     }
 
     while (i < m && j < n) {
