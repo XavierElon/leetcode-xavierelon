@@ -6,19 +6,16 @@
 var isSubsequence = function(s, t) {
     if (s.length > t.length) return false
     if (s.length === 0) return true
-
-    let sPointer = 0
-    let tPointer = 0
-
+    let pointer1 = 0
+    let pointer2 = 0
     const m = s.length
     const n = t.length
 
-    while (sPointer < m && tPointer < n) {
-        if (s[sPointer] === t[tPointer]) {
-            sPointer++
+    while (pointer1 < m && pointer2 < n) {
+        if (s[pointer1] === t[pointer2]) {
+            pointer1++
         }
-        tPointer++
+        pointer2++
     }
-
-    return sPointer === m
+    return pointer1 === s.length
 };
