@@ -4,14 +4,21 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-    let i = 0
-    let j = 0
+    if (s.length > t.length) return false
+    if (s.length === 0) return true
 
-    while (i < s.length && j < t.length) {
-        if (s[i] === t[j]) {
-            i++
+    let sPointer = 0
+    let tPointer = 0
+
+    const m = s.length
+    const n = t.length
+
+    while (sPointer < m && tPointer < n) {
+        if (s[sPointer] === t[tPointer]) {
+            sPointer++
         }
-        j++
+        tPointer++
     }
-    return i === s.length
+
+    return sPointer === m
 };
