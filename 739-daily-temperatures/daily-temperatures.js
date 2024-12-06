@@ -3,16 +3,24 @@
  * @return {number[]}
  */
 var dailyTemperatures = function(temperatures) {
-    const res = new Array(temperatures.length).fill(0)
-    const stack = []
+    const n = temperatures.length
+    let hottest = 0
+    const answer = new Array(n).fill(0)
 
-    for (let i = 0; i < temperatures.length; i++) {
-        while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
-            const prevIndex = stack.pop()
-            res[prevIndex] = i - prevIndex
+    for (let curr_day = n - 1; curr_day >= 0; curr_day--) {
+        const current_temp = temperatures[curr_day]
+        if (current_temp >= hottest) {
+            hottest = current_temp
+            continue
         }
-        stack.push(i)
+
+        let days = 1
+        while (temperatures[curr_day + days] <= current_temp) {
+            days += answer[curr_day + days]
+        }
+
+        answer[curr_day] = days
     }
 
-    return res
+    return answer
 };
