@@ -4,34 +4,25 @@
  * @return {number}
  */
 var minimumSize = function(nums, maxOperations) {
-    left = 1
-    right = Math.max(...nums)
+    let left = 1, right = Math.max(...nums)
+    let ans = right
 
-    const canSplit = (target) => {
-        let operationsNeeded = 0
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2)
+        let ops = 0
 
-        for (const num of nums) {
-            operationsNeeded += Math.floor((num -1) / target)
-
-            if (operationsNeeded > maxOperations) {
-                return false
-            }
+        for (let n of nums) {
+            ops += Math.floor((n - 1) / mid)
+            if (ops > maxOperations) break
         }
 
-        return operationsNeeded <= maxOperations
-    }
-
-    let result = right
-    while (left <= right) {
-        const mid = Math.floor((left + right) / 2)
-
-        if (canSplit(mid)) {
-            result = mid
-            right = mid -1
+        if (ops <= maxOperations) {
+            ans = mid
+            right = mid - 1
         } else {
             left = mid + 1
         }
     }
 
-    return result
+    return ans
 };
