@@ -5,9 +5,8 @@
  * @return {number[]}
  */
 var successfulPairs = function(spells, potions, success) {
-    const res = []
     potions.sort((a, b) => a - b)
-
+    const res = []
 
     for (const spell of spells) {
         let left = 0
@@ -18,14 +17,16 @@ var successfulPairs = function(spells, potions, success) {
         while (left <= right) {
             const mid = Math.floor((left + right) / 2)
 
-            if (spell * potions[mid] >= success) {
+            if (potions[mid] * spell >= success) {
                 index = mid
                 right = mid - 1
             } else {
                 left = mid + 1
             }
+
         }
         res.push(potions.length - index)
     }
+
     return res
 };
