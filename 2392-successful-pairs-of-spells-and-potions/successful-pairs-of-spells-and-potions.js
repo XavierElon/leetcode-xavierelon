@@ -13,7 +13,6 @@ var successfulPairs = function(spells, potions, success) {
         let right = potions.length - 1
         let index = potions.length
 
-
         while (left <= right) {
             const mid = Math.floor((left + right) / 2)
 
@@ -23,7 +22,6 @@ var successfulPairs = function(spells, potions, success) {
             } else {
                 left = mid + 1
             }
-
         }
         res.push(potions.length - index)
     }
