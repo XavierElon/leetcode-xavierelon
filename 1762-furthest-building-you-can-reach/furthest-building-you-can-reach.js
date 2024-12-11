@@ -5,26 +5,25 @@
  * @return {number}
  */
 var furthestBuilding = function(heights, bricks, ladders) {
-    const maxHeap = new MaxPriorityQueue()
+    const minHeap = new MinPriorityQueue()
 
     let i
     for (i = 0; i < heights.length - 1; i++) {
         if (heights[i] >= heights[i+1]) continue
 
         const diff = heights[i+1] - heights[i]
-
-        if (diff > bricks) {
-            if (ladders === 0) break
-
-            if (!maxHeap.isEmpty() && maxHeap.front().element > diff) {
-                bricks += maxHeap.dequeue().element - diff
-                maxHeap.enqueue(diff)
-            }
-            ladders--
-        } else {
-            bricks -= diff
-            maxHeap.enqueue(diff)
+        
+        // Always add to min heap first
+        minHeap.enqueue(diff)
+        
+        // If we've used more than available ladders
+        if (minHeap.size() > ladders) {
+            // Use bricks for smallest difference
+            bricks -= minHeap.dequeue().element
         }
+        
+        // If we run out of bricks, we can't go further
+        if (bricks < 0) break
     }
     return i
 };
