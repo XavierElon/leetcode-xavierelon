@@ -8,7 +8,6 @@ var KthLargest = function(k, nums) {
 
     for (let num of nums) {
         this.minHeap.enqueue(num)
-
         if (this.minHeap.size() > k) {
             this.minHeap.dequeue()
         }
@@ -21,7 +20,6 @@ var KthLargest = function(k, nums) {
  */
 KthLargest.prototype.add = function(val) {
     this.minHeap.enqueue(val)
-
     if (this.minHeap.size() > this.k) {
         this.minHeap.dequeue()
     }
