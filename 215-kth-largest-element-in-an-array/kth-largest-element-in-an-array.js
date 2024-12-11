@@ -6,7 +6,7 @@
 var findKthLargest = function(nums, k) {
     const maxHeap = new MaxPriorityQueue()
 
-    for (let num of nums) {
+    for (const num of nums) {
         maxHeap.enqueue(num)
     }
 
