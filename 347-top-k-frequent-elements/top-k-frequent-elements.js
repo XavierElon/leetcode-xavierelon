@@ -9,14 +9,17 @@ var topKFrequent = function(nums, k) {
         freq.set(num, (freq.get(num) || 0) + 1)
     }
 
-    const maxHeap = new MaxPriorityQueue()
+    const result = []
+    const minHeap = new MinPriorityQueue()
     for (let [num, count] of freq) {
-        maxHeap.enqueue(num, count)
+        minHeap.enqueue(num, count)
+        if (minHeap.size() > k) {
+            minHeap.dequeue()
+        }
     }
 
-    const result = []
-    for (let i = 0; i < k; i++) {
-        result.push(maxHeap.dequeue().element)
+    while (minHeap.size() > 0) {
+        result.push(minHeap.dequeue().element)
     }
 
     return result
