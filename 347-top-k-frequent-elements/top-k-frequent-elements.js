@@ -5,13 +5,13 @@
  */
 var topKFrequent = function(nums, k) {
     const freq = new Map()
-    for (let num of nums) {
-        freq.set(num, (freq.get(num) || 0) + 1)
+    for (let i = 0; i < nums.length; i++) {
+        freq.set(nums[i], (freq.get(nums[i]) || 0) + 1)
     }
 
     const maxHeap = new MaxPriorityQueue()
-    for (let [num, count] of freq) {
-        maxHeap.enqueue(num, count)
+    for (let [num, count] of freq.entries()) {
+        maxHeap.enqueue(num , count)
     }
 
     const result = []
