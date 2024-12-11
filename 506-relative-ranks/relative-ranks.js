@@ -3,17 +3,16 @@
  * @return {string[]}
  */
 var findRelativeRanks = function(score) {
-    const ranks = new MaxPriorityQueue()
-
+    const maxHeap = new MaxPriorityQueue()
     for (let i = 0; i < score.length; i++) {
-        ranks.enqueue(i, score[i])
+        maxHeap.enqueue(i, score[i])
     }
 
     const answer = []
-
     for (let i = 0; i < score.length; i++) {
-        const item = ranks.dequeue().element
         let rank
+        let item = maxHeap.dequeue().element
+        console.log(item)
 
         switch(i) {
             case 0:
