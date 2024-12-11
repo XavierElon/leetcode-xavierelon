@@ -9,15 +9,15 @@ var topKFrequent = function(nums, k) {
         freqMap.set(num, (freqMap.get(num) || 0) + 1)
     }
 
-    const minHeap = new MinPriorityQueue()
+    const maxHeap = new MaxPriorityQueue()
     for (let [num, count] of freqMap) {
-        minHeap.enqueue(num, count)
-        if (minHeap.size() > k) minHeap.dequeue()
+        maxHeap.enqueue(num, count)
     }
 
     const result = []
-    while (minHeap.size() > 0) {
-        result.push(minHeap.dequeue().element)
+    for (let i = 0; i < k; i++) {
+        result.push(maxHeap.dequeue().element)
     }
+
     return result
 };
