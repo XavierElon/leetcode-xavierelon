@@ -5,21 +5,18 @@
 var minMeetingRooms = function(intervals) {
     intervals.sort((a, b) => a[0] - b[0])
 
-    const finish = new MinPriorityQueue()
+    const minHeap = new MinPriorityQueue()
     let rooms = 0
 
-    for (let i = 0; i < intervals.length; i++) {
-        const interval = intervals[i]
-
-        if (finish.size() === 0) rooms++
+    for (let interval of intervals) {
+        if (minHeap.size() === 0) rooms++
         else {
-            const front = finish.front().element
-
-            if (front <= interval[0]) finish.dequeue()
+            const front =  minHeap.front().element
+            console.log(front)
+            if (front <= interval[0]) minHeap.dequeue()
             else rooms++
         }
-
-        finish.enqueue(interval[1])
+        minHeap.enqueue(interval[1])
     }
     return rooms
 };
