@@ -3,31 +3,20 @@
  * @return {string[]}
  */
 var findRelativeRanks = function(score) {
-    const maxHeap = new MaxPriorityQueue()
-    for (let i = 0; i < score.length; i++) {
-        maxHeap.enqueue(i, score[i])
+    const pairs = score.map((score, index) => [score, index])
+
+    pairs.sort((a, b) => b[0] - a[0])
+
+    const answer = new Array(score.length)
+
+    for (let i = 0; i < pairs.length; i++) {
+        const index = pairs[i][1]
+
+        if (i === 0) answer[index] = "Gold Medal"
+        else if (i === 1) answer[index] = "Silver Medal"
+        else if (i === 2) answer[index] = "Bronze Medal"
+        else answer[index] = (i+1).toString()
     }
 
-    const answer = []
-    for (let i = 0; i < score.length; i++) {
-        let rank
-        let item = maxHeap.dequeue().element
-        console.log(item)
-
-        switch(i) {
-            case 0:
-                rank = "Gold Medal"
-                break
-            case 1:
-                rank = "Silver Medal"
-                break
-            case 2:
-                rank = "Bronze Medal"
-                break
-            default:
-                rank = (i+1).toString()
-        }
-        answer[item] = rank
-    }
     return answer
 };
