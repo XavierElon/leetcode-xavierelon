@@ -7,7 +7,6 @@ var insert = function(intervals, newInterval) {
     if (intervals.length === 0) return [newInterval]
 
     const merged = []
-
     let i = 0
     while (i < intervals.length && intervals[i][1] < newInterval[0]) {
         merged.push(intervals[i++])
