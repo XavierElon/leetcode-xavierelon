@@ -4,19 +4,19 @@
  * @return {number}
  */
 var pickGifts = function(gifts, k) {
-    const maxHeap = new MaxPriorityQueue()
-
-    gifts.forEach(gift => maxHeap.enqueue(gift))
+    let arr = [...gifts]
 
     for (let i = 0; i < k; i++) {
-        const max = maxHeap.dequeue().element
-        maxHeap.enqueue(Math.floor(Math.sqrt(max)))
+        let maxIndex = 0
+
+        for (let j = 1; j < arr.length; j++) {
+            if (arr[j] > arr[maxIndex]) {
+                maxIndex = j
+            }
+        }
+
+        arr[maxIndex] = Math.floor(Math.sqrt(arr[maxIndex]))
     }
 
-    let sum = 0
-    while (maxHeap.size() > 0) {
-        sum += maxHeap.dequeue().element
-    }
-
-    return sum
+    return arr.reduce((sum, val) => sum + val, 0)
 };
