@@ -8,8 +8,8 @@ var reverseString = function(s) {
 
         [s[left], s[right]] = [s[right], s[left]]
 
-        return helper(left + 1, right - 1)
+        helper(left + 1, right - 1)
     }
 
-    return helper(0, s.length - 1)
+    helper(0, s.length - 1)
 };
