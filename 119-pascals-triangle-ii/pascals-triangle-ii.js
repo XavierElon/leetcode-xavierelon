@@ -16,8 +16,8 @@ var getRow = function(rowIndex) {
 
     currentRow.push(1)
 
-    for (let i = 1; i < prevRow.length; i++) {
-        currentRow.push(prevRow[i - 1] + prevRow[i])
+    for (let i = 1; i < rowIndex; i++) {
+        currentRow.push(prevRow[i-1] + prevRow[i])
     }
 
     currentRow.push(1)
