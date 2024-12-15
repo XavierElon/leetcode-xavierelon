@@ -3,18 +3,24 @@
  * @return {number[][]}
  */
 var generate = function(numRows) {
-    const triangle = []
-
-    for (let rowNum = 0; rowNum < numRows; rowNum++) {
-        const row = new Array(rowNum + 1)
-        row[0] = 1
-        row[rowNum] = 1
-
-        for (let j = 1; j < row.length -1; j++) {
-            row[j] = triangle[rowNum - 1][j - 1] + triangle[rowNum - 1][j]
-        }
-
-        triangle.push(row)
+    if (numRows === 1) {
+        return [[1]]
     }
+
+    const triangle = generate(numRows - 1)
+
+    const lastRow = triangle[triangle.length - 1]
+    const currentRow = []
+
+    currentRow.push(1)
+
+    for (let i = 1; i < lastRow.length; i++) {
+        currentRow.push(lastRow[i -1] + lastRow[i])
+    }
+
+    currentRow.push(1)
+
+    triangle.push(currentRow)
+
     return triangle
 };
