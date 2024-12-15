@@ -3,15 +3,24 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-    let curr = []
-    let prev = [1]
-
-    for (let i = 0; i <= rowIndex; i++) {
-        curr = new Array(i+1).fill(1)
-        for (let j = 1; j < i; j++) {
-            curr[j] = prev[j] + prev[j-1]
-        }
-        prev = curr
+    if (rowIndex === 0) {
+        return [1]
     }
-    return curr
+
+    if (rowIndex === 1) {
+        return [1, 1]
+    }
+
+    const prevRow = getRow(rowIndex - 1)
+    const currentRow = []
+
+    currentRow.push(1)
+
+    for (let i = 1; i < prevRow.length; i++) {
+        currentRow.push(prevRow[i - 1] + prevRow[i])
+    }
+
+    currentRow.push(1)
+
+    return currentRow
 };
