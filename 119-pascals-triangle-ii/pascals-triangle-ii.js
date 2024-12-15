@@ -3,24 +3,17 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-    if (rowIndex === 0) {
-        return [1]
+    let row = [1]
+
+    for (let i = 1; i <= rowIndex; i++) {
+        let newRow = [1]
+
+        for (let j = 1; j < i; j++) {
+            newRow[j] = row[j-1] + row[j]
+        }
+        newRow.push(1)
+        row = newRow
     }
 
-    if (rowIndex === 1) {
-        return [1, 1]
-    }
-
-    const prevRow = getRow(rowIndex - 1)
-    const currentRow = []
-
-    currentRow.push(1)
-
-    for (let i = 1; i < rowIndex; i++) {
-        currentRow.push(prevRow[i-1] + prevRow[i])
-    }
-
-    currentRow.push(1)
-
-    return currentRow
+    return row
 };
