@@ -5,17 +5,26 @@
 var findScore = function(nums) {
     const n = nums.length;
     let score = 0;
-    let heap = [];
-    for (let i = 0; i < n; i++) {
-        heap.push({ value: nums[i], index: i });
-    }
-    heap.sort(function(a, b) {
-        return a.value - b.value;
+    // Create queue with custom comparator for both value and index
+    const pq = new MinPriorityQueue({
+        compare: (a, b) => {
+            if (a.value !== b.value) {
+                return a.value - b.value;
+            }
+            return a.index - b.index;
+        }
     });
+    
+    // Add all elements to queue
+    for (let i = 0; i < n; i++) {
+        pq.enqueue({ value: nums[i], index: i });
+    }
+    
     let marked = new Array(n).fill(false);
-    for (let i = 0; i < heap.length; i++) {
-        let value = heap[i].value;
-        let index = heap[i].index;
+    
+    // Process queue until empty
+    while (!pq.isEmpty()) {
+        const { value, index } = pq.dequeue();
         if (!marked[index]) {
             score += value;
             marked[index] = true;
@@ -23,5 +32,6 @@ var findScore = function(nums) {
             if (index < n - 1) marked[index + 1] = true;
         }
     }
+    
     return score;
 };
