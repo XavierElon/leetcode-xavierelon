@@ -8,18 +8,17 @@ var generate = function(numRows) {
     }
 
     const triangle = generate(numRows - 1)
-    
-    const lastRow = triangle[triangle.length - 1]
+
+    const prevRow = triangle[triangle.length - 1]
     const currentRow = []
 
     currentRow.push(1)
 
-    for (let i = 1; i < lastRow.length; i++) {
-        currentRow.push(lastRow[i-1] + lastRow[i])
+    for (let i = 1; i < prevRow.length; i++) {
+        currentRow.push(prevRow[i - 1] + prevRow[i])
     }
 
     currentRow.push(1)
-
     triangle.push(currentRow)
 
     return triangle
