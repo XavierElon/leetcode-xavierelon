@@ -13,7 +13,6 @@ var fib = function(n) {
     } else {
         result = fib(n-1) + fib(n-2)
     }
-
     map.set(n, result)
     return result
 };
