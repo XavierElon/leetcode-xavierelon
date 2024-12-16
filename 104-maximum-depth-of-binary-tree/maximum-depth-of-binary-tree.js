@@ -11,7 +11,14 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if (!root) return 0
+    function helper(node, currentDepth, maxDepthSoFar) {
+        if (!node) return Math.max(maxDepthSoFar, currentDepth)
 
-    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
+        return Math.max(
+            helper(node.left, currentDepth + 1, maxDepthSoFar),
+            helper(node.right, currentDepth + 1, maxDepthSoFar)
+        )
+    }
+
+    return helper(root, 0, 0)
 };
