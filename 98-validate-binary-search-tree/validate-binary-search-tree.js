@@ -10,12 +10,19 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function(root, low = null, high = null) {
-   if (root === null) return true
+var isValidBST = function(root) {
+    if (root === null) return true
 
-   if ((low !== null && root.val <= low) || (high !== null && root.val >= high)) {
-    return false
-   } 
+    function recurse(node, min, max) {
+        if (node === null) return true
 
-   return isValidBST(root.left, low, root.val) && isValidBST(root.right, root.val, high)
+        if (min !== null && node.val <= min) return false
+        if (max !== null && node.val >= max) return false
+
+
+        return recurse(node.left, min, node.val) && 
+            recurse(node.right, node.val, max)
+    }
+
+    return recurse(root, null, null)
 };
