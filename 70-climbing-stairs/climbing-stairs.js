@@ -3,14 +3,22 @@
  * @return {number}
  */
 var climbStairs = function(n) {
-    const dp = []
+    const memo = new Map()
 
-    dp[0] = 1
-    dp[1] = 2
+    function helper(steps) {
+        if (memo.has(steps)) return memo.get(steps)
 
-    for (let i = 2; i < n; i++) {
-        dp[i] = dp[i-1] + dp[i-2]
+        if (steps === 1) return 1
+        if (steps === 2) return 2
+
+        const result = helper(steps-1) + helper(steps-2)
+
+        memo.set(steps, result)
+
+        return result
     }
 
-    return dp[n-1]
+    if (n === 0) return 0
+
+    return helper(n)
 };
