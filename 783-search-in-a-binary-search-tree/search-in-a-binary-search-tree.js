@@ -12,7 +12,9 @@
  * @return {TreeNode}
  */
 var searchBST = function(root, val) {
-    if (root === null || val === root.val) return root
+    while (root !== null && val !== root.val) {
+        root = val < root.val ? root.left : root.right
+    }
 
-    return val < root.val ? searchBST(root.left, val) : searchBST(root.right, val)
+    return root
 };
