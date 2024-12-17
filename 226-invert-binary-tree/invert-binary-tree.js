@@ -12,10 +12,22 @@
  */
 var invertTree = function(root) {
     if (root === null) return root
-    let right = invertTree(root.right)
-    let left = invertTree(root.left)
+    
+    const queue = [root]
 
-    root.left = right
-    root.right = left
+    while (queue.length !== 0) {
+        const currentNode = queue.shift()
+        let temp = currentNode.left
+        currentNode.left = currentNode.right
+        currentNode.right = temp
+
+        if (currentNode.left !== null) {
+            queue.push(currentNode.left)
+        }
+
+        if (currentNode.right !== null) {
+            queue.push(currentNode.right)
+        }
+    }
     return root
 };
