@@ -12,22 +12,15 @@
  */
 var preorderTraversal = function(root) {
     if (!root) return []
-
     const res = []
-    const stack = [root]
+    const stack = []
 
-    while (stack.length) {
+    stack.push(root)
+    while (stack.length !== 0) {
         const node = stack.pop()
-        console.log('node = ')
-        console.log(node)
         res.push(node.val)
-        console.log('res = ')
-        console.log(res)
-        console.log('node.left = ' + node.left)
-        console.log('node.right = ' + node.right)
         if (node.right) stack.push(node.right)
         if (node.left) stack.push(node.left)
-
     }
     return res
 };
