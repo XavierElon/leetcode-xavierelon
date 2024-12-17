@@ -3,24 +3,14 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    const filterNonAlphabet = (str) => {
-        return str.replace(/[^0-9a-zA-Z]/g, '')
+    s = s.toLowerCase().replace(/[^a-z0-9]/gi,'');
+    let length = s.length
+
+    if (length <= 1) return true
+
+    if (s[0] === s[length-1]) {
+        let substring = s.substring(1, length - 1)
+        return isPalindrome(substring)
     }
-
-    s = s.trim().toLowerCase()
-
-    s = filterNonAlphabet(s)
-
-    let left = 0
-    let right = s.length -1
-
-    while (left < right) {
-        if (s[left] !== s[right]) {
-            return false
-        }
-        left++
-        right--
-    }
-
-    return true
+    return false
 };
