@@ -3,19 +3,12 @@
  * @return {number}
  */
 var findCenter = function(edges) {
-    const n = edges.length + 1
-    const array = new Array(n+1).fill(0)
+    const firstEdge = edges[0]
+    const secondEdge = edges[1]
 
-    for (const [u, v] of edges) {
-        array[u]++
-        array[v]++
+    if (secondEdge.includes(firstEdge[0])) {
+        return firstEdge[0]
+    } else {
+        return firstEdge[1]
     }
-
-    for (let i = 1; i <= n; i++) {
-        if (array[i] === n - 1) {
-            return i
-        }
-    }
-
-    return -1
 };
