@@ -4,16 +4,17 @@
  * @return {number}
  */
 var findJudge = function(n, trust) {
-    const trustsCount = new Array(n + 1).fill(0);
-    const trustedByCount = new Array(n + 1).fill(0);
+    if (trust.length < n - 1) return -1
+
+    const trustScores = new Array(n+1).fill(0)
 
     for (const [a, b] of trust) {
-        trustsCount[a]++
-        trustedByCount[b]++
+        trustScores[a]--
+        trustScores[b]++
     }
 
     for (let i = 1; i <= n; i++) {
-        if (trustedByCount[i] === n - 1 && trustsCount[i] === 0) {
+        if (trustScores[i] === n - 1) {
             return i
         }
     }
