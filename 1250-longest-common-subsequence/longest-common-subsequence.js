@@ -16,11 +16,11 @@ var longestCommonSubsequence = function(text1, text2) {
         let result
 
         if (text1[i] === text2[j]) {
-            result = 1 + lcs(i + 1, j + 1)
+            result = 1 + lcs(i+1, j+1)
         } else {
             result = Math.max(
-                lcs(i + 1, j),
-                lcs(i, j + 1)
+                lcs(i+1, j),
+                lcs(i, j+1)
             )
         }
 
