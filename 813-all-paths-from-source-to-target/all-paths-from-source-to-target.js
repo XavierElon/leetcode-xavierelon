@@ -3,23 +3,24 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-    const paths = []
-    if (graph === null || graph.length === 0) return graphs
-    const path = [0]
+    const result = []
+    const queue = [[0]]
+    const n = graph.length
 
-    function dfs(node) {
-        if (node === graph.length - 1) {
-            paths.push([...path])
-            return
+    while (queue.length > 0) {
+        const path = queue.shift()
+        lastNode = path[path.length - 1]
+
+        if (lastNode === n - 1) {
+            result.push(path)
+        } else {
+            for (const neighbor of graph[lastNode]) {
+                const newPath = [...path, neighbor]
+                queue.push(newPath)
+            }
         }
 
-        for (let neighbor of graph[node]) {
-            path.push(neighbor)
-            dfs(neighbor)
-            path.pop()
-        }
     }
 
-    dfs(0)
-    return paths
+    return result
 };
