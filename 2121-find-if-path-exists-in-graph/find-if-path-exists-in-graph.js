@@ -15,18 +15,20 @@ var validPath = function(n, edges, source, destination) {
 
     const visited = new Set()
 
-    function dfs(node) {
+    const queue = [source]
+    visited.add(source)
+
+    while (queue.length > 0) {
+        const node = queue.shift()
         if (node === destination) return true
 
-        visited.add(node)
 
         for (const neighbor of graph[node]) {
             if (!visited.has(neighbor)) {
-                if (dfs(neighbor)) return true
-            }
+                visited.add(neighbor)
+                queue.push(neighbor)
+            } 
         }
-        return false
     }
-
-    return dfs(source)
+    return false
 };
