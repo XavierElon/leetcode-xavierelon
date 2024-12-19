@@ -6,45 +6,28 @@
  * @return {boolean}
  */
 var validPath = function(n, edges, source, destination) {
-    // Initialize parent and rank arrays
-    let parent = new Array(n);
-    let rankArr = new Array(n).fill(1); // Initialize all ranks to 1
+    if (source === destination) return true
 
-    for (let i = 0; i < n; i++) {
-        parent[i] = i;
+    const graph = new Array(n).fill(null).map(() => [])
+    for (let [u, v] of edges) {
+        graph[u].push(v)
+        graph[v].push(u)
     }
 
-    // Find function with Path Compression
-    function find(a) {
-        if (parent[a] !== a) {
-            parent[a] = find(parent[a]); // Path Compression
+    const visited = new Array(n).fill(false)
+
+    function dfs(node) {
+        if (node === destination) return true
+        visited[node] = true
+
+        for (let neighbor of graph[node]) {
+            if (!visited[neighbor]) {
+                if (dfs(neighbor)) return true
+            }
         }
-        return parent[a];
+
+        return false
     }
 
-    // Union function with Union by Rank
-    function union(a, b) {
-        const rootA = find(a);
-        const rootB = find(b);
-
-        if (rootA === rootB) return; // Already in the same set
-
-        // Union by Rank
-        if (rankArr[rootA] < rankArr[rootB]) {
-            parent[rootA] = rootB;
-        } else if (rankArr[rootA] > rankArr[rootB]) {
-            parent[rootB] = rootA;
-        } else {
-            parent[rootB] = rootA;
-            rankArr[rootA] += 1;
-        }
-    }
-
-    // Apply union operation for all edges
-    for (const [a, b] of edges) {
-        union(a, b);
-    }
-
-    // Check if source and destination are in the same component
-    return find(source) === find(destination);
+    return dfs(source)
 };
