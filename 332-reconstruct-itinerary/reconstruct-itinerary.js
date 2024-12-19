@@ -26,9 +26,9 @@ var findItinerary = function(tickets) {
             dfs(next)
         }
 
-        result.push(airport)
+        result.unshift(airport)
     }
 
     dfs('JFK')
-    return result.reverse()
-};
+    return result
+}
