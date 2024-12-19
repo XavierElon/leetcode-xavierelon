@@ -15,20 +15,18 @@ var cloneGraph = function(node) {
 
     const visited = new Map()
 
-    function dfs(node) {
-        if (node === null) return node
-
+    function dfs (node) {
         if (visited.has(node)) {
             return visited.get(node)
         }
 
-        const clonedNode = new Node(node.val, [])
+        const clone = new _Node(node.val, [])
 
-        visited.set(node, clonedNode)
+        visited.set(node, clone)
 
-        clonedNode.neighbors = node.neighbors.map(neighbor => dfs(neighbor))
+        clone.neighbors = node.neighbors.map(neighbor => dfs(neighbor))
 
-        return clonedNode
+        return clone
     }
 
     return dfs(node)
