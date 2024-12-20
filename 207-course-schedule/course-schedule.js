@@ -4,31 +4,31 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    const indegree = new Array(numCourses).fill(0)
+    const indegrees = new Array(numCourses).fill(0)
     const adjList = new Array(numCourses).fill(null).map(() => [])
 
     for (const [course, prereq] of prerequisites) {
-        indegree[course]++
+        indegrees[course]++
         adjList[prereq].push(course)
     }
 
     const queue = []
+    let count = 0
 
     for (let i = 0; i < numCourses; i++) {
-        if (indegree[i] === 0) {
+        if (indegrees[i] === 0) {
             queue.push(i)
+            count++
         }
     }
 
-    let count = 0
-    
     while (queue.length > 0) {
         const course = queue.shift()
-        count++
         for (const nextCourse of adjList[course]) {
-            indegree[nextCourse]--
-            if (indegree[nextCourse] === 0) {
+            indegrees[nextCourse]--
+            if (indegrees[nextCourse] === 0) {
                 queue.push(nextCourse)
+                count++
             }
         }
     }
