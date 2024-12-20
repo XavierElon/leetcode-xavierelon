@@ -13,24 +13,24 @@
  * @return {_Node}
  */
 var connect = function(root) {
-    if (!root) return root
+    if (!root) return null
 
-    let leftmost = root
+    const queue = [root]
 
-    while (leftmost.left) {
-        let current = leftmost
+    while (queue.length > 0) {
+        const levelSize = queue.length
 
-        while (current) {
-            current.left.next = current.right
+        for (let i = 0; i < levelSize; i++) {
+            const node = queue.shift()
 
-            if (current.next) {
-                current.right.next = current.next.left
+            if (i < levelSize - 1) {
+                node.next = queue[0]
             }
 
-            current = current.next
+            if (node.left) queue.push(node.left)
+            if (node.right) queue.push(node.right)
         }
-
-        leftmost = leftmost.left
     }
+
     return root
 };
