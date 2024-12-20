@@ -25,6 +25,8 @@ var connect = function(root) {
 
             if (i < levelSize - 1) {
                 node.next = queue[0]
+            } else {
+                node.next = null
             }
 
             if (node.left) queue.push(node.left)
