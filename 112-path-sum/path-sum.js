@@ -13,12 +13,15 @@
  */
 var hasPathSum = function(root, targetSum) {
     if (root === null) return false
-
-    targetSum -= root.val
-
-    if((root.left == null) && (root.right == null)) {
-        return (targetSum == 0)
+    
+    if (root.left === null && root.right === null) {
+        return targetSum === root.val
     }
 
-    return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum)
+    const remainingSum = targetSum - root.val
+
+    return (
+        (root.left !== null && hasPathSum(root.left, remainingSum)) ||
+        (root.right !== null && hasPathSum(root.right, remainingSum))
+    )
 };
