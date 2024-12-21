@@ -12,14 +12,13 @@
  */
 var isSymmetric = function(root) {
     if (!root) return true
-
-    return traverse(root.left, root.right)
+    return recurse(root.left, root.right)
 };
 
-function traverse(left, right) {
+function recurse(left, right) {
     if (left === null && right === null) return true
     if (left === null || right === null) return false
     if (left.val !== right.val) return false
 
-    return traverse(left.left, right.right) && traverse(left.right, right.left)
+    return recurse(left.right, right.left) && recurse(left.left, right.right)
 }
