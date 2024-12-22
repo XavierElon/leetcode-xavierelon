@@ -19,8 +19,6 @@ var buildTree = function(inorder, postorder) {
 
     let pivot = inorder.indexOf(rootVal)
 
-    console.log(postorder.slice(pivot, -1))
-
     root.left = buildTree(inorder.slice(0, pivot), postorder.slice(0, pivot))
     root.right = buildTree(inorder.slice(pivot + 1), postorder.slice(pivot, -1))
 
