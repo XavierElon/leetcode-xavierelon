@@ -11,14 +11,13 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if (root === null) {
-        return 0
-    }
+    if (!root) return 0
 
-    let max = 0
+    let maxChildDepth = 0
+
     for (let child of root.children) {
-        max = Math.max(max, maxDepth(child))
+        maxChildDepth = Math.max(maxChildDepth, maxDepth(child))
     }
 
-    return max + 1
+    return maxChildDepth + 1
 };
