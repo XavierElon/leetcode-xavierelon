@@ -13,20 +13,17 @@
 var bstFromPreorder = function(preorder) {
     let i = 0
 
-    function buildBST(bound) {
-        if (i === preorder.length || preorder[i] > bound) {
-            return null
-        }
+    function dfs(bound) {
+        if (i === preorder.length || preorder[i] > bound) return null
 
         const rootVal = preorder[i++]
         const root = new TreeNode(rootVal)
 
-        root.left = buildBST(rootVal)
-
-        root.right = buildBST(bound)
+        root.left = dfs(rootVal)
+        root.right = dfs(bound)
 
         return root
     }
 
-    return buildBST(Infinity)
+    return dfs(Infinity)
 };
