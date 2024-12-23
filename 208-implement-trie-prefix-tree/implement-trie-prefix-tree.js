@@ -13,7 +13,7 @@ Trie.prototype.insert = function(word) {
         if (!node[char]) node[char] = {}
         node = node[char]
     }
-    node.isWord = true;
+    node.isWord = true
 };
 
 /** 
@@ -21,8 +21,15 @@ Trie.prototype.insert = function(word) {
  * @return {boolean}
  */
 Trie.prototype.search = function(word) {
-    const node = this.getNode(word)
-    return node !== null && node.isWord === true;
+    let node = this.trie
+    for (const char of word) {
+        if (node[char]) {
+            node = node[char]
+        } else {
+            return false
+        }
+    }
+    return node.isWord === true
 };
 
 /** 
@@ -30,20 +37,16 @@ Trie.prototype.search = function(word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function(prefix) {
-    return this.getNode(prefix) !== null
-};
-
-Trie.prototype.getNode = function(word) {
     let node = this.trie
-    for (const char of word) {
+    for (const char of prefix) {
         if (node[char]) {
             node = node[char]
         } else {
-            return null
+            return false
         }
     }
-    return node
-}
+    return true
+};
 
 /** 
  * Your Trie object will be instantiated and called as such:
