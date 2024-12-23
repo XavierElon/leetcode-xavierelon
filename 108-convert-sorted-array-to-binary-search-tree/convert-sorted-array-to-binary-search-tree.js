@@ -20,7 +20,7 @@ const sortedBST = function(nums, left, right) {
     const mid = Math.floor((left + right) / 2)
     const currentNode = new TreeNode(nums[mid])
 
-    currentNode.left = sortedBST(nums, left, mid-1)
+    currentNode.left = sortedBST(nums, left, mid - 1)
     currentNode.right = sortedBST(nums, mid + 1, right)
 
     return currentNode
