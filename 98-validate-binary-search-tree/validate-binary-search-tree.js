@@ -11,18 +11,14 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
+    if (!root) return true
+    return validateBST(root, null, null)
+};
+
+function validateBST (root, min, max) {
     if (root === null) return true
 
-    function recurse(node, min, max) {
-        if (node === null) return true
+    if ((min !== null && root.val <= min) || (max !== null && root.val >= max)) return false
 
-        if (min !== null && node.val <= min) return false
-        if (max !== null && node.val >= max) return false
-
-
-        return recurse(node.left, min, node.val) && 
-            recurse(node.right, node.val, max)
-    }
-
-    return recurse(root, null, null)
-};
+    return validateBST(root.left, min, root.val) && validateBST(root.right, root.val, max)
+}
