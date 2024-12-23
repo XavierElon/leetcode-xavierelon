@@ -11,20 +11,17 @@
  * @return {TreeNode}
  */
 var inorderSuccessor = function(root, p) {
-    let found = false
-    let next = null
-    
-    function findNext(node) {
-        if (node && !next) {
-            findNext(node.left)
+    let successor = null
+    let current = root
 
-            if (found && !next) next = node
-            if (node === p) found = true
-
-            findNext(node.right)
+    while (current !== null) {
+        if (p.val < current.val) {
+            successor = current
+            current = current.left
+        } else {
+            current = current.right
         }
     }
 
-    findNext(root)
-    return next
+    return successor
 };
