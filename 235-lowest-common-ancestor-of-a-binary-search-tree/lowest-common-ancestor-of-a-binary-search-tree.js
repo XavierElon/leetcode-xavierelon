@@ -13,17 +13,12 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function(root, p, q) {
-    let current = root
-
-    while (current) {
-        if (current.val > p.val && current.val > q.val) {
-            current = current.left
-        } else if (current.val < p.val && current.val < q.val) {
-            current = current.right
-        } else {
-            return current
-        }
+    if (root.val > p.val && root.val > q.val) {
+        return lowestCommonAncestor(root.left, p, q)
     }
-
-    return null
+    if (root.val < p.val && root.val < q.val) {
+        return lowestCommonAncestor(root.right, p, q)
+    }
+    
+    return root
 };
