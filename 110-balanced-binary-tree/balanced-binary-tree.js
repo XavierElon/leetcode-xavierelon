@@ -13,16 +13,35 @@
 var isBalanced = function(root) {
     if (root === null) return true
 
-    if (!isBalanced(root.left) || !isBalanced(root.right)) return false
+    const stack = []
+    const heights = new Map()
+    let lastVisited = null
 
-    let leftHeight = getHeight(root.left)
-    let rightHeight = getHeight(root.right)
+    let current = root
 
-    return Math.abs(leftHeight - rightHeight) <= 1
+    while (stack.length > 0 || current !== null) {
+        if (current !== null) {
+            stack.push(current)
+            current = current.left
+        } else {
+            let peekNode = stack[stack.length - 1]
+            if (peekNode.right !== null && lastVisited !== peekNode.right) {
+                current = peekNode.right
+            } else {
+                stack.pop()
+
+                let leftHeight = heights.get(peekNode.left) || 0
+                let rightHeight = heights.get(peekNode.right) || 0
+
+                if (Math.abs(leftHeight - rightHeight) > 1) {
+                    return false
+                }
+
+                heights.set(peekNode, 1 + Math.max(leftHeight, rightHeight))
+
+                lastVisited = peekNode
+            }
+        }
+    }
+    return true
 };
-
-function getHeight(node) {
-    if (node === null) return 0
-
-    return 1 + Math.max(getHeight(node.left), getHeight(node.right))
-}
