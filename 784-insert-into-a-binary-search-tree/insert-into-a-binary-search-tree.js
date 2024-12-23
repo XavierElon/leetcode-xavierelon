@@ -14,20 +14,8 @@
 var insertIntoBST = function(root, val) {
     if (root === null) return new TreeNode(val)
 
-    let current = root
-    while (current !== null) {
-        if (current.val > val && current.left) {
-            current = current.left
-        } else if (current.val < val && current.right) {
-            current = current.right
-        } else if (current.val > val && !current.left) {
-            current.left = new TreeNode(val)
-            break
-        } else if (current.val < val && !current.right) {
-            current.right = new TreeNode(val)
-            break
-        }
-    }
+    if (root.val > val) root.left = insertIntoBST(root.left, val)
+    else root.right = insertIntoBST(root.right, val)
 
     return root
 };
