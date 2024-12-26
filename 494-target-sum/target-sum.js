@@ -4,22 +4,27 @@
  * @return {number}
  */
 var findTargetSumWays = function(nums, target) {
-    let totalWays = 0
-
-    function calculateWays(currentIndex, currentSum) {
-        if (currentIndex === nums.length) {
-            if (currentSum === target) {
-                totalWays++
-            }
-            return
+    const memo = new Map();
+    const n = nums.length;
+    
+    return countWaysToSum(n - 1, target);
+    
+    function countWaysToSum(index, rem) {
+        const key = `${index}#${rem}`;
+        
+        // base case         
+        if (index < 0) {
+			if (rem === 0) return 1;
+			return 0;
         }
-
-        calculateWays(currentIndex + 1, currentSum + nums[currentIndex])
-
-        calculateWays(currentIndex + 1, currentSum - nums[currentIndex])
+        if (memo.has(key)) return memo.get(key);
+        
+        const plus = countWaysToSum(index - 1, rem + nums[index]) 
+		const minus = countWaysToSum(index - 1, rem - nums[index]);
+	    const count = plus + minus;
+	
+        memo.set(key, count);
+        
+        return count;
     }
-
-    calculateWays(0, 0)
-
-    return totalWays
 };
