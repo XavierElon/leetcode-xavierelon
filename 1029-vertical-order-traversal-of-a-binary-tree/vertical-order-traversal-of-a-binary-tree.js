@@ -12,41 +12,33 @@
  */
 var verticalTraversal = function(root) {
     if (!root) return []
-    const columnMap = new Map()
-    let minColumn = 0, maxColumn = 0
+    const colMap = new Map()
 
-    const queue = [{node: root, col: 0, row: 0}]
+    let minCol = 0, maxCol = 0
 
-    while (queue.length > 0) {
-        const {node, col, row } = queue.shift()
-        
-        if (!columnMap.has(col)) {
-            columnMap.set(col, [])
-        }
-        columnMap.get(col).push([row, node.val])
+    function dfs(node, col, row) {
+        if (!node) return
 
-        minColumn = Math.min(minColumn, col)
-        maxColumn = Math.max(maxColumn, col)
+        if (!colMap.has(col)) colMap.set(col, [])
+        colMap.get(col).push([row, node.val])
+        minCol = Math.min(minCol, col)
+        maxCol = Math.max(maxCol, col)
 
-        if (node.left) {
-            queue.push({ node: node.left, row: row + 1, col: col - 1})
-        }
-        if (node.right) {
-            queue.push({ node: node.right, row: row + 1, col: col + 1 })
-        }
+        if (node.left) dfs(node.left, col - 1, row + 1)
+        if (node.right) dfs(node.right, col + 1, row + 1)
     }
 
-    const result = []
+    dfs(root, 0, 0)
 
-    for (let c = minColumn; c <= maxColumn; c++) {
-        const pairs = columnMap.get(c) || []
+    const res = []
+    for (let c = minCol; c <= maxCol; c++) {
+        const pairs = colMap.get(c) || []
         pairs.sort((a, b) => {
             if (a[0] !== b[0]) return a[0] - b[0]
             return a[1] - b[1]
         })
-
-        result.push(pairs.map(pair => pair[1]))
+        res.push(pairs.map(pair => pair[1]))
     }
 
-    return result
+    return res
 };
