@@ -3,22 +3,20 @@
  * @return {number}
  */
 var jump = function(nums) {
-    let jumps = 0
-    let currentEnd = 0
-    let farthest = 0
+    const n = nums.length
+    const dp = new Array(n).fill(Infinity)
+    dp[n-1] = 0
 
-    for (let i = 0; i < nums.length - 1; i++) {
-        farthest = Math.max(farthest, i + nums[i])
+    for (let i = n - 2; i >= 0; i--) {
+        if (nums[i] === 0) continue
+        let furthestJump = Math.min(i + nums[i], n - 1)
 
-        if (i === currentEnd) {
-            jumps++
-            currentEnd = farthest
-        }
-
-        if (currentEnd >= nums.length - 1) {
-            break
+        for (let j = i + 1; j <= furthestJump; j++) {
+            if (dp[j] !== Infinity) {
+                dp[i] = Math.min(dp[i], dp[j] + 1)
+            }
         }
     }
 
-    return jumps
+    return dp[0] === Infinity ? -1 : dp[0]
 };
