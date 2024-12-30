@@ -4,18 +4,29 @@
  */
 var canJump = function(nums) {
     const n = nums.length
-    const dp = new Array(n).fill(false)
-    dp[n-1] = true
+    const memo = new Array(n).fill(null)
 
-    for (let i = n - 2; i >= 0; i--) {
+    const canReachEnd = (i) => {
+        if (memo[i] !== null) {
+            return memo[i]
+        }
+        if (i === n - 1) {
+            memo[i] = true
+            return true
+        }
+
         const furthestJump = Math.min(i + nums[i], n - 1)
 
         for (let j = i + 1; j <= furthestJump; j++) {
-            if (dp[j]) {
-                dp[i] = true
-                break
+            if (canReachEnd(j)) {
+                memo[i] = true
+                return true
             }
         }
+
+        memo[i] = false
+        return false
     }
-    return dp[0]
+
+    return canReachEnd(0)
 };
