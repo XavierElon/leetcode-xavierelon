@@ -3,13 +3,19 @@
  * @return {boolean}
  */
 var canJump = function(nums) {
-    let destination = nums.length - 1
+    const n = nums.length
+    const dp = new Array(n).fill(false)
+    dp[n-1] = true
 
-    for (let i = destination; i >= 0; i--) {
-        if (i + nums[i] >= destination) {
-            destination = i
+    for (let i = n - 2; i >= 0; i--) {
+        const furthestJump = Math.min(i + nums[i], n - 1)
+
+        for (let j = i + 1; j <= furthestJump; j++) {
+            if (dp[j]) {
+                dp[i] = true
+                break
+            }
         }
     }
-
-    return destination === 0
+    return dp[0]
 };
