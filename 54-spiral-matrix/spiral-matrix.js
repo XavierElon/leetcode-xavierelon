@@ -5,38 +5,38 @@
 var spiralOrder = function(matrix) {
     if (!matrix) return []
 
-    const result = []
-    let [rowBegin, rowEnd, colBegin, colEnd] = [0, matrix.length - 1, 0 , matrix[0].length - 1]
+    const res = []
 
-    while (rowBegin <= rowEnd && colBegin <= colEnd) {
-        // Traverse right
-        for (let i = colBegin; i <= colEnd; i++) {
-            result.push(matrix[rowBegin][i])
-        }
-        rowBegin++
+    let top = 0
+    let bottom = matrix.length - 1
+    let left = 0
+    let right = matrix[0].length - 1
 
-        // Traverse Down
-        for (let i = rowBegin; i <= rowEnd; i++) {
-            result.push(matrix[i][colEnd])
+    while (top <= bottom && left <= right) {
+        for (let i = left; i <= right; i++) {
+            res.push(matrix[top][i])
         }
-        colEnd--
+        top++
 
-        // Traverse Left
-        if (rowBegin <= rowEnd) {
-        for (let i = colEnd; i >= colBegin; i--) {
-            result.push(matrix[rowEnd][i])
+        for (let i = top; i <= bottom; i++) {
+            res.push(matrix[i][right])
         }
-        
-        rowEnd--
-        }
+        right--
 
-        // Traverse Up
-        if (colBegin <= colEnd) {
-            for (let i = rowEnd; i >= rowBegin; i--) {
-                result.push(matrix[i][colBegin])
+        if (top <= bottom) {
+            for (let i = right; i >= left; i--) {
+                res.push(matrix[bottom][i])
             }
-            colBegin++
+            bottom--
+        }
+
+        if (left <= right) {
+            for (let i = bottom; i >= top; i--) {
+                res.push(matrix[i][left])
+            }
+            left++
         }
     }
-    return result
-}; 
+
+    return res
+};
