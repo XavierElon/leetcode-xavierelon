@@ -3,12 +3,13 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    const dp = []
-    dp[0] = nums[0]
+    let currentSubarray = nums[0]
+    let maxSubarray = nums[0]
 
     for (let i = 1; i < nums.length; i++) {
-        dp[i] = Math.max(dp[i-1] + nums[i], nums[i])
+         currentSubarray = Math.max(nums[i], currentSubarray + nums[i])
+         maxSubarray = Math.max(currentSubarray, maxSubarray)
     }
 
-    return Math.max(...dp)
+    return maxSubarray
 };
