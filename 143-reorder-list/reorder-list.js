@@ -65,6 +65,17 @@ function mergeLists(first, second) {
 
         p1 = temp1
         p2 = temp2
-
     }
 }
+
+// 1 -> 2
+// 4 -> 3
+
+/*
+temp1 = 2
+temp2 = 3
+
+p1 = 1 -> 4 -> 2
+p2 = 4 -> 2 -> 3
+
+*/
