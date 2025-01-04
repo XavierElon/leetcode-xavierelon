@@ -16,7 +16,6 @@ var minEatingSpeed = function(piles, h) {
             left = mid + 1
         }
     }
-
     return left
 };
 
@@ -24,7 +23,7 @@ function canEatAll(k, piles, h) {
     let hours = 0
 
     for (const pile of piles) {
-        hours += Math.ceil(pile/ k)
+        hours += Math.ceil(pile / k)
         if (hours > h) return false
     }
     return true
