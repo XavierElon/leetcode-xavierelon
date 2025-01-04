@@ -13,6 +13,7 @@ var reorderList = function(head) {
     if (!head) return
 
     let mid = getMid(head)
+    console.log(mid)
     secondHead = mid.next
     mid.next = null
 
@@ -21,13 +22,14 @@ var reorderList = function(head) {
     mergeLists(head, reversedMid)
 };
 
+
 function getMid(head) {
     if (head === null) return head
 
     let fast = head
     let slow = head
 
-    while (fast.next && fast.next.next) {
+    while (fast && fast.next) {
         fast = fast.next.next
         slow = slow.next
     }
@@ -43,7 +45,7 @@ function reverseLinkedList(head) {
     let current = head
 
     while (current) {
-        next = current.next
+        let next = current.next
         current.next = prev
         prev = current
         current = next
@@ -59,7 +61,7 @@ function mergeLists(first, second) {
     while (p2) {
         let temp1 = p1.next
         let temp2 = p2.next
-
+        
         p1.next = p2
         p2.next = temp1
 
@@ -67,15 +69,3 @@ function mergeLists(first, second) {
         p2 = temp2
     }
 }
-
-// 1 -> 2
-// 4 -> 3
-
-/*
-temp1 = 2
-temp2 = 3
-
-p1 = 1 -> 4 -> 2
-p2 = 4 -> 2 -> 3
-
-*/
