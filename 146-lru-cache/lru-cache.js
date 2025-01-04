@@ -1,60 +1,12 @@
-class Node {
-    constructor(key, val) {
-        this.key = key
-        this.val = val
-        this.next = null
-        this.prev = null
-    }
-}
-
-class DoublyLinkedList {
-    constructor() {
-        this.head = null
-        this.tail = null
-        this.length = 0
-    }
-
-    push(key, val) {
-        const newNode = new Node(key, val)
-        if (!this.head) {
-            this.head = newNode
-            this.tail = newNode
-        } else {
-            this.tail.next = newNode
-            newNode.prev = this.tail
-            this.tail = newNode
-        }
-        this.length++
-        return newNode
-    }
-
-    remove(node) {
-        if (!node.next && !node.prev) {
-            this.head = null
-            this.tail = null
-        } else if (!node.next) {
-            this.tail = node.prev
-            this.tail.next = null
-        } else if (!node.prev) {
-            this.head = node.next
-            this.head.prev = null
-        } else {
-            const prev = node.prev
-            const next = node.next
-            prev.next = next
-            next.prev = prev
-        }
-        this.length--
-    }
-}
-
 /**
  * @param {number} capacity
  */
 var LRUCache = function(capacity) {
-    this.capacity = capacity
-    this.map =  {}
-    this.DLL = new DoublyLinkedList()
+    this._capacity = capacity;
+    this._count = 0;
+    this._head = null;
+    this._tail = null;
+    this._hashTable = {};
 };
 
 /** 
@@ -62,12 +14,28 @@ var LRUCache = function(capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function(key) {
-    if (!this.map[key]) return -1
-
-    const value = this.map[key].val
-    this.DLL.remove(this.map[key])
-    this.map[key] = this.DLL.push(key, value)
-    return value
+    if (this._hashTable[key]) {
+        const { value } = this._hashTable[key];
+        const { prev, next } = this._hashTable[key];
+        if (prev) { prev.next = next; }
+        if (next) { next.prev = prev || next.prev; }
+        
+        if (this._tail === this._hashTable[key]) {
+            this._tail = prev || this._hashTable[key];
+        }
+        
+        this._hashTable[key].prev = null;
+        if (this._head !== this._hashTable[key]) {
+            this._hashTable[key].next = this._head;
+            this._head.prev = this._hashTable[key];
+        }
+        
+        this._head = this._hashTable[key];
+    
+        return value;
+    }
+    
+    return -1;
 };
 
 /** 
@@ -76,18 +44,36 @@ LRUCache.prototype.get = function(key) {
  * @return {void}
  */
 LRUCache.prototype.put = function(key, value) {
-    if (this.map[key]) this.DLL.remove(this.map[key])
-    this.map[key] = this.DLL.push(key, value)
-    if (this.DLL.length > this.capacity) {
-        const currKey = this.DLL.head.key
-        delete this.map[currKey]
-        this.DLL.remove(this.DLL.head)
+    if (this._hashTable[key]) {
+        this._hashTable[key].value = value;
+        this.get(key);
+    } else {
+        this._hashTable[key] = { key, value, prev: null, next: null };
+        if (this._head) {
+            this._head.prev = this._hashTable[key];
+            this._hashTable[key].next = this._head;
+        }
+
+        this._head = this._hashTable[key];
+
+        if (!this._tail) {
+            this._tail = this._hashTable[key];
+        }
+
+        this._count += 1;
+    }
+    
+    if (this._count > this._capacity) {
+        let removedKey = this._tail.key;
+
+        if (this._tail.prev) {
+            this._tail.prev.next = null;
+            this._tail = this._tail.prev;
+            this._hashTable[removedKey].prev = null;
+        }
+
+        delete this._hashTable[removedKey];
+        
+        this._count -= 1;
     }
 };
-
-/** 
- * Your LRUCache object will be instantiated and called as such:
- * var obj = new LRUCache(capacity)
- * var param_1 = obj.get(key)
- * obj.put(key,value)
- */
