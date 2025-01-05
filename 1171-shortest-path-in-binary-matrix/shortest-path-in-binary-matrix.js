@@ -9,29 +9,38 @@ var shortestPathBinaryMatrix = function(grid) {
 
     const directions = [[1,1],[1,-1],[-1,-1],[-1,1],[1,0],[-1,0],[0,1],[0,-1]]
 
-    const queue = [[0,0,1]]
+    const visited = new Set()
 
-    grid[0][0] = 1
+    const queue = [[0, 0, 1]]
+
+    visited.add(createPositionKey(0, 0))
 
     while (queue.length > 0) {
         const [row, col, pathLength] = queue.shift()
-
-        if (row === n - 1 && col === n - 1) return pathLength
+        
+        if (row === n - 1 && col === n - 1) {
+            return pathLength
+        }
 
         for (const [dx, dy] of directions) {
             const newRow = row + dx
             const newCol = col + dy
 
-            if (isValid(newRow, newCol, n) && grid[newRow][newCol] === 0) {
-                grid[newRow][newCol] = 1
+            if (isValidAndUnvisited(grid, newRow, newCol, visited)) {
+                visited.add(createPositionKey(newRow, newCol))
                 queue.push([newRow, newCol, pathLength + 1])
             }
         }
     }
-
     return -1
 };
 
-function isValid(row, col, n) {
-    return row >= 0 && row < n && col >= 0 && col < n
+function createPositionKey(row, col) {
+    return `${row},${col}`
+}
+
+function isValidAndUnvisited(grid, row, col, visited) {
+    if (row < 0 || row >= grid.length || col < 0 || col >= grid.length) return false
+
+    return grid[row][col] === 0 && !visited.has(createPositionKey(row, col))
 }
