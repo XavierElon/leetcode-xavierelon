@@ -4,30 +4,35 @@
  */
 var maxAreaOfIsland = function(grid) {
     if (!grid || grid.length === 0) return 0
+    
     let maxArea = 0
+    const directions = [[-1,0], [1,0], [0,-1], [0,1]]
 
     for (let r = 0; r < grid.length; r++) {
         for (let c = 0; c < grid[0].length; c++) {
-            let area = dfs(grid, r, c)
-            maxArea = Math.max(area, maxArea)
+            if (grid[r][c]) {
+                let area = 0
+                const stack = [[r,c]]
+                grid[r][c] = 0
+
+                while (stack.length > 0) {
+                    const [currentR, currentC] = stack.pop()
+                    area++
+
+                    for (const [dr, dc] of directions) {
+                        const newR = currentR + dr
+                        const newC = currentC + dc
+
+                        if (newR >= 0 && newC >= 0 && newR < grid.length && newC < grid[0].length && grid[newR][newC] === 1) {
+                            stack.push([newR, newC])
+                            grid[newR][newC] = 0
+                        }
+                    }
+                }
+                maxArea = Math.max(maxArea, area)
+            }
         }
     }
-
     return maxArea
 };
 
-function dfs(grid, r, c) {
-    if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length || grid[r][c] === 0) {
-        return 0
-    }
-
-    grid[r][c] = 0
-
-    let area = 1
-    area += dfs(grid, r-1, c)
-    area += dfs(grid, r+1, c)
-    area += dfs(grid, r, c-1)
-    area += dfs(grid, r, c+1)
-
-    return area
-}
