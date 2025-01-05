@@ -4,15 +4,12 @@
  */
 var maxAreaOfIsland = function(grid) {
     if (!grid || grid.length === 0) return 0
-
     let maxArea = 0
 
     for (let r = 0; r < grid.length; r++) {
         for (let c = 0; c < grid[0].length; c++) {
-            if (grid[r][c] === 1) {
-                const area = dfs(grid, r, c)
-                maxArea = Math.max(area, maxArea)
-            }
+            let area = dfs(grid, r, c)
+            maxArea = Math.max(area, maxArea)
         }
     }
 
@@ -27,7 +24,6 @@ function dfs(grid, r, c) {
     grid[r][c] = 0
 
     let area = 1
-
     area += dfs(grid, r-1, c)
     area += dfs(grid, r+1, c)
     area += dfs(grid, r, c-1)
