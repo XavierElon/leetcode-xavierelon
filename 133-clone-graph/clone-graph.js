@@ -15,7 +15,7 @@ var cloneGraph = function(node) {
 
     const visited = new Map()
 
-    function dfs (node) {
+    function dfs(node) {
         if (visited.has(node)) {
             return visited.get(node)
         }
