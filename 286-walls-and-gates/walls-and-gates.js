@@ -5,20 +5,18 @@
 var wallsAndGates = function(rooms) {
     if (!rooms || !rooms.length || !rooms[0].length) return
 
+    const directions = [[-1,0], [0,1], [1,0], [0,-1]]
     const m = rooms.length
     const n = rooms[0].length
-
     const queue = []
 
-    for (let row = 0; row < m; row++) {
-        for (let col = 0; col < n; col++) {
-            if (rooms[row][col] === 0) {
-                queue.push([row, col])
+    for (let r = 0; r < m; r++) {
+        for (let c = 0; c < n; c++) {
+            if (rooms[r][c] === 0) {
+                queue.push([r, c])
             }
         }
     }
-
-    const directions = [[-1,0], [0,1], [1,0], [0,-1]]
 
     while (queue.length > 0) {
         const [row, col] = queue.shift()
@@ -27,7 +25,7 @@ var wallsAndGates = function(rooms) {
             const newRow = row + dx
             const newCol = col + dy
 
-            if (newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && rooms[newRow][newCol] === 2147483647) {
+            if (newRow >= 0 && newCol >=0 && newRow < m && newCol < n && rooms[newRow][newCol] === 2147483647) {
                 rooms[newRow][newCol] = rooms[row][col] + 1
                 queue.push([newRow, newCol])
             }
