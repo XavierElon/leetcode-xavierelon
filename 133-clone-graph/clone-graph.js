@@ -27,7 +27,6 @@ var cloneGraph = function(node) {
         clone.neighbors = node.neighbors.map(neighbor => dfs(neighbor))
 
         return clone
-
     }
 
     return dfs(node)
