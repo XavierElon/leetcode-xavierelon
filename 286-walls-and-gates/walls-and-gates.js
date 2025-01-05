@@ -16,7 +16,7 @@ var wallsAndGates = function(rooms) {
                 queue.push([r, c])
             }
         }
-    }
+    } 
 
     while (queue.length > 0) {
         const [row, col] = queue.shift()
@@ -25,10 +25,11 @@ var wallsAndGates = function(rooms) {
             const newRow = row + dx
             const newCol = col + dy
 
-            if (newRow >= 0 && newCol >=0 && newRow < m && newCol < n && rooms[newRow][newCol] === 2147483647) {
+            if (newRow >=0 && newCol >= 0 && newRow < m && newCol < n && rooms[newRow][newCol] === 2147483647) {
                 rooms[newRow][newCol] = rooms[row][col] + 1
                 queue.push([newRow, newCol])
             }
         }
     }
+
 };
