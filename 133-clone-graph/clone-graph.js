@@ -21,7 +21,6 @@ var cloneGraph = function(node) {
     while (queue.length > 0) {
         const current = queue.shift()
 
-
         for (const neighbor of current.neighbors) {
             if (!visited.has(neighbor)) {
                 visited.set(neighbor, new _Node(neighbor.val, []))
