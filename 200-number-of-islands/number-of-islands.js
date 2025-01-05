@@ -4,10 +4,10 @@
  */
 var numIslands = function(grid) {
     let num = 0
-    
+
     for (let row = 0; row < grid.length; row++) {
-        for (let col = 0; col < grid[row].length; col++) {
-            if (grid[row][col] == '1') {
+        for (let col = 0; col < grid[0].length; col++) {
+            if (grid[row][col] === '1') {
                 num++
                 removeIslandBFS(grid, row, col)
             }
@@ -16,22 +16,23 @@ var numIslands = function(grid) {
     return num
 };
 
-const removeIslandBFS = (grid, x, y) => {
+function removeIslandBFS(grid, row, col) {
     let stack = []
-    stack.push({x, y})
+    stack.push({row, col}) 
+    
     while (stack.length > 0) {
-        const {x, y} = stack.pop()
-        grid[x][y] = '0'
-        add(stack, grid, x+1, y)
-        add(stack, grid, x-1, y)
-        add(stack, grid, x, y+1)
-        add(stack, grid, x, y-1)
+        const {row, col} = stack.pop()
+        grid[row][col] = '0'
+        add(stack, grid, row+1, col)
+        add(stack, grid, row-1, col)
+        add(stack, grid, row, col+1)
+        add(stack, grid, row, col-1)
     }
 }
 
-const add = (stack, grid, x, y) => {
-    if (x < 0 || y < 0 || x >= grid.length || y >= grid[x].length || grid[x][y] == '0') {
+function add(stack, grid, row, col) {
+    if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] === '0') {
         return
     }
-    stack.push({x, y})
+    stack.push({row, col})
 }
