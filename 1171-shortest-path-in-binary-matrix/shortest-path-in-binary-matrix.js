@@ -4,35 +4,34 @@
  */
 var shortestPathBinaryMatrix = function(grid) {
     const n = grid.length
-    if (grid[0][0] !== 0 || grid[n-1][n-1] !== 0) {
-        return -1
-    }
 
-    const directions = [
-        [1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]
-    ]
+    if (grid[0][0] === 1 || grid[n-1][n-1] === 1) return -1
 
-    const visited = new Array(n).fill(null).map(() => new Array(n).fill(false))
-    visited[0][0] = true
+    const directions = [[1,1],[1,-1],[-1,-1],[-1,1],[1,0],[-1,0],[0,1],[0,-1]]
 
-    const queue = [[0, 0, 1]]
+    const queue = [[0,0,1]]
+
+    grid[0][0] = 1
 
     while (queue.length > 0) {
-        const [x, y, dist] = queue.shift()
+        const [row, col, pathLength] = queue.shift()
 
-        if (x === n - 1 && y === n - 1) {
-            return dist
-        }
+        if (row === n - 1 && col === n - 1) return pathLength
 
         for (const [dx, dy] of directions) {
-            const nx = x + dx
-            const ny = y + dy
+            const newRow = row + dx
+            const newCol = col + dy
 
-            if (nx >= 0 && nx < n && ny >= 0 && ny < n && !visited[nx][ny] && grid[nx][ny] === 0) {
-                visited[nx][ny] = true
-                queue.push([nx, ny, dist+1])
+            if (isValid(newRow, newCol, n) && grid[newRow][newCol] === 0) {
+                grid[newRow][newCol] = 1
+                queue.push([newRow, newCol, pathLength + 1])
             }
         }
     }
+
     return -1
 };
+
+function isValid(row, col, n) {
+    return row >= 0 && row < n && col >= 0 && col < n
+}
