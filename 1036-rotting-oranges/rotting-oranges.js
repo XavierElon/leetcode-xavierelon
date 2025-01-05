@@ -9,11 +9,10 @@ var orangesRotting = function(grid) {
     const rottingOranges = []
     let min = 0
 
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            if (grid[i][j] === 2) {
-                rottingOranges.push(i * cols + j)
-            } else if (grid[i][j] === 1) freshCount++
+    for (let row = 0; row < grid.length; row++) {
+        for (let col = 0; col < grid[0].length; col++) {
+            if (grid[row][col] === 1) freshCount++
+            else if(grid[row][col] === 2) rottingOranges.push(row * cols + col)
         }
     }
 
@@ -25,21 +24,24 @@ var orangesRotting = function(grid) {
             const row = Math.floor(rottenPos / cols)
             const col = rottenPos % cols
 
-            if (row - 1 >= 0 && grid[row - 1][col] === 1) {
+            if (row - 1 >= 0 && grid[row-1][col] === 1) {
                 freshCount--
                 grid[row-1][col] = 2
-                rottingOranges.push((row - 1) * cols + col)
+                rottingOranges.push((row-1) * cols + col)
             }
+
             if (row + 1 < rows && grid[row+1][col] === 1) {
                 freshCount--
                 grid[row+1][col] = 2
                 rottingOranges.push((row+1) * cols + col)
             }
+
             if (col - 1 >= 0 && grid[row][col-1] === 1) {
                 freshCount--
                 grid[row][col-1] = 2
                 rottingOranges.push(row * cols + col - 1)
             }
+
             if (col + 1 < cols && grid[row][col+1] === 1) {
                 freshCount--
                 grid[row][col+1] = 2
