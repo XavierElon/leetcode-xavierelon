@@ -29,6 +29,5 @@ var cloneGraph = function(node) {
             visited.get(current).neighbors.push(visited.get(neighbor))
         }
     }
-
     return clone
 };
