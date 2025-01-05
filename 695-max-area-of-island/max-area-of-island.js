@@ -3,23 +3,35 @@
  * @return {number}
  */
 var maxAreaOfIsland = function(grid) {
-    const res = { count: 0 }
+    if (!grid || grid.length === 0) return 0
+
+    let maxArea = 0
+
     for (let r = 0; r < grid.length; r++) {
         for (let c = 0; c < grid[0].length; c++) {
-            dfs(grid, r, c, res)
+            if (grid[r][c] === 1) {
+                const area = dfs(grid, r, c)
+                maxArea = Math.max(area, maxArea)
+            }
         }
     }
 
-    return res.count
+    return maxArea
 };
 
-const dfs = (grid, r, c, res, area = { count: 0 }) => {
-    if (!grid[r] || !grid[r][c]) return
+function dfs(grid, r, c) {
+    if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length || grid[r][c] === 0) {
+        return 0
+    }
 
-    res.count = Math.max(res.count, area.count += grid[r][c])
     grid[r][c] = 0
-    dfs(grid, r, c-1, res, area)
-    dfs(grid, r, c+1, res, area)
-    dfs(grid, r-1, c, res, area)
-    dfs(grid, r+1, c, res, area)
+
+    let area = 1
+
+    area += dfs(grid, r-1, c)
+    area += dfs(grid, r+1, c)
+    area += dfs(grid, r, c-1)
+    area += dfs(grid, r, c+1)
+
+    return area
 }
