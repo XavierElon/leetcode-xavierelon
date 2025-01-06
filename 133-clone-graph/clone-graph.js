@@ -26,6 +26,7 @@ var cloneGraph = function(node) {
                 visited.set(neighbor, new _Node(neighbor.val, []))
                 queue.push(neighbor)
             }
+
             visited.get(current).neighbors.push(visited.get(neighbor))
         }
     }
