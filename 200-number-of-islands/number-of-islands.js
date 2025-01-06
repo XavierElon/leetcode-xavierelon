@@ -5,34 +5,35 @@
 var numIslands = function(grid) {
     let num = 0
 
-    for (let row = 0; row < grid.length; row++) {
-        for (let col = 0; col < grid[0].length; col++) {
-            if (grid[row][col] === '1') {
+    for (let r = 0; r < grid.length; r++) {
+        for (let c = 0; c < grid[0].length; c++) {
+            if (grid[r][c] === '1') {
                 num++
-                removeIslandBFS(grid, row, col)
+                removeIslandBFS(grid, r, c)
             }
         }
     }
     return num
 };
 
-function removeIslandBFS(grid, row, col) {
+function removeIslandBFS(grid, r, c) {
     let stack = []
-    stack.push({row, col}) 
-    
+    stack.push([r, c])
+
     while (stack.length > 0) {
-        const {row, col} = stack.pop()
-        grid[row][col] = '0'
-        add(stack, grid, row+1, col)
-        add(stack, grid, row-1, col)
-        add(stack, grid, row, col+1)
-        add(stack, grid, row, col-1)
+        const [r, c] = stack.pop()
+        grid[r][c] = '0'
+        add(stack, grid, r+1, c)
+        add(stack, grid, r-1, c)
+        add(stack, grid, r, c+1)
+        add(stack, grid, r, c-1)
     }
 }
 
-function add(stack, grid, row, col) {
-    if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] === '0') {
+function add(stack, grid, r, c) {
+    if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length || grid[r][c] === '0') {
         return
     }
-    stack.push({row, col})
+
+    stack.push([r, c])
 }
