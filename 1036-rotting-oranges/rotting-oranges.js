@@ -3,16 +3,19 @@
  * @return {number}
  */
 var orangesRotting = function(grid) {
-    let freshCount = 0
-    let min = 0
-    const rottingOranges = []
     const rows = grid.length
     const cols = grid[0].length
+    let freshCount = 0
+    const rottingOranges = []
+    let min = 0
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-            if (grid[r][c] === 1) freshCount++
-            else if (grid[r][c] === 2) rottingOranges.push(r * cols + c)
+            if (grid[r][c] === 1) {
+                freshCount++
+            } else if (grid[r][c] === 2) {
+                rottingOranges.push(r * cols + c)
+            }
         }
     }
 
@@ -26,28 +29,29 @@ var orangesRotting = function(grid) {
 
             if (row - 1 >= 0 && grid[row-1][col] === 1) {
                 freshCount--
+                rottingOranges.push((row-1) * cols + col)
                 grid[row-1][col] = 2
-                rottingOranges.push((row - 1) * cols + col)
             }
 
             if (row + 1 < rows && grid[row+1][col] === 1) {
                 freshCount--
+                rottingOranges.push((row+1) * cols + col)
                 grid[row+1][col] = 2
-                rottingOranges.push((row + 1) * cols + col)
             }
 
-            if (col -1 >= 0 && grid[row][col-1] === 1) {
+            if (col - 1 >= 0 && grid[row][col-1] === 1) {
                 freshCount--
-                grid[row][col-1] = 2
                 rottingOranges.push(row * cols + col - 1)
+                grid[row][col-1] = 2
             }
 
             if (col + 1 < cols && grid[row][col+1] === 1) {
                 freshCount--
-                grid[row][col+1] = 2
                 rottingOranges.push(row * cols + col + 1)
+                grid[row][col+1] = 2
             }
         }
+
         min++
     }
 
