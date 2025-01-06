@@ -16,14 +16,15 @@ var findOrder = function(numCourses, prerequisites) {
     const order = []
     for (let i = 0; i < numCourses; i++) {
         if (indegree[i] === 0) {
-            queue.push(i)
             order.push(i)
+            queue.push(i)
         }
-    }
+    }    
 
     while (queue.length > 0) {
         const course = queue.shift()
-        for (const nextCourse of adjList[course]) {
+
+        for (nextCourse of adjList[course]) {
             indegree[nextCourse]--
             if (indegree[nextCourse] === 0) {
                 queue.push(nextCourse)
