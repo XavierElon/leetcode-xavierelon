@@ -5,25 +5,32 @@
  */
 var insert = function(intervals, newInterval) {
     if (intervals.length === 0) return [newInterval]
-
+    
+    let inserted = false
     const merged = []
-    let i = 0
-    while (i < intervals.length && intervals[i][1] < newInterval[0]) {
-        merged.push(intervals[i++])
+    intervals.sort((a, b) => a[0] - b[0])
+
+    for (let i = 0; i < intervals.length; i++) {
+        const current = intervals[i]
+
+        if (current[1] < newInterval[0]) {
+            merged.push(current)
+        } else if (current[0] > newInterval[1]) {
+            if (!inserted) {
+                merged.push(newInterval)
+                inserted = true
+            }
+            merged.push(current)
+        } else {
+            newInterval = [
+                Math.min(current[0], newInterval[0]),
+                Math.max(current[1], newInterval[1])
+            ]
+        }
     }
 
-    let mergedInterval = newInterval
-    while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
-        mergedInterval = [
-            Math.min(intervals[i][0], mergedInterval[0]),
-            Math.max(intervals[i][1], mergedInterval[1])
-        ]
-        i++
-    }
-    merged.push(mergedInterval)
-
-    while (i < intervals.length) {
-        merged.push(intervals[i++])
+    if (!inserted) {
+        merged.push(newInterval)
     }
 
     return merged
