@@ -17,15 +17,16 @@ var validPath = function(n, edges, source, destination) {
 
     const visited = new Set()
     visited.add(source)
-    const queue = [source]
+    const stack = [source]
 
-    while (queue.length > 0) {
-        const node = queue.shift()
-        if (node === destination) return true
+    while (stack.length > 0) {
+        const current = stack.pop()
 
-        for (const neighbor of graph[node]) {
+        if (current === destination) return true
+
+        for (const neighbor of graph[current]) {
             if (!visited.has(neighbor)) {
-                queue.push(neighbor)
+                stack.push(neighbor)
                 visited.add(neighbor)
             }
         }
