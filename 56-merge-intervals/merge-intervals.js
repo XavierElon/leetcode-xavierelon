@@ -5,7 +5,7 @@
 var merge = function(intervals) {
     if (intervals.length <= 1) return intervals
 
-    intervals.sort((a, b) => a[0] - b[0])
+    intervals.sort((a,b) => a[0] - b[0])
 
     let writeIndex = 0
 
@@ -18,8 +18,11 @@ var merge = function(intervals) {
         }
     }
 
-    console.log(intervals)
-    console.log(writeIndex)
     intervals.length = writeIndex + 1
+
     return intervals
 };
+
+/*
+[[1,2], [3,4],[4,5],[5,6]]
+*/
