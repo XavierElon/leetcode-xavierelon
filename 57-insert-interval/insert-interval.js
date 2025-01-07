@@ -8,7 +8,6 @@ var insert = function(intervals, newInterval) {
     
     let inserted = false
     const merged = []
-    intervals.sort((a, b) => a[0] - b[0])
 
     for (let i = 0; i < intervals.length; i++) {
         const current = intervals[i]
