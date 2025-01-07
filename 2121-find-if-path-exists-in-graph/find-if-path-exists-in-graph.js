@@ -16,21 +16,20 @@ var validPath = function(n, edges, source, destination) {
     }
 
     const visited = new Set()
-    visited.add(source)
-    const stack = [source]
-
-    while (stack.length > 0) {
-        const current = stack.pop()
-
+    
+    const dfs = (current) => {
         if (current === destination) return true
+        visited.add(current)
 
         for (const neighbor of graph[current]) {
             if (!visited.has(neighbor)) {
-                stack.push(neighbor)
-                visited.add(neighbor)
+                if (dfs(neighbor)) {
+                    return true
+                }
             }
         }
+        return false
     }
 
-    return false
+    return dfs(source)
 };
