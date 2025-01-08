@@ -11,23 +11,24 @@
  * @return {_Node}
  */
 var cloneGraph = function(node) {
-    if (!node) return
-
+    if (!node) return node
+    
     const visited = new Map()
+    const clone = new _Node(node.val, [])
+    visited.set(node, clone)
+    const queue = [node]
 
-    function dfs(node) {
-        if (visited.has(node)) {
-            return visited.get(node)
+    while (queue.length > 0) {
+        const current = queue.shift()
+
+        for (const neighbor of current.neighbors) {
+            if (!visited.has(neighbor)) {
+                queue.push(neighbor)
+                visited.set(neighbor, new _Node(neighbor.val, []))
+            }
+            visited.get(current).neighbors.push(visited.get(neighbor))
         }
-
-        const clone = new _Node(node.val, [])
-
-        visited.set(node, clone)
-
-        clone.neighbors = node.neighbors.map(neighbor => dfs(neighbor))
-
-        return clone
     }
 
-    return dfs(node)
+    return clone
 };
