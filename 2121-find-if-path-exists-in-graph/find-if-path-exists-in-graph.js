@@ -15,21 +15,21 @@ var validPath = function(n, edges, source, destination) {
         graph[v].push(u)
     }
 
+    const queue = [source]
     const visited = new Set()
-    
-    const dfs = (current) => {
+    visited.add(source)
+
+    while (queue.length > 0) {
+        const current = queue.shift()
         if (current === destination) return true
-        visited.add(current)
 
         for (const neighbor of graph[current]) {
             if (!visited.has(neighbor)) {
-                if (dfs(neighbor)) {
-                    return true
-                }
+                queue.push(neighbor)
+                visited.add(neighbor)
             }
         }
-        return false
     }
 
-    return dfs(source)
+    return false
 };
