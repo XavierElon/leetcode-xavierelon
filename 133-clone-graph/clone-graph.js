@@ -11,8 +11,8 @@
  * @return {_Node}
  */
 var cloneGraph = function(node) {
-    if (!node) return node
-    
+    if (!node) return
+
     const visited = new Map()
     const clone = new _Node(node.val, [])
     visited.set(node, clone)
@@ -23,8 +23,8 @@ var cloneGraph = function(node) {
 
         for (const neighbor of current.neighbors) {
             if (!visited.has(neighbor)) {
-                queue.push(neighbor)
                 visited.set(neighbor, new _Node(neighbor.val, []))
+                queue.push(neighbor)
             }
             visited.get(current).neighbors.push(visited.get(neighbor))
         }
