@@ -12,10 +12,8 @@ class Solution:
 
             if low <= high:
                 res.append([low, high])
-            
             if firstList[i][1] < secondList[j][1]:
                 i += 1
-
             else:
                 j += 1
         
