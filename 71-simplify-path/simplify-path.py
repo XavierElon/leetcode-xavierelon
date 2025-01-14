@@ -3,14 +3,13 @@ class Solution:
         stack = []
 
         for portion in path.split("/"):
-            if portion == "..":
+            if portion == '..':
                 if stack:
                     stack.pop()
             elif portion == '.' or not portion:
                 continue
             else:
                 stack.append(portion)
-        print(stack)
 
         final_str = "/" + "/".join(stack)
         return final_str
