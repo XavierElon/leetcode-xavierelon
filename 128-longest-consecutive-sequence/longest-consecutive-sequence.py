@@ -2,6 +2,7 @@ class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         if not nums:
             return 0
+
         num_set = set(nums)
         longest_chain = 0
 
@@ -12,6 +13,6 @@ class Solution:
                 while (current_num + 1) in num_set:
                     current_num += 1
                     current_chain += 1
-                longest_chain = max(longest_chain, current_chain)
+                longest_chain = max(current_chain, longest_chain)
 
         return longest_chain
