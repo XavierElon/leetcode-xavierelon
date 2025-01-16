@@ -9,13 +9,12 @@ class Solution:
         second_head = self.reverse_list(mid)
         ptr1 = head
         ptr2 = second_head
-        res = True
 
         while ptr2:
             if ptr1.val != ptr2.val:
-                res = False
+                return False
             ptr1, ptr2 = ptr1.next, ptr2.next
-        return res
+        return True
     
     def reverse_list(self, head: ListNode) -> ListNode:
         prev = None
