@@ -35,3 +35,18 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         return slow
+
+    def copy_linked_list(self, head: ListNode) -> ListNode:
+        if not head:
+            return None
+
+        dummy = ListNode(0)
+        current_copy = dummy
+        current_original = head
+
+        while current_original:
+            current_copy.next = ListNode(current_original.val)
+            current_copy = current_copy.next
+            current_original = current_original.next
+
+        return dummy.next
