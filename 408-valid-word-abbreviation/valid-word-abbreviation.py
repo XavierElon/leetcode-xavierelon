@@ -14,7 +14,8 @@ class Solution:
             else:
                 if word[p1] != abbr[p2]:
                     return False
-                p1 += 1
-                p2 += 1
-
+                else:
+                    p1 += 1
+                    p2 += 1
+        
         return p1 == len(word) and p2 == len(abbr)
