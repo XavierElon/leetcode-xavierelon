@@ -3,10 +3,11 @@ class Solution:
         if len(nums) <= 1:
             return nums
 
-        mid = len(nums) // 2
+        mid = (len(nums)) // 2 
+
         left_half = self.sortArray(nums[:mid])
         right_half = self.sortArray(nums[mid:])
-        
+
         return self.merge(left_half, right_half)
 
     def merge(self, left: List[int], right: List[int]) -> List[int]:
@@ -20,13 +21,12 @@ class Solution:
             else:
                 merged.append(right[j])
                 j += 1
-        
+
         while i < len(left):
             merged.append(left[i])
             i += 1
-        
         while j < len(right):
             merged.append(right[j])
             j += 1
-        
+
         return merged
