@@ -10,18 +10,18 @@ class Solution:
             graph[v].append(u)
 
         visited = set()
+        queue = deque([source])
 
-        def dfs(current):
+        while queue:
+            current = queue.popleft()
+
             if current == destination:
                 return True
-            
-            visited.add(current)
 
             for neighbor in graph[current]:
                 if neighbor not in visited:
-                    if dfs(neighbor):
-                        return True
+                    queue.append(neighbor)
+                    visited.add(neighbor)
 
-            return False
-
-        return dfs(source)
+        
+        return False
