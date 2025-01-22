@@ -3,7 +3,7 @@ class Solution:
         if len(nums) <= 1:
             return nums
 
-        mid = (len(nums)) // 2 
+        mid = (len(nums)) // 2
 
         left_half = self.sortArray(nums[:mid])
         right_half = self.sortArray(nums[mid:])
@@ -28,5 +28,5 @@ class Solution:
         while j < len(right):
             merged.append(right[j])
             j += 1
-
+        
         return merged
