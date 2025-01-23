@@ -1,19 +1,19 @@
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        colors = [0] * len(graph)
+        n, color = len(graph), {}
 
-        for i in range(len(graph)):
-            if colors[i] == 0 and not self.dfs(i, 1, graph, colors):
-                return False
-        return True
+        for i in range(n):
+            if i not in color and graph[i]:
+                color[i] = 1
+                queue = collections.deque([i])
+                
+                while queue:
+                    u = queue.popleft()
+                    for v in graph[u]:
+                        if v not in color:
+                            color[v] = -color[u]
+                            queue.append(v)
+                        elif color[v] == color[u]:
+                            return False
 
-    def dfs(self, node: int, color: int, graph: List[List[int]], colors: List[int]) -> bool:
-        colors[node] = color
-
-        for neighbor in graph[node]:
-            if colors[neighbor] == color:
-                return False
-            
-            if (colors[neighbor] == 0 and not self.dfs(neighbor, -color, graph, colors)):
-                return False
         return True
