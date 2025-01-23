@@ -1,36 +1,33 @@
-from typing import List  # Correct import for List
-from collections import deque  # Not used in DFS but useful if needed
-
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        if not matrix or not matrix[0]:  # Handle empty matrix or empty rows
+        if not matrix or not matrix[0]:
             return 0
 
-        res = 0
-        m, n = len(matrix), len(matrix[0])
-        memo = [[0] * n for _ in range(m)]  # Correct initialization
+        rows, cols = len(matrix), len(matrix[0])
+        matrix = matrix
+        memo = [[0] * cols for _ in range(rows)]
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-        for r in range(m):
-            for c in range(n):
-                res = max(res, self.dfs(r, c, matrix, memo))  # Use self.dfs
-        return res
+        max_path= 0
 
-    def dfs(self, r: int, c: int, matrix: List[List[int]], memo: List[List[int]]) -> int:
-        if memo[r][c] != 0:
-            return memo[r][c]
-        
-        max_path = 1
-        dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # Directions: up, down, left, right
-
-        for d in dirs:
-            next_row, next_col = r + d[0], c + d[1]
-            if self.is_within_bounds(next_row, next_col, matrix) and matrix[next_row][next_col] > matrix[r][c]:
-                path_length = 1 + self.dfs(next_row, next_col, matrix, memo)
-                max_path = max(max_path, path_length)
-        
-        memo[r][c] = max_path
+        for r in range(rows):
+            for c in range(cols):
+                current_path = self.dfs(r, c, directions, memo, matrix, rows, cols)
+                max_path = max(max_path, current_path)
         return max_path
 
-    def is_within_bounds(self, r: int, c: int, matrix: List[List[int]]) -> bool:
-        """Check if the given coordinates are within the matrix bounds."""
-        return 0 <= r < len(matrix) and 0 <= c < len(matrix[0])
+    def dfs(self, r, c, directions, memo, matrix, rows, cols):
+        if memo[r][c] != 0:
+            return memo[r][c]
+
+        max_len = 1
+
+        for dr, dc  in directions:
+            nr, nc = r + dr, c + dc
+            
+            if (0 <= nr < rows and 0 <= nc < cols and matrix[nr][nc] > matrix[r][c]):
+                length = 1 + self.dfs(nr, nc, directions, memo, matrix, rows, cols)
+                max_len = max(max_len, length)
+
+        memo[r][c] = max_len
+        return max_len
