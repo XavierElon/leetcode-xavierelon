@@ -13,15 +13,15 @@ class Solution:
         queue = deque([source])
 
         while queue:
-            current = queue.popleft()
+            node = queue.popleft()
 
-            if current == destination:
+            if node == destination:
                 return True
 
-            for neighbor in graph[current]:
+            for neighbor in graph[node]:
                 if neighbor not in visited:
                     queue.append(neighbor)
                     visited.add(neighbor)
-
         
+
         return False
