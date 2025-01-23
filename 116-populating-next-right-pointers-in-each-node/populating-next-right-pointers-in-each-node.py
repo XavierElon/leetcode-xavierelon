@@ -17,8 +17,11 @@ class Solution:
 
         while leftmost.left:
             current = leftmost
+            
             while current:
-                current.left.next = current.right
+
+                if current.right:
+                    current.left.next = current.right
 
                 if current.next:
                     current.right.next = current.next.left
@@ -28,5 +31,5 @@ class Solution:
                 current = current.next
 
             leftmost = leftmost.left
-
+        
         return root
