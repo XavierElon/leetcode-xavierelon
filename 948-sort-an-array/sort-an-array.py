@@ -1,32 +1,29 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        if len(nums) <= 1:
-            return nums
-
-        mid = (len(nums)) // 2
-
-        left_half = self.sortArray(nums[:mid])
-        right_half = self.sortArray(nums[mid:])
-
-        return self.merge(left_half, right_half)
-
-    def merge(self, left: List[int], right: List[int]) -> List[int]:
-        merged = []
-        i = j = 0
-
-        while i < len(left) and j < len(right):
-            if left[i] <= right[j]:
-                merged.append(left[i])
-                i += 1
-            else:
-                merged.append(right[j])
-                j += 1
-
-        while i < len(left):
-            merged.append(left[i])
-            i += 1
-        while j < len(right):
-            merged.append(right[j])
-            j += 1
         
-        return merged
+        def heapify(arr: List[int], heap_size: int, root: int) -> None:
+            largest = root
+            left = 2 * root + 1
+            right = 2 * root + 2
+
+            if left < heap_size and arr[left] > arr[largest]:
+                largest = left
+
+            if right < heap_size and arr[right] > arr[largest]:
+                largest = right
+
+            if largest != root:
+                arr[root], arr[largest] = arr[largest], arr[root]
+                heapify(arr, heap_size, largest)
+
+        n = len(nums)
+
+        for i in range(n // 2 - 1, -1, -1):
+            heapify(nums, n, i)
+
+        for i in range(n - 1, 0, -1):
+            nums[i], nums[0] = nums[0], nums[i]
+            heapify(nums, i, 0)
+
+        return nums
+        
