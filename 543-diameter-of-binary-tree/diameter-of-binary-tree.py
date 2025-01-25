@@ -11,13 +11,11 @@ class Solution:
         self.height(root)
         return self.max_diameter
 
-
-    def height(self, node: TreeNode) -> int:
+    def height(self, node: ListNode) -> int:
         if not node:
             return 0
 
         left_height = self.height(node.left)
         right_height = self.height(node.right)
         self.max_diameter = max(self.max_diameter, left_height + right_height)
-
         return 1 + max(left_height, right_height)
