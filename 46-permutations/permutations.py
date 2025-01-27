@@ -8,7 +8,7 @@ class Solution:
         if len(candidate) == len(nums):
             res.append(candidate.copy())
             return
-        
+
         for num in nums:
             if num not in used:
                 candidate.append(num)
@@ -16,3 +16,4 @@ class Solution:
                 self.backtrack(nums, candidate, used, res)
                 candidate.pop()
                 used.remove(num)
+                
