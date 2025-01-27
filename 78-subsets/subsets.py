@@ -8,7 +8,7 @@ class Solution:
         if i == len(nums):
             res.append(current_subset.copy())
             return
-
+        
         current_subset.append(nums[i])
         self.backtrack(i+1, current_subset, nums, res)
         current_subset.pop()
