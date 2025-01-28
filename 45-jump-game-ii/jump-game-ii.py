@@ -14,7 +14,7 @@ class Solution:
                 jumps += 1
                 current_max = next_max
 
-                if current_max >= len(nums) -1:
+                if current_max >= len(nums) - 1:
                     break
 
         return jumps
