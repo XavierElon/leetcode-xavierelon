@@ -5,24 +5,18 @@ class Solution:
         self.backtrack(0, [], candidates, target, res)
         return res
 
-    def backtrack(self, start: int, curr_candidate: List[int], candidates: List[int], target: int, res: List[List[int]]) -> None:
+    def backtrack(self, start: int, current: List[int], nums: List[int], target: int, res: List[List[int]]) -> None:
         if target == 0:
-            res.append(curr_candidate.copy())
+            res.append(current.copy())
             return
 
         if target < 0:
             return
 
-        for i in range(start, len(candidates)):
-            if i > start and candidates[i] == candidates[i-1]:
+        for i in range(start, len(nums)):
+            if i > start and nums[i] == nums[i-1]:
                 continue
 
-            if candidates[i] > target:
-                break
-
-            curr_candidate.append(candidates[i])
-
-            self.backtrack(i+1, curr_candidate, candidates, target-candidates[i], res)
-             
-            curr_candidate.pop()
-
+            current.append(nums[i])
+            self.backtrack(i + 1, current, nums, target - nums[i], res)
+            current.pop()
