@@ -4,12 +4,13 @@ class Solution:
         self.backtrack(0, [], nums, res)
         return res
 
-    def backtrack(self, i: int, current_subset: List[int], nums: List[int], res: List[List[int]]) -> None:
+    def backtrack(self, i: int, current: List[int], nums: List[int], res: List[List[int]]) -> None:
         if i == len(nums):
-            res.append(current_subset.copy())
+            res.append(current.copy())
             return
-        
-        current_subset.append(nums[i])
-        self.backtrack(i+1, current_subset, nums, res)
-        current_subset.pop()
-        self.backtrack(i+1, current_subset, nums, res)
+
+        current.append(nums[i])
+        self.backtrack(i + 1, current, nums, res)
+
+        current.pop()
+        self.backtrack(i + 1, current, nums, res)
