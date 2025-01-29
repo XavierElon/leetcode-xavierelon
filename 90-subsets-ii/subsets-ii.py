@@ -15,11 +15,6 @@ class Solution:
         current.pop()
 
         while i + 1 < len(nums) and nums[i] == nums[i+1]:
-            i += 1
-
- 
+            i+= 1
 
         self.backtrack(i + 1, current, nums, res)
-        
-
-        
