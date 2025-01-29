@@ -22,6 +22,7 @@ class Solution:
 
             curr_candidate.append(candidates[i])
 
-            self.backtrack(i + 1, curr_candidate, candidates, target - candidates[i], res)
-
+            self.backtrack(i+1, curr_candidate, candidates, target-candidates[i], res)
+             
             curr_candidate.pop()
+
