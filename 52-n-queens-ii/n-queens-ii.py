@@ -1,25 +1,29 @@
 class Solution:
     def totalNQueens(self, n: int) -> int:
-        self.res = 0
-        self.dfs(0, set(), set(), set(), n)
-        return self.res
+        res = 0
 
-    def dfs(self, r: int, diagonals_set: Set[int], anti_diagonals_set: Set[int], cols_set: Set[int], n: int) -> None:
-        if r == n:
-            self.res += 1
-            return
-        
-        for c in range(n):
-            current_diagonal = r - c
-            current_anti_diagonal = r + c
+        def dfs(r: int, diagonals_set: Set[int], anti_diagonals_set: Set[int], cols_set: Set[int], n :int) -> None:
+            nonlocal res
+            if r == n:
+                res += 1
+                return
 
-            if (c in cols_set or current_diagonal in diagonals_set or current_anti_diagonal in anti_diagonals_set):
-                continue
+            for c in range(n): 
+                curr_diagonal = r - c
+                curr_anti_diagonal = r + c
 
-            cols_set.add(c)
-            diagonals_set.add(current_diagonal)
-            anti_diagonals_set.add(current_anti_diagonal)
-            self.dfs(r + 1, diagonals_set, anti_diagonals_set, cols_set, n)
-            cols_set.remove(c)
-            diagonals_set.remove(current_diagonal)
-            anti_diagonals_set.remove(current_anti_diagonal)
+                if (c in cols_set or curr_diagonal in diagonals_set or curr_anti_diagonal in anti_diagonals_set):
+                    continue
+
+                cols_set.add(c)
+                diagonals_set.add(curr_diagonal)
+                anti_diagonals_set.add(curr_anti_diagonal)
+
+                dfs(r + 1, diagonals_set, anti_diagonals_set, cols_set, n)
+
+                cols_set.remove(c)
+                diagonals_set.remove(curr_diagonal)
+                anti_diagonals_set.remove(curr_anti_diagonal)
+
+        dfs(0, set(), set(), set(), n)
+        return res
