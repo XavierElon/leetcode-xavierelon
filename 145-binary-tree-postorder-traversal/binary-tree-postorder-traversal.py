@@ -10,19 +10,16 @@ class Solution:
             return []
 
         res = []
-        
-        def dfs(node: TreeNode) -> None:
-            if not node:
-                return 
+        stack = [root]
 
-            if node.left:
-                dfs(node.left)
+        while stack:
+            current = stack.pop()
+            res.append(current.val)
 
-            if node.right:
-                dfs(node.right)
-
-            res.append(node.val)
-
-        dfs(root)
-
+            if current.left:
+                stack.append(current.left)
+            
+            if current.right:
+                stack.append(current.right)
+        res.reverse()
         return res
