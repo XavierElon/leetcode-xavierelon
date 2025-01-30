@@ -9,16 +9,12 @@ class Solution:
         if not root:
             return None
 
-        stack = [root]
+        root.left, root.right = root.right, root.left
 
-        while stack:
-            node = stack.pop()
-            node.left, node.right = node.right, node.left
+        if root.left:
+            self.invertTree(root.left)
 
-            if node.right:
-                stack.append(node.right)
-
-            if node.left:
-                stack.append(node.left)
+        if root.right:
+            self.invertTree(root.right)
 
         return root
