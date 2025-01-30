@@ -10,17 +10,17 @@ class Solution:
         if not root:
             return None
 
-        if root == p or root == q:
+        if p == root or q == root:
             return root
 
-        found_in_left = self.lowestCommonAncestor(root.left, p, q)
-        found_in_right = self.lowestCommonAncestor(root.right, p, q)
+        left_found = self.lowestCommonAncestor(root.left, p, q)
+        right_found = self.lowestCommonAncestor(root.right, p, q)
 
-        if found_in_left and found_in_right:
+        if left_found and right_found:
             return root
-
-        if found_in_left:
-            return found_in_left
+        
+        if left_found:
+            return left_found
 
         else:
-            return found_in_right
+            return right_found
