@@ -9,15 +9,16 @@ class Solution:
         if not root:
             return True
 
-        return self.dfs(root.left, root.right)
+        def dfs(node1: TreeNode, node2: TreeNode) -> bool:
+            if not node1 and not node2:
+                return True
 
-    def dfs(self, left: TreeNode, right: TreeNode) -> bool:
-        if not left and not right:
-            return True
+            if not node1 or not node2:
+                return False
 
-        if not left or not right:
-            return False
-        if left.val != right.val:
-            return False
+            if node1.val != node2.val:
+                return False
 
-        return self.dfs(left.right, right.left) and self.dfs(left.left, right.right)
+            return dfs(node1.left, node2.right) and dfs(node1.right, node2.left)
+
+        return dfs(root.left, root.right)
