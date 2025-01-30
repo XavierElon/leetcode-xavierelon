@@ -14,19 +14,18 @@ class Solution:
 
         while queue:
             level_size = len(queue)
-
-            leftmost_index = queue[0][1]
-            rightmost_index = leftmost_index
+            left_most_index = queue[0][1]
+            right_most_index = left_most_index
 
             for _ in range(level_size):
                 node, i = queue.popleft()
+
                 if node.left:
-                    queue.append((node.left, 2*i + 1))
-
+                    queue.append((node.left, i * 2 + 1))
                 if node.right:
-                    queue.append((node.right, 2*i + 2))
+                    queue.append((node.right, i * 2 + 2))
 
-                rightmost_index = i
+                right_most_index = i
 
-            max_width = max(max_width, rightmost_index - leftmost_index + 1)
+            max_width = max(max_width, right_most_index - left_most_index + 1)
         return max_width
