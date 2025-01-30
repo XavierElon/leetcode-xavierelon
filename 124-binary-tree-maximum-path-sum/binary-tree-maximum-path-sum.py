@@ -6,21 +6,20 @@
 #         self.right = right
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        self.max_sum = float('-inf')  # Instance variable to track the maximum path sum
-        self.max_path_sum_helper(root)
-        return self.max_sum
+        self.max_path_sum = float('-inf')
 
-    def max_path_sum_helper(self, node: TreeNode) -> int:
-        if not node:
-            return 0
+        def find_max(node: TreeNode) -> int:
+            if not node:
+                return 0
 
-        # Recursively compute max contributions from left and right subtrees
-        left_sum = max(self.max_path_sum_helper(node.left), 0)
-        right_sum = max(self.max_path_sum_helper(node.right), 0)
+            left_gain = max(find_max(node.left), 0)
+            right_gain = max(find_max(node.right), 0)
 
-        # Update the maximum path sum (considering the path through the current node)
-        current_path_sum = node.val + left_sum + right_sum
-        self.max_sum = max(self.max_sum, current_path_sum)
+            path_sum = node.val + left_gain + right_gain
 
-        # Return the maximum contribution this node can make to a path
-        return node.val + max(left_sum, right_sum)
+            self.max_path_sum = max(self.max_path_sum, path_sum)
+
+            return node.val + max(left_gain, right_gain)
+
+        find_max(root)
+        return self.max_path_sum
