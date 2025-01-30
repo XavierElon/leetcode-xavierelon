@@ -10,15 +10,10 @@ class Node:
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        seen = set()
+        runner1, runner2 = p, q
 
-        while p:
-            seen.add(p)
-            p = p.parent
+        while runner1 != runner2:
+            runner1 = q if runner1 is None else runner1.parent
+            runner2 = p if runner2 is None else runner2.parent
 
-        while q:
-            if q in seen:
-                return q
-            q = q.parent
-
-        return None
+        return runner1
