@@ -14,6 +14,7 @@ class Solution:
 
         while queue:
             level_size = len(queue)
+
             leftmost_index = queue[0][1]
             rightmost_index = leftmost_index
 
@@ -21,10 +22,11 @@ class Solution:
                 node, i = queue.popleft()
                 if node.left:
                     queue.append((node.left, 2*i + 1))
+
                 if node.right:
                     queue.append((node.right, 2*i + 2))
+
                 rightmost_index = i
 
             max_width = max(max_width, rightmost_index - leftmost_index + 1)
-
         return max_width
