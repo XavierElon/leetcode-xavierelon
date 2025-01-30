@@ -21,5 +21,6 @@ class Solution:
 
         if found_in_left:
             return found_in_left
+
         else:
             return found_in_right
