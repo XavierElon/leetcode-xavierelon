@@ -21,4 +21,4 @@ class Solution:
         if abs(left_height - right_height) > 1:
             return -1
 
-        return 1 + max(right_height, left_height)
+        return 1 + max(left_height, right_height)
