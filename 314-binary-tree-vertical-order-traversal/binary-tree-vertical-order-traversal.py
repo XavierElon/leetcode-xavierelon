@@ -18,6 +18,7 @@ class Solution:
 
             if node:
                 column_map[column].append(node.val)
+
                 leftmost_column = min(leftmost_column, column)
                 rightmost_column = max(rightmost_column, column)
 
