@@ -16,13 +16,14 @@ class Solution:
         while queue:
             node, column = queue.popleft()
 
-            if node:
-                column_map[column].append(node.val)
+            column_map[column].append(node.val)
 
-                leftmost_column = min(leftmost_column, column)
-                rightmost_column = max(rightmost_column, column)
+            leftmost_column = min(leftmost_column, column)
+            rightmost_column = max(rightmost_column, column)
 
+            if node.left:
                 queue.append((node.left, column - 1))
+            if node.right:
                 queue.append((node.right, column + 1))
 
         return [column_map[i] for i in range(leftmost_column, rightmost_column + 1)]
