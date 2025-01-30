@@ -6,16 +6,16 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
+        return self.is_within_bounds(root, float('-inf'), float('inf'))
 
-        return self.validateBST(root, float('-inf'), float('inf'))
-
-    def validateBST(self, node: TreeNode, lower_bound: float, upper_bound: float) -> bool:
+    def is_within_bounds(self, node: TreeNode, lower_bound: int, upper_bound: int) -> bool:
         if not node:
             return True
 
-        if not (lower_bound < node.val < upper_bound):
+        if not lower_bound < node.val < upper_bound:
             return False
 
-        return (self.validateBST(node.left, lower_bound, node.val) and self.validateBST(node.right, node.val, upper_bound))
+        if not self.is_within_bounds(node.left, lower_bound, node.val):
+            return False
+
+        return self.is_within_bounds(node.right, node.val, upper_bound)
