@@ -27,4 +27,5 @@ class Solution:
                 if i == level_size - 1:
                     res.append(node.val)
 
+
         return res
