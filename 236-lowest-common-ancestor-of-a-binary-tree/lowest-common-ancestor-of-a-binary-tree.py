@@ -13,10 +13,13 @@ class Solution:
         if root == p or root == q:
             return root
 
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
+        found_in_left = self.lowestCommonAncestor(root.left, p, q)
+        found_in_right = self.lowestCommonAncestor(root.right, p, q)
 
-        if left and right:
+        if found_in_left and found_in_right:
             return root
 
-        return left if left is not None else right
+        if found_in_left:
+            return found_in_left
+        else:
+            return found_in_right
