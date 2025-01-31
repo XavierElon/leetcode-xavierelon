@@ -15,5 +15,5 @@ class Solution:
         if not lower_bound < node.val < upper_bound:
             return False
 
-        return (self.is_within_bounds(node.left, lower_bound, node.val) and 
+        return (self.is_within_bounds(node.left, lower_bound, node.val) and
                 self.is_within_bounds(node.right, node.val, upper_bound))
