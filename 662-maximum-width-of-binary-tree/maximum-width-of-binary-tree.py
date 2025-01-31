@@ -23,6 +23,7 @@ class Solution:
 
                 if node.left:
                     queue.append((node.left, i * 2 + 1))
+
                 if node.right:
                     queue.append((node.right, i * 2 + 2))
 
@@ -30,4 +31,4 @@ class Solution:
 
             max_width = max(max_width, rightmost_index - leftmost_index + 1)
 
-        return max_width
+        return max_width 
