@@ -9,12 +9,14 @@ class Solution:
         if not root:
             return None
 
-        root.left, root.right = root.right, root.left
+        def dfs(node: TreeNode) -> None:
+            if not node:
+                return
 
-        if root.left:
-            self.invertTree(root.left)
+            node.left, node.right = node.right, node.left
 
-        if root.right:
-            self.invertTree(root.right)
+            dfs(node.left)
+            dfs(node.right)
 
+        dfs(root)
         return root
