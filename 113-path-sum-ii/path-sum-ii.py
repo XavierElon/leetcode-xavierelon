@@ -10,7 +10,7 @@ class Solution:
 
         def dfs(node: TreeNode, remaining_sum: int, current_path: List[int]) -> None:
             if not node:
-                return 
+                return
 
             current_path.append(node.val)
 
