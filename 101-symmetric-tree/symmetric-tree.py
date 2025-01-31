@@ -9,7 +9,7 @@ class Solution:
         if not root:
             return True
 
-        def dfs(node1: TreeNode, node2: TreeNode) -> bool:
+        def dfs(node1: TreeNode, node2: TreeNode) -> None:
             if not node1 and not node2:
                 return True
 
