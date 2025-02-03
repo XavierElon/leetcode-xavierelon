@@ -17,6 +17,7 @@ class Solution:
 
             for i in range(level_size):
                 node = queue.popleft()
+
                 if node.left:
                     queue.append(node.left)
                 if node.right:
