@@ -1,20 +1,25 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        memo = {}
+        prev_row = [0] * (len(text2) + 1)
+        for i in range(len(text1) - 1, -1, -1):
+            curr_row = [0] * (len(text2) + 1)
+            for j in range(len(text2) - 1, -1, -1):
+                if text1[i] == text2[j]:
+                    curr_row[j] = 1 + prev_row[j + 1]
 
-        def dfs(i: int, j: int) -> int:
-            if i >= len(text1) or j >= len(text2):
-                return 0
+                else:
+                    curr_row[j] = max(prev_row[j], curr_row[j+1])
 
-            if (i, j) in memo:
-                return memo[(i, j)]
+            prev_row = curr_row
+        return prev_row[0]
 
-            if text1[i] == text2[j]:
-                memo[(i, j)] = 1 + dfs(i + 1, j + 1)
-            
-            else:
-                memo[(i, j)] = max(dfs(i+1, j), dfs(i, j+1))
 
-            return memo[(i,j)]
+'''
 
-        return dfs(0,0)
+i a e c
+j
+a 2 1 1 0
+c 1 1 1 0
+b 0 0 0 0
+  0 0 0
+'''
