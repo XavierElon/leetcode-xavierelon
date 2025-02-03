@@ -2,7 +2,7 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
 
-        def backtrack(nums: List[int], res: List[List[int]], current: List[int], used: Set[int]) -> None:
+        def backtrack(nums, res, current, used) -> None:
             if len(current) == len(nums):
                 res.append(current.copy())
                 return
@@ -11,10 +11,10 @@ class Solution:
                 if num not in used:
                     used.add(num)
                     current.append(num)
-                    backtrack(nums, res, current, used)
 
+                    backtrack(nums, res, current, used)
                     used.remove(num)
                     current.pop()
-            
+        
         backtrack(nums, res, [], set())
         return res
