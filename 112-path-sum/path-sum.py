@@ -9,8 +9,6 @@ class Solution:
         if not root:
             return False
 
-        print(targetSum)
-
         if not root.left and not root.right and targetSum == root.val:
             return True
 
