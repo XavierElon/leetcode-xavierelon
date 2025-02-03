@@ -10,20 +10,21 @@ class Solution:
             return []
 
         column_map = defaultdict(list)
-        leftmost_column = rightmost_column = 0
         queue = deque([(root, 0)])
+        min_column = max_column = 0
 
         while queue:
             node, column = queue.popleft()
+            min_column = min(min_column, column)
+            max_column = max(max_column, column)
 
             column_map[column].append(node.val)
 
-            leftmost_column = min(leftmost_column, column)
-            rightmost_column = max(rightmost_column, column)
-
             if node.left:
                 queue.append((node.left, column - 1))
+
             if node.right:
                 queue.append((node.right, column + 1))
+            
 
-        return [column_map[i] for i in range(leftmost_column, rightmost_column + 1)]
+        return [column_map[i] for i in range(min_column, max_column + 1)]
