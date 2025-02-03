@@ -6,16 +6,12 @@
 #         self.right = right
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        def check_path(node: TreeNode, current_remaining: int) -> bool:
-            if not node:
-                return False
+        if not root:
+            return False
 
-            current_remaining = current_remaining - node.val
+        print(targetSum)
 
-            if not node.left and not node.right:
-                return current_remaining == 0
+        if not root.left and not root.right and targetSum == root.val:
+            return True
 
-            return (check_path(node.left, current_remaining) or
-                    check_path(node.right, current_remaining))
-
-        return check_path(root, targetSum)
+        return (self.hasPathSum(root.left, targetSum - root.val) or (self.hasPathSum(root.right, targetSum - root.val)))
