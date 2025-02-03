@@ -23,7 +23,6 @@ class Solution:
 
             if node.left:
                 queue.append((node.left, column - 1))
-
             if node.right:
                 queue.append((node.right, column + 1))
 
