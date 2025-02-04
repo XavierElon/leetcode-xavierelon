@@ -8,7 +8,8 @@ class Solution:
                     stack.pop()
             elif portion == '.' or not portion:
                 continue
-            else: stack.append(portion)
+            else:
+                stack.append(portion)
 
         final_str = "/" + "/".join(stack)
         return final_str
