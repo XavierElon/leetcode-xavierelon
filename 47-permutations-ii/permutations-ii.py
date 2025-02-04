@@ -1,18 +1,16 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        def backtrack(counter, path):
-            if len(path) == len(nums):
-                res.append(path.copy())
-                return
+        def backtrack(counter, current):
+            if len(current) == len(nums):
+                res.append(current.copy())
 
             for num in counter:
                 if counter[num] > 0:
-                    path.append(num)
+                    current.append(num)
                     counter[num] -= 1
-                    backtrack(counter, path)
-                    path.pop()
+                    backtrack(counter, current)
+                    current.pop()
                     counter[num] += 1
-
 
         res = []
         backtrack(Counter(nums), [])
