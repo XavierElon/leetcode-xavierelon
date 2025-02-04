@@ -1,6 +1,6 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        def backtrack(start: int, current: List[int]):
+        def backtrack(start: int, current: List[int]) -> None:
             res.append(current.copy())
 
             for i in range(start, len(nums)):
