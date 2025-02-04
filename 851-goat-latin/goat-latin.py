@@ -2,15 +2,15 @@ class Solution:
     def toGoatLatin(self, sentence: str) -> str:
         vowels = set('aeiouAEIOU')
         words = sentence.split()
-        result = []
+        res = []
 
         for i, word in enumerate(words, start=1):
             if word[0] in vowels:
-                goat = word + "ma"
+                goat = word + 'ma'
             else:
-                goat = word[1:] + word[0] + "ma"
-            
-            goat += "a" * i
-            result.append(goat)
+                goat = word[1:] + word[0] + 'ma'
 
-        return " ".join(result)
+            goat += 'a' * i
+            res.append(goat)
+
+        return " ".join(res)
