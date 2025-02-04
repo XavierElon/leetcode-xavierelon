@@ -10,7 +10,7 @@ class Solution:
 
             for i in range(start, len(candidates)):
                 current.append(candidates[i])
-                backtrack(i, current, remaining-candidates[i])
+                backtrack(i, current, remaining - candidates[i])
                 current.pop()
 
         res = []
