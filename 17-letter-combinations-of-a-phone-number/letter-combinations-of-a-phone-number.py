@@ -9,7 +9,7 @@ class Solution:
 
         res = []
 
-        def backtrack(i: int, current: List[str], digits: str, kepad_map: Dict[str, str], res: List[str]) -> None:
+        def backtrack(i: int, current: List[str]) -> None:
             if len(current) == len(digits):
                 res.append("".join(current))
                 return
@@ -17,9 +17,9 @@ class Solution:
             for letter in keypad_map[digits[i]]:
                 current.append(letter)
 
-                backtrack(i + 1, current, digits, keypad_map, res)
+                backtrack(i + 1, current)
 
                 current.pop()
 
-        backtrack(0, [], digits, keypad_map, res)
+        backtrack(0, [])
         return res
