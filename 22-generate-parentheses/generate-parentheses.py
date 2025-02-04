@@ -4,15 +4,15 @@ class Solution:
             if len(current) == n * 2:
                 res.append("".join(current))
                 return
-            
+
             if open < n:
                 current.append('(')
-                backtrack(current, open + 1, close)
+                backtrack(current, open+1, close)
                 current.pop()
 
             if close < open:
                 current.append(')')
-                backtrack(current, open, close + 1)
+                backtrack(current, open, close+1)
                 current.pop()
 
         res = []
