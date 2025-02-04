@@ -1,4 +1,4 @@
-class DoublyLinkedListNode:
+class ListNode:
     def __init__(self, key, val):
         self.key = key
         self.val = val
@@ -9,41 +9,47 @@ class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.cache: Dict[int, DoublyLinkedList] = {}
-        self.head = DoublyLinkedListNode(-1, -1)
-        self.tail = DoublyLinkedListNode(-1, -1)
+        self.dict = {}
+        self.head = ListNode(-1, -1)
+        self.tail = ListNode(-1, -1)
         self.head.next = self.tail
         self.tail.prev = self.head
 
     def get(self, key: int) -> int:
-        if key not in self.cache:
+        if key not in self.dict:
             return -1
 
-        self.remove_node(self.cache[key])
-        self.add_to_tail(self.cache[key])
-        return self.cache[key].val
+        node = self.dict[key]
+        self.remove(node)
+        self.add(node)
+        return node.val
+        
 
     def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.remove_node(self.cache[key])
-        node = DoublyLinkedListNode(key, value)
-        self.cache[key] = node
+        if key in self.dict:
+            old_node = self.dict[key]
+            self.remove(old_node)
 
-        if len(self.cache) > self.capacity:
-            del self.cache[self.head.next.key]
-            self.remove_node(self.head.next)
-        self.add_to_tail(node)
-        
-    def add_to_tail(self, node: DoublyLinkedListNode) -> None:
-        prev_node = self.tail.prev
-        node.prev = prev_node
+        node = ListNode(key, value)
+        self.dict[key] = node
+        self.add(node)
+
+        if len(self.dict) > self.capacity:
+            lru_node = self.head.next
+            self.remove(lru_node)
+            del self.dict[lru_node.key]
+
+    def add(self, node):
+        previous_end = self.tail.prev
+        previous_end.next = node
+        node.prev = previous_end
         node.next = self.tail
-        prev_node.next = node
         self.tail.prev = node
 
-    def remove_node(self, node: DoublyLinkedListNode) -> None:
+    def remove(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev
+        
 
 
 # Your LRUCache object will be instantiated and called as such:
