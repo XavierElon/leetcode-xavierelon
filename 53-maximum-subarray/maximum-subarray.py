@@ -3,14 +3,10 @@ class Solution:
         if not nums:
             return 0
 
-        max_sub_sum = nums[0]
-        current_sum = 0
+        max_sum = current_sum = float('-inf')
 
         for num in nums:
-            if current_sum < 0:
-                current_sum = 0
+            current_sum = max(current_sum + num, num)
+            max_sum = max(max_sum, current_sum)
 
-            current_sum += num
-            max_sub_sum = max(max_sub_sum, current_sum)
-
-        return max_sub_sum
+        return max_sum
