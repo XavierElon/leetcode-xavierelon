@@ -17,4 +17,5 @@ class Solution:
                 current_end = farthest
                 if current_end >= n - 1:
                     break
+                    
         return jumps
