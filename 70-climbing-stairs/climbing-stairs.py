@@ -1,14 +1,16 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        if n <= 2:
-            return n
+        memo = [0] * (n+1)
+        return self.climb_stairs(0, n, memo)
 
-        dp = [0] * (n + 1)
+    def climb_stairs(self, i: int, n: int, memo: List[int]) -> int:
+        if i > n:
+            return 0
+        if i == n:
+            return 1
+        if memo[i] > 0:
+            return memo[i]
 
-        one_before, two_before = 2, 1
+        memo[i] = self.climb_stairs(i+1, n, memo) + self.climb_stairs(i + 2, n, memo)
 
-        for i in range(3, n+1):
-            current = one_before + two_before
-            two_before = one_before
-            one_before = current
-        return one_before
+        return memo[i]
