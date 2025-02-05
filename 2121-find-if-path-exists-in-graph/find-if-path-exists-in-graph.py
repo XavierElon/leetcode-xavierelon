@@ -10,17 +10,17 @@ class Solution:
             graph[v].append(u)
 
         visited = set()
-        queue = deque([source])
 
-        while queue:
-            node = queue.popleft()
-
+        def dfs(node):
             if node == destination:
                 return True
 
             for neighbor in graph[node]:
                 if neighbor not in visited:
-                    queue.append(neighbor)
                     visited.add(neighbor)
+                    if dfs(neighbor):
+                        return True
 
-        return False
+            return False
+
+        return dfs(source)
