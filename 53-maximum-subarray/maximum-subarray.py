@@ -3,10 +3,11 @@ class Solution:
         maxSub = nums[0]
         curSum = 0
 
-        for n in nums:
+        for num in nums:
             if curSum < 0:
                 curSum = 0
-            curSum += n
+
+            curSum += num
             maxSub = max(maxSub, curSum)
 
         return maxSub
