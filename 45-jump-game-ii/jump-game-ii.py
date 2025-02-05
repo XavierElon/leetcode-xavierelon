@@ -1,20 +1,20 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        if len(nums) <= 1:
+        n = len(nums)
+
+        if n == 1:
             return 0
-
+        
         jumps = 0
-        current_max = 0
-        next_max = 0
+        current_end = 0
+        farthest = 0
 
-        for i in range(len(nums) - 1):
-            next_max = max(next_max, i + nums[i])
+        for i in range(n - 1):
+            farthest = max(farthest, i + nums[i])
 
-            if i == current_max:
+            if i == current_end:
                 jumps += 1
-                current_max = next_max
-
-                if current_max >= len(nums) - 1:
+                current_end = farthest
+                if current_end >= n - 1:
                     break
-
         return jumps
