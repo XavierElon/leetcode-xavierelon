@@ -4,13 +4,10 @@ class Solution:
         if n == 0:
             return 0
 
-        dp = [0] * n
-
-        dp[0] = nums[0]
-        max_sum = dp[0]
+        current_sum = nums[0]
+        max_sum = nums[0]
 
         for i in range(1, n):
-            dp[i] = max(dp[i-1] + nums[i], nums[i])
-            max_sum = max(max_sum, dp[i])
-
+            current_sum = max(nums[i], current_sum + nums[i])
+            max_sum = max(max_sum, current_sum)
         return max_sum
