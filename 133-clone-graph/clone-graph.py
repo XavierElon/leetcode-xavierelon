@@ -25,4 +25,5 @@ class Solution:
                     visited[neighbor] = Node(neighbor.val, [])
                     queue.append(neighbor)
                 visited[current].neighbors.append(visited[neighbor])
+
         return clone
