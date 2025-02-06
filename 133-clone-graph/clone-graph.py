@@ -15,10 +15,10 @@ class Solution:
         visited = {}
         clone = Node(node.val, [])
         visited[node] = clone
-        queue = [node]
+        queue = deque([node])
 
         while queue:
-            current = queue.pop(0)
+            current = queue.popleft()
 
             for neighbor in current.neighbors:
                 if neighbor not in visited:
