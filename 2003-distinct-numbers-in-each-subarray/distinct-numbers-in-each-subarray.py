@@ -18,4 +18,5 @@ class Solution:
             freq[right] += 1
 
             ans.append(len(freq))
-        return ans
+
+        return ans 
