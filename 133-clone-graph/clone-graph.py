@@ -12,18 +12,17 @@ class Solution:
         if not node:
             return None
 
-        def dfs(node: Node, clone_map = {}) -> Node:
-            if node in clone_map:
-                return clone_map[node]
+        visited = {}
+        clone = Node(node.val, [])
+        visited[node] = clone
+        queue = [node]
 
-            cloned_node = Node(node.val)
-            clone_map[node] = cloned_node
+        while queue:
+            current = queue.pop(0)
 
-            for neighbor in node.neighbors:
-                cloned_neighbor = dfs(neighbor, clone_map)
-                cloned_node.neighbors.append(cloned_neighbor)
-
-            return cloned_node
-
-        return dfs(node)
-
+            for neighbor in current.neighbors:
+                if neighbor not in visited:
+                    visited[neighbor] = Node(neighbor.val, [])
+                    queue.append(neighbor)
+                visited[current].neighbors.append(visited[neighbor])
+        return clone
