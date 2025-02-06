@@ -22,7 +22,7 @@ class Solution:
 
             for neighbor in current.neighbors:
                 if neighbor not in visited:
-                    visited[neighbor] = Node(neighbor.val, [])
+                    visited[neighbor] = Node(neighbor.val, []) 
                     queue.append(neighbor)
                 visited[current].neighbors.append(visited[neighbor])
 
