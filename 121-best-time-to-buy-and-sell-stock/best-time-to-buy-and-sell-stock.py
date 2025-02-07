@@ -4,11 +4,8 @@ class Solution:
         min_price = float('inf')
 
         for price in prices:
-            if price < min_price:
-                min_price = price
-            else:
-                profit = price - min_price
-                max_profit = max(max_profit, profit)
-
+            min_price = min(price, min_price)
+            profit = price - min_price
+            max_profit = max(max_profit, profit)
 
         return max_profit
