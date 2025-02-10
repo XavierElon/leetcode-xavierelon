@@ -1,53 +1,54 @@
-class ListNode:
-    def __init__(self, key, val):
+class DoublyLinkedListNode:
+    def __init__(self, key: int, val: int):
         self.key = key
         self.val = val
-        self.next = None
-        self.prev = None
+        self.next = self.prev = None
 
 class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.dict = {}
-        self.head = ListNode(-1, -1)
-        self.tail = ListNode(-1, -1)
+        self.hashmap = {}
+        self.head = DoublyLinkedListNode(-1, -1)
+        self.tail = DoublyLinkedListNode(-1, -1)
         self.head.next = self.tail
         self.tail.prev = self.head
 
     def get(self, key: int) -> int:
-        if key not in self.dict:
+        if key not in self.hashmap:
             return -1
 
-        node = self.dict[key]
-        self.remove(node)
-        self.add(node)
-        return node.val
+        self.remove_node(self.hashmap[key])
+        self.add_to_tail(self.hashmap[key])
+        return self.hashmap[key].val
 
     def put(self, key: int, value: int) -> None:
-        if key in self.dict:
-            old_node = self.dict[key]
-            self.remove(old_node)
+        if key in self.hashmap:
+            node = self.hashmap[key]
+            node.val = value
+            self.remove_node(node)
+            self.add_to_tail(node)
+        else:
+            if len(self.hashmap) >= self.capacity:
+                lru = self.head.next
+                del self.hashmap[lru.key]
+                self.remove_node(lru)
 
-        node = ListNode(key, value)
-        self.dict[key] = node
-        self.add(node)
+            new_node = DoublyLinkedListNode(key, value)
+            self.hashmap[key] = new_node
+            self.add_to_tail(new_node)
 
-        if len(self.dict) > self.capacity:
-            lru_node = self.head.next
-            self.remove(lru_node)
-            del self.dict[lru_node.key]
-
-    def add(self, node):
-        previous_end = self.tail.prev
-        previous_end.next = node
-        node.prev = previous_end
+    def add_to_tail(self, node: DoublyLinkedListNode) -> None:
+        prev_node = self.tail.prev
+        node.prev = prev_node
         node.next = self.tail
+        prev_node.next = node
         self.tail.prev = node
 
-    def remove(self, node):
+    def remove_node(self, node: DoublyLinkedListNode) -> None:
         node.prev.next = node.next
         node.next.prev = node.prev
+        
 
 
 # Your LRUCache object will be instantiated and called as such:
