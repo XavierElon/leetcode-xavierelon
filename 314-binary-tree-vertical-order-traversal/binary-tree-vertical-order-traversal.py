@@ -25,6 +25,5 @@ class Solution:
 
             if node.right:
                 queue.append((node.right, column + 1))
-            
 
         return [column_map[i] for i in range(min_column, max_column + 1)]
