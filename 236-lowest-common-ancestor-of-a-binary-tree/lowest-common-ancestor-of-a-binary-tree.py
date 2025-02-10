@@ -10,7 +10,7 @@ class Solution:
         if not root:
             return None
 
-        if p == root or q == root:
+        if root == p or root == q:
             return root
 
         left_found = self.lowestCommonAncestor(root.left, p, q)
@@ -18,7 +18,7 @@ class Solution:
 
         if left_found and right_found:
             return root
-        
+
         if left_found:
             return left_found
 
