@@ -13,9 +13,9 @@ class Solution:
             left_diam, left_height = dfs(node.left)
             right_diam, right_height = dfs(node.right)
 
-            current_diameter = max(left_diam, right_diam, left_height + right_height)
-            current_height = max(left_height, right_height) + 1
+            curr_diam = max(left_diam, right_diam, left_height + right_height)
+            curr_height = max(left_height, right_height) + 1
 
-            return current_diameter, current_height
+            return curr_diam, curr_height
 
         return dfs(root)[0]
