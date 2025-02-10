@@ -15,6 +15,7 @@ class Solution:
 
         while queue:
             node, column = queue.popleft()
+
             min_column = min(min_column, column)
             max_column = max(max_column, column)
 
@@ -22,7 +23,6 @@ class Solution:
 
             if node.left:
                 queue.append((node.left, column - 1))
-
             if node.right:
                 queue.append((node.right, column + 1))
 
