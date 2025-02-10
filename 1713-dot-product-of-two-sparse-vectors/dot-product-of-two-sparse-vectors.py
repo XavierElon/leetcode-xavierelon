@@ -1,23 +1,28 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
-        self.values = {i: val for i, val in enumerate(nums) if val != 0}
-
-    def remove_zero_values(self):
-        self.values = {i: val for i, val in self.values.items() if val != 0}
+        self.idx_val = [(idx, num) for idx, num in enumerate(nums) if num != 0]
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
+        cur_vec = self.idx_val
+        opp_vec = vec.idx_val
+
+        return self.multiply(cur_vec, opp_vec)
+
+    def multiply(self, cur_vec, opp_vec):
+        p_cur, p_opp = 0, 0
         res = 0
 
-        if len(self.values) < len(vec.values):
-            for i, val in self.values.items():
-                if i in vec.values:
-                    res += val * vec.values[i]
-        else:
-            for i, val in vec.values.items():
-                if i in self.values:
-                    res += val * self.values[i]
-
+        while p_cur < len(cur_vec) and p_opp < len(opp_vec):
+            if cur_vec[p_cur][0] == opp_vec[p_opp][0]:
+                res += cur_vec[p_cur][1] * opp_vec[p_opp][1]
+                p_cur += 1
+                p_opp += 1
+            elif cur_vec[p_cur][0] < opp_vec[p_opp][0]:
+                p_cur += 1
+            else:
+                p_opp += 1
+            
         return res
 
 # Your SparseVector object will be instantiated and called as such:
