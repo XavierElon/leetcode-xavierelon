@@ -1,29 +1,35 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
-        self.idx_val = [(idx, num) for idx, num in enumerate(nums) if num != 0]
+        self.idx_val = [(idx, val) for idx, val in enumerate(nums)]
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
-        cur_vec = self.idx_val
-        opp_vec = vec.idx_val
-
-        return self.multiply(cur_vec, opp_vec)
-
-    def multiply(self, cur_vec, opp_vec):
-        p_cur, p_opp = 0, 0
         res = 0
-
-        while p_cur < len(cur_vec) and p_opp < len(opp_vec):
-            if cur_vec[p_cur][0] == opp_vec[p_opp][0]:
-                res += cur_vec[p_cur][1] * opp_vec[p_opp][1]
-                p_cur += 1
-                p_opp += 1
-            elif cur_vec[p_cur][0] < opp_vec[p_opp][0]:
-                p_cur += 1
-            else:
-                p_opp += 1
-            
+        for pair in self.idx_val:
+            val = self.binary_search(vec.idx_val, pair[0])
+            res += val * pair[1] if val != float('inf') else 0
         return res
+
+    def binary_search(self, vec_pair, target_idx):
+        start, end = 0, len(vec_pair) - 1
+
+        while start + 1 < end:
+            mid = (start + end) // 2
+
+            if vec_pair[mid][0] == target_idx:
+                return vec_pair[mid][1]
+            elif vec_pair[mid][0] > target_idx:
+                end = mid
+            else:
+                start = mid
+
+        if vec_pair[start][0] == target_idx:
+            return vec_pair[start][1]
+        if vec_pair[end][0] == target_idx:
+            return vec_pair[end][1]
+
+        return floatt('inf')
+        
 
 # Your SparseVector object will be instantiated and called as such:
 # v1 = SparseVector(nums1)
