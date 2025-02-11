@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        prehead = ListNode(-1)
+        prehead = ListNode(-1, None)
 
         prev = prehead
 
@@ -16,7 +16,6 @@ class Solution:
             else:
                 prev.next = l2
                 l2 = l2.next
-
             prev = prev.next
 
         prev.next = l1 if l1 is not None else l2
