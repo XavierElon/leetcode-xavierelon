@@ -17,7 +17,7 @@ class Solution:
         hours = 0
 
         for pile in piles:
-            hours += (pile + mid -1) // mid
+            hours += math.ceil(pile / mid)
 
             if hours > h:
                 return False
