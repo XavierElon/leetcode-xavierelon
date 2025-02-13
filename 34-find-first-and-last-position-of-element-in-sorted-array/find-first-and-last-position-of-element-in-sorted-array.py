@@ -5,28 +5,32 @@ class Solution:
 
         return [lower_bound, upper_bound]
 
-    def lower_bound_bs(self, nums, target) -> bool:
+    def lower_bound_bs(self, nums, target):
         left, right = 0, len(nums) - 1
 
         while left < right:
             mid = (left + right) // 2
-            if nums[mid] > target:
-                right = mid -1
-            elif nums[mid] < target:
+
+            if nums[mid] < target:
                 left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
             else:
                 right = mid
-        return right if nums and nums[right] == target else -1
 
-    def upper_bound_bs(self, nums, target) -> bool:
+        return left if nums and nums[left] == target else -1
+
+    def upper_bound_bs(self, nums, target):
         left, right = 0, len(nums) - 1
 
         while left < right:
             mid = (left + right) // 2 + 1
-            if nums[mid] > target:
-                right = mid - 1
-            elif nums[mid] < target:
+
+            if nums[mid] < target:
                 left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
             else:
                 left = mid
+
         return right if nums and nums[right] == target else -1
