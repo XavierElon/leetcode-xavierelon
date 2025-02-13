@@ -12,7 +12,6 @@ class Solution:
 
         return low
 
-
     def can_finish(self, piles, mid, h):
         hours = 0
 
@@ -22,5 +21,4 @@ class Solution:
             if hours > h:
                 return False
 
-        return hours <= h
-
+        return True
