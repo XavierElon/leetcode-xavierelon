@@ -3,18 +3,14 @@ class Solution:
         if len(intervals) == 1:
             return intervals
 
-        intervals.sort(key=lambda x: x[0])
+        intervals.sort(key = lambda x: x[0])
+        index = 0
 
-        merged = [intervals[0]]
-        print(merged)
-
-        for interval in intervals:
-            prev_inter = merged[-1]
-            print(prev_inter)
-
-            if prev_inter[1] >= interval[0]:
-                merged[-1] = [prev_inter[0], max(prev_inter[1], interval[1])]
+        for i in range(1, len(intervals)):
+            if intervals[index][1] >= intervals[i][0]:
+                intervals[index][1] = max(intervals[index][1], intervals[i][1])
             else:
-                merged.append(interval)
+                index += 1
+                intervals[index] = intervals[i]
 
-        return merged
+        return intervals[:index + 1]
