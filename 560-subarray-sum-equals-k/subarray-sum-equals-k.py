@@ -7,9 +7,11 @@ class Solution:
 
         for num in nums:
             curr_prefix_sum += num
+
             remainder = curr_prefix_sum - k
 
-            count += prefix_sum_map[remainder]
+            if remainder in prefix_sum_map:
+                count += prefix_sum_map[remainder]
 
             prefix_sum_map[curr_prefix_sum] += 1
 
