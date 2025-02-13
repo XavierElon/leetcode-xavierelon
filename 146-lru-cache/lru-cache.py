@@ -27,12 +27,12 @@ class LRUCache:
             node.val = value
             self.remove(node)
             self.add(node)
-        else:   
+        
+        else:
             if len(self.hashmap) >= self.capacity:
                 lru = self.head.next
                 del self.hashmap[lru.key]
                 self.remove(lru)
-
             new_node = DoublyLinkedListNode(key, value)
             self.hashmap[key] = new_node
             self.add(new_node)
