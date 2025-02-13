@@ -19,9 +19,11 @@ class Solution:
 
         while queue:
             current = queue.popleft()
+
             for neighbor in current.neighbors:
                 if neighbor not in visited:
                     visited[neighbor] = Node(neighbor.val, [])
                     queue.append(neighbor)
                 visited[current].neighbors.append(visited[neighbor])
+
         return clone
