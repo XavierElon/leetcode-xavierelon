@@ -11,19 +11,14 @@ class Solution:
 
         column_map = defaultdict(list)
         queue = deque([(root, 0)])
-        min_column = max_column = 0
 
         while queue:
-            node, column = queue.popleft()
+            current, column = queue.popleft()
+            column_map[column].append(current.val)
 
-            min_column = min(min_column, column)
-            max_column = max(max_column, column)
+            if (current.left):
+                queue.append((current.left, column - 1))
+            if (current.right):
+                queue.append((current.right, column + 1))
 
-            column_map[column].append(node.val)
-
-            if node.left:
-                queue.append((node.left, column - 1))
-            if node.right:
-                queue.append((node.right, column + 1))
-
-        return [column_map[i] for i in range(min_column, max_column + 1)]
+        return [column_map[x] for x in sorted(column_map.keys())]
