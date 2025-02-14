@@ -14,11 +14,12 @@ class Solution:
 
         while queue:
             current, column = queue.popleft()
+
             column_map[column].append(current.val)
 
-            if (current.left):
+            if current.left:
                 queue.append((current.left, column - 1))
-            if (current.right):
+            if current.right:
                 queue.append((current.right, column + 1))
 
         return [column_map[x] for x in sorted(column_map.keys())]
