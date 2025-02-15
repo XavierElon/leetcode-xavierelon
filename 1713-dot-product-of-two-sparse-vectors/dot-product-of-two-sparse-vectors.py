@@ -4,8 +4,19 @@ class SparseVector:
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
-        return sum(self.values[i] * vec.values[i] for i in self.values.keys() & vec.values.keys())
-        
+        res = 0
+
+        if len(self.values) < len(vec.values):
+            for i, val in self.values.items():
+                if i in vec.values:
+                    res += val * vec.values[i]
+
+        else:
+            for i, val in vec.values.items():
+                if i in self.values:
+                    res += val * self.values[i]
+
+        return res
 
 # Your SparseVector object will be instantiated and called as such:
 # v1 = SparseVector(nums1)
