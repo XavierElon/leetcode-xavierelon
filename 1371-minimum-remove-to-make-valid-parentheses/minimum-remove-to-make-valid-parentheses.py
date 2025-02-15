@@ -11,7 +11,6 @@ class Solution:
                     stack.pop()
                 else:
                     to_remove.add(index)
-
+        
         to_remove.update(stack)
-
-        return ''.join([s[i] for i in range(len(s)) if i not in to_remove])
+        return "".join([s[i] for i in range(len(s)) if i not in to_remove])
