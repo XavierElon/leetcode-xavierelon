@@ -3,14 +3,14 @@ class Solution:
         stack = []
         to_remove = set()
 
-        for i, char in enumerate(s):
+        for index, char in enumerate(s):
             if char == '(':
-                stack.append(i)
+                stack.append(index)
             elif char == ')':
                 if stack:
                     stack.pop()
                 else:
-                    to_remove.add(i)
+                    to_remove.add(index)
 
         to_remove.update(stack)
 
