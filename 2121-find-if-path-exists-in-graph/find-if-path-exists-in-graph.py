@@ -4,8 +4,7 @@ class Solution:
             return True
 
         graph = [[] for _ in range(n)]
-
-        for u, v in edges:
+        for u,v in edges:
             graph[u].append(v)
             graph[v].append(u)
 
