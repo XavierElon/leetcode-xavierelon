@@ -12,8 +12,8 @@ class Solution:
 
         for i in range(n):
             if i not in visited:
-                count += 1
                 visited.add(i)
+                count += 1
                 dfs(i)
 
         return count
