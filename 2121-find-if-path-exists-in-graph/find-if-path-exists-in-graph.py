@@ -4,22 +4,23 @@ class Solution:
             return True
 
         graph = [[] for _ in range(n)]
-        for u,v in edges:
+
+        for u, v in edges:
             graph[u].append(v)
             graph[v].append(u)
 
         visited = set()
+        queue = deque([source])
 
-        def dfs(node):
+        while queue:
+            node = queue.popleft()
+
             if node == destination:
                 return True
 
             for neighbor in graph[node]:
                 if neighbor not in visited:
+                    queue.append(neighbor)
                     visited.add(neighbor)
-                    if dfs(neighbor):
-                        return True
 
-            return False
-
-        return dfs(source)
+        return False
