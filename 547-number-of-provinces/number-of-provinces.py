@@ -12,7 +12,8 @@ class Solution:
 
         for i in range(n):
             if i not in visited:
-                numberOfComponents += 1
+                numberOfComponents += 1 
                 visited.add(i)
                 dfs(i)
+
         return numberOfComponents
