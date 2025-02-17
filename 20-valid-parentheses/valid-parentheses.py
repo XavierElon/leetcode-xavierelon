@@ -6,7 +6,7 @@ class Solution:
         stack = []
 
         for char in s:
-            if char in "({[":
+            if char in "([{":
                 stack.append(char)
             else:
                 if not stack:
@@ -18,5 +18,5 @@ class Solution:
                     return False
                 if char == ']' and top != '[':
                     return False
-                
+
         return len(stack) == 0
