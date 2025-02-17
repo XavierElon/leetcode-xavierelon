@@ -1,25 +1,40 @@
 class Solution:
-    def areSentencesSimilarTwo(self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]) -> bool:
-        if len(sentence1) != len(sentence2):
+    def areSentencesSimilarTwo(self, sentence1: List[str],
+                            sentence2: List[str],
+                            similarPairs: List[List[str]]) -> bool:
+        len_s1 = len(sentence1)
+        len_s2 = len(sentence2)
+        if len_s1 != len_s2:
             return False
 
-        parent = {}
+        graph = defaultdict(list)
+        
+        for pair in similarPairs:
+            word1 = pair[0]
+            word2 = pair[1]
+            graph[word1].append(word2)
+            graph[word2].append(word1)
 
-        def find(p):
-            if p not in parent:
-                parent[p] = p
-            if p != parent[p]:
-                parent[p] = find(parent[p])
-            return parent[p]
+        for index in range(len(sentence1)):
+            word1 = sentence1[index]
+            word2 = sentence2[index]
 
-        def union(p, q):
-            root1 = find(p)
-            root2 = find(q)
+            if word1 == word2:
+                continue
+            if not self.dfs(graph, set(), word1, word2):
+                return False
 
-            if root1 != root2:
-                parent[root1] = root2
+        return True
 
-        for p, q in similarPairs:
-            union(p, q)
+    def dfs(self, graph, seen, currWord, targetWord):
+        if targetWord == currWord:
+            return True
+        if currWord in seen:
+            return False
+        seen.add(currWord)
 
-        return all(find(a) == find(b) for a, b in zip(sentence1, sentence2))
+        for neighbor in graph[currWord]:
+            if self.dfs(graph, seen, neighbor, targetWord):
+                return True
+            
+        return False
