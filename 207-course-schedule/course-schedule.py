@@ -8,16 +8,19 @@ class Solution:
             indegree[course] += 1
             adj_list[prereq].append(course)
 
-        queue = deque(i for i in range(numCourses) if indegree[i] == 0)
+        queue = deque()
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                count += 1
+                queue.append(i)
 
         while queue:
             current = queue.popleft()
-            count += 1
 
-            for next_course in adj_list[current]:
-                indegree[next_course] -= 1
-                if indegree[next_course] == 0:
-                    queue.append(next_course)
+            for course in adj_list[current]:
+                indegree[course] -= 1
+                if indegree[course] == 0:
+                    queue.append(course)
+                    count += 1
 
-            
         return count == numCourses
