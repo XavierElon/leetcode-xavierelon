@@ -2,7 +2,7 @@ class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         n = len(isConnected)
         visited = set()
-        numberOfComponents = 0
+        count = 0
 
         def dfs(node):
             for neighbor in range(n):
@@ -12,8 +12,8 @@ class Solution:
 
         for i in range(n):
             if i not in visited:
-                numberOfComponents += 1 
+                count += 1
                 visited.add(i)
                 dfs(i)
 
-        return numberOfComponents
+        return count
