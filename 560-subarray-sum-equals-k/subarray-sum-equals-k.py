@@ -3,12 +3,14 @@ class Solution:
         count = 0
         prefix_sum_map = defaultdict(int)
         prefix_sum_map[0] = 1
-
         curr_prefix_sum = 0
 
         for num in nums:
             curr_prefix_sum += num
-            count += prefix_sum_map[curr_prefix_sum - k]
+            remainder = curr_prefix_sum - k
+            count += prefix_sum_map[remainder]
             prefix_sum_map[curr_prefix_sum] += 1
 
         return count
+
+            
