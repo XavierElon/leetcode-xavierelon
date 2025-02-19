@@ -1,27 +1,26 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         indegree = [0] * numCourses
-        adj_list = [[] for _ in range(numCourses)]
-        res = []
+        graph = defaultdict(list)
+        order = []
 
         for course, prereq in prerequisites:
             indegree[course] += 1
-            adj_list[prereq].append(course)
+            graph[prereq].append(course)
 
         queue = deque()
 
         for i in range(numCourses):
             if indegree[i] == 0:
                 queue.append(i)
-                # res.append(i)
 
         while queue:
             current = queue.popleft()
-            res.append(current)
+            order.append(current)
 
-            for next_course in adj_list[current]:
+            for next_course in graph[current]:
                 indegree[next_course] -= 1
                 if indegree[next_course] == 0:
                     queue.append(next_course)
-
-        return res if len(res) == numCourses else []
+        
+        return order if len(order) == numCourses else []
