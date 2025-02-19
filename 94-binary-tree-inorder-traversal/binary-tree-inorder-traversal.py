@@ -10,16 +10,16 @@ class Solution:
             return []
 
         res = []
-        stack = []
-        current = root
 
-        while stack or current:
-            while current:
-                stack.append(current)
-                current = current.left
-
-            current = stack.pop()
-            res.append(current.val)
-
-            current = current.right
+        def inorder(root):
+            if not root:
+                return
+            
+            inorder(root.left)
+            res.append(root.val)
+            inorder(root.right)
+            
+        inorder(root)
         return res
+
+        
