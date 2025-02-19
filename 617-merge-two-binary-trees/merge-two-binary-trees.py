@@ -5,16 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def mergeTrees(self, t1: Optional[TreeNode], t2: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not t1 and not t2:
-            return None
+    def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root1:
+            return root2
+        if not root2:
+            return root1
 
-        v1 = t1.val if t1 else 0
-        v2 = t2.val if t2 else 0
+        merged = TreeNode(root1.val + root2.val)
 
-        root = TreeNode(v1 + v2)
+        merged.left = self.mergeTrees(root1.left, root2.left)
+        merged.right = self.mergeTrees(root1.right, root2.right)
 
-        root.left = self.mergeTrees(t1.left if t1 else None, t2.left if t2 else None)
-        root.right = self.mergeTrees(t1.right if t1 else None, t2.right if t2 else None)
-
-        return root
+        return merged
