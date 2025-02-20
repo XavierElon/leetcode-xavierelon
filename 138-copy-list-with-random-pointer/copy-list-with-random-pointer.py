@@ -12,7 +12,6 @@ class Solution:
         if not head:
             return head
 
-
         current = head
         while current:
             copy = Node(current.val)
@@ -28,15 +27,34 @@ class Solution:
 
         current = head
         copy_head = current.next
-        copy_current = head.next
+        curr_copy = current.next
 
         while current:
             current.next = current.next.next
 
-            if copy_current.next:
-                copy_current.next = copy_current.next.next
+            if curr_copy.next: 
+                curr_copy.next = curr_copy.next.next
 
             current = current.next
-            copy_current = copy_current.next
+            curr_copy = curr_copy.next
 
         return copy_head
+            
+        
+
+# First Pass: Create interleaved list
+# For each original node, create its copy and insert it right after
+# Original List: A -> B -> C  
+# After Pass 1: A -> A' -> B -> B' -> C -> C'
+
+# Second Pass: Handle random pointers 
+# If A points to C, then A' should point to C'
+# current.next is the copy of current
+# current.random.next is the copy of current.random
+
+# Third Pass: Separate the lists
+# Need to restore original list and extract copy list
+# Save head of copy list
+# Restore original list connections
+# Connect nodes in copy list
+# Move both pointers forward
