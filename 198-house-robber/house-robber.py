@@ -11,9 +11,7 @@ class Solution:
             if i in memo:
                 return memo[i]
 
-            ans = max(rob_from(i + 1), rob_from(i + 2) + nums[i])
-
-            memo[i] = ans
-            return ans
+            memo[i] = max(rob_from(i + 1), rob_from(i + 2) + nums[i])
+            return memo[i]
 
         return rob_from(0)
