@@ -31,10 +31,9 @@ class Solution:
     def get_depth(self, node) -> int:
         depth = 0
         while node:
-            depth += 1
             node = node.parent
+            depth += 1
 
         return depth
-
     
         
