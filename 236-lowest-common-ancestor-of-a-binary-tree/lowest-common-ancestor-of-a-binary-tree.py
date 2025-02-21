@@ -15,7 +15,7 @@ class Solution:
 
         left_found = self.lowestCommonAncestor(root.left, p, q)
         right_found = self.lowestCommonAncestor(root.right, p, q)
-        
+
         if left_found and right_found:
             return root
 
@@ -23,4 +23,3 @@ class Solution:
             return left_found
         else:
             return right_found
-            
