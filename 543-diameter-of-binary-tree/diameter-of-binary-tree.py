@@ -17,5 +17,5 @@ class Solution:
             curr_height = max(left_height, right_height) + 1
 
             return curr_diam, curr_height
-
+            
         return dfs(root)[0]
