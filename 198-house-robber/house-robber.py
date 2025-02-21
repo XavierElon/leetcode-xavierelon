@@ -5,13 +5,14 @@ class Solution:
 
         memo = {}
 
-        def rob_from(i):
-            if i >= len(nums):
+        def rob_house(index):
+            if index >= len(nums):
                 return 0
-            if i in memo:
-                return memo[i]
 
-            memo[i] = max(rob_from(i + 1), rob_from(i + 2) + nums[i])
-            return memo[i]
+            if index in memo:
+                return memo[index]
 
-        return rob_from(0)
+            memo[index] = max(rob_house(index + 1), rob_house(index + 2) + nums[index])
+            return memo[index]
+
+        return rob_house(0)
