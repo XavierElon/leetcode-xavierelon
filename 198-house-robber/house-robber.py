@@ -2,13 +2,18 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         if not nums:
             return 0
-        if len(nums) == 1:
-            return nums[0]
 
-        two_steps_ago, one_step_ago = 0, 0
+        memo = {}
 
-        for num in nums:
-            temp = max(num + two_steps_ago, one_step_ago)
-            two_steps_ago = one_step_ago
-            one_step_ago = temp
-        return one_step_ago
+        def rob_from(i):
+            if i >= len(nums):
+                return 0
+            if i in memo:
+                return memo[i]
+
+            ans = max(rob_from(i + 1), rob_from(i + 2) + nums[i])
+
+            memo[i] = ans
+            return ans
+
+        return rob_from(0)
