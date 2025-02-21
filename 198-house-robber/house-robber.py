@@ -5,11 +5,10 @@ class Solution:
         if len(nums) == 1:
             return nums[0]
 
-        dp = [0] * len(nums)
-        dp[0] = nums[0]
-        dp[1] = max(nums[0], nums[1])
+        two_steps_ago, one_step_ago = 0, 0
 
-        for i in range(2, len(nums)):
-            dp[i] = max(dp[i-2] + nums[i], dp[i-1])
-        
-        return dp[-1]
+        for num in nums:
+            temp = max(num + two_steps_ago, one_step_ago)
+            two_steps_ago = one_step_ago
+            one_step_ago = temp
+        return one_step_ago
