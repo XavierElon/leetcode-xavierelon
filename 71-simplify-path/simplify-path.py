@@ -9,6 +9,7 @@ class Solution:
 
             elif portion == '.' or not portion:
                 continue
+
             else:
                 stack.append(portion)
 
