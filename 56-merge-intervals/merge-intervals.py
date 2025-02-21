@@ -4,13 +4,13 @@ class Solution:
             return intervals
 
         intervals.sort(key = lambda x: x[0])
-        index = 0
 
-        for i in range(1, len(intervals)):
-            if intervals[index][1] >= intervals[i][0]:
-                intervals[index][1] = max(intervals[index][1], intervals[i][1])
+        merged = [intervals[0]]
+        for interval in intervals:
+            prev_interval = merged[-1]
+            if prev_interval[1] >= interval[0]:
+                merged[-1][1] = max(interval[1], prev_interval[1])
             else:
-                index += 1
-                intervals[index] = intervals[i]
+                merged.append(interval)
 
-        return intervals[:index + 1]
+        return merged
