@@ -22,4 +22,4 @@ class Solution:
             if current.right:
                 queue.append((current.right, column + 1))
 
-        return [column_map[x] for x in sorted(column_map.keys())]
+        return [column_map[k] for k in sorted(column_map)]
