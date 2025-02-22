@@ -12,13 +12,9 @@ class Solution:
 
             if start <= end:
                 res.append([start, end])
-
             if firstList[p1][1] < secondList[p2][1]:
                 p1 += 1
             else:
                 p2 += 1
 
         return res
-
-# firstList = [[0,2],[5,10],[13,23],[24,25]]
-# secondList = [[1,5],[8,12],[15,24],[25,26]]
