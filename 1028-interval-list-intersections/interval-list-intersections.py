@@ -3,8 +3,8 @@ class Solution:
         if not firstList or not secondList:
             return []
 
-        p1, p2 = 0, 0
         res = []
+        p1, p2 = 0, 0
 
         while p1 < len(firstList) and p2 < len(secondList):
             start = max(firstList[p1][0], secondList[p2][0])
@@ -12,10 +12,13 @@ class Solution:
 
             if start <= end:
                 res.append([start, end])
-            
+
             if firstList[p1][1] < secondList[p2][1]:
                 p1 += 1
             else:
                 p2 += 1
 
         return res
+
+# firstList = [[0,2],[5,10],[13,23],[24,25]]
+# secondList = [[1,5],[8,12],[15,24],[25,26]]
