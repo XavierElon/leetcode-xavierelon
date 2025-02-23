@@ -1,16 +1,15 @@
 class Solution:
     def maximumSwap(self, num: int) -> int:
-        num = [int(i) for i in str(num)]
+        num_str = list(str(num))
+        rightmost_index = [-1] * 10
 
-        for i in range(len(num) - 1):
-            m = max(num[i+1:])
+        for i, digit in enumerate(num_str):
+            rightmost_index[int(digit)] = i
 
-            if num[i] < m:
-                for j in range(len(num)-1, i, -1):
-                    if num[j] == m:
-                        break
+        for i, digit in enumerate(num_str):
+            for j in range(9, int(digit), -1):
+                if rightmost_index[j] > i:
+                    num_str[i], num_str[rightmost_index[j]] = num_str[rightmost_index[j]], num_str[i]
+                    return int("".join(num_str))
 
-                num[i], num[j] = num[j], num[i]
-                break
-
-        return int("".join([str(i) for i in num]))
+        return num
