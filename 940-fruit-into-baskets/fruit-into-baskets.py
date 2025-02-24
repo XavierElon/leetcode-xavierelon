@@ -12,7 +12,7 @@ class Solution:
                 if basket[fruits[left]] == 0:
                     del basket[fruits[left]]
                 left += 1
-
+            
             max_fruits = max(max_fruits, right - left + 1)
 
         return max_fruits
