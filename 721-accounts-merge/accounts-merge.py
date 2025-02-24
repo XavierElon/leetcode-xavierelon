@@ -1,49 +1,52 @@
 class UnionFind:
-    def __init__(self, n):
-        self.par = [i for i in range(n)]
-        self.rank = [1] * n
+    def __init__(self):
+        self.parent = {}
 
     def find(self, x):
-        while x != self.par[x]:
-            self.par[x] = self.par[self.par[x]]
-            x = self.par[x]
-        return x
+        # If x is not in parent, add it and make it its own parent
+        if x not in self.parent:
+            self.parent[x] = x
+        
+        # Path compression
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
 
-    def union(self, x1, x2):
-        p1, p2 = self.find(x1), self.find(x2)
-
-        if p1 == p2:
-            return False
-        if self.rank[p1] > self.rank[p2]:
-            self.par[p2] = p1
-            self.rank[p1] += self.rank[p2]
-        else:
-            self.par[p1] = p2
-            self.rank[p2] += self.rank[p1]
-        return True
+    def union(self, x, y):
+        # Ensure both x and y are in the parent dictionary
+        root_x = self.find(x)
+        root_y = self.find(y)
+        
+        # If they are not already in the same set, union them
+        if root_x != root_y:
+            self.parent[root_x] = root_y
 
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
-        uf = UnionFind(len(accounts))
-        emailToAcc = {}
+        uf = UnionFind()
+        email_to_name = {}
 
-        for i, a in enumerate(accounts):
-            for e in a[1:]:
-                if e in emailToAcc:
-                    uf.union(i, emailToAcc[e])
+        # First pass: find connections between accounts
+        for index, acc in enumerate(accounts):
+            name = acc[0]
+            for email in acc[1:]:
+                if email in email_to_name:
+                    # Union the current account with the account that shares this email
+                    uf.union(index, email_to_name[email])
                 else:
-                    emailToAcc[e] = i
+                    # Map this email to the current account
+                    email_to_name[email] = index
 
-        emailGroup = defaultdict(list)
+        # Group emails by their root account
+        email_group = defaultdict(list)
+        for email, index in email_to_name.items():
+            leader = uf.find(index)
+            email_group[leader].append(email)
 
-        for e, i in emailToAcc.items():
-            leader = uf.find(i)
-            emailGroup[leader].append(e)
-        
+        # Construct result
         res = []
-
-        for i, emails in emailGroup.items():
+        for i, emails in email_group.items():
             name = accounts[i][0]
-            res.append([name] + sorted(emailGroup[i]))
+            res.append([name] + sorted(emails))
 
         return res
