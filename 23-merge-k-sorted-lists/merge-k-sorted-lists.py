@@ -1,34 +1,37 @@
-import heapq
-
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists:
+            return None
 
-class Solution(object):
-    def mergeKLists(self, lists):
-        """
-        :type lists: List[Optional[ListNode]]
-        :rtype: Optional[ListNode]
-        """
-        # Fix the lambda definition
-        ListNode.__lt__ = lambda self, other: self.val < other.val
+        while len(lists) > 1:
+            mergedLists = []
 
-        heap = []
-        for head in lists:
-            if head:
-                heapq.heappush(heap, head)
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i + 1] if (i + 1) < len(lists) else None
+                mergedLists.append(self.mergeList(l1, l2))
+            lists = mergedLists
+        return lists[0]
 
-        dummy = ListNode(-1)
-        current = dummy
-
-        while heap:
-            smallest_node = heapq.heappop(heap)
-            current.next = smallest_node
-            current = current.next
-
-            if smallest_node.next:
-                heapq.heappush(heap, smallest_node.next)
-
+    def mergeList(self, l1, l2):
+        dummy = ListNode()
+        tail = dummy
+        
+        while l1 and l2:
+            if l1.val < l2.val:
+                tail.next = l1
+                l1 = l1.next
+            else:
+                tail.next = l2
+                l2 = l2.next
+            tail = tail.next
+        if l1:
+            tail.next = l1
+        if l2:
+            tail.next = l2
         return dummy.next
