@@ -5,14 +5,14 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        dummy = ListNode(0)
+        dummy = ListNode()
         current = dummy
         heap = []
 
         for i, l in enumerate(lists):
             if l:
                 heapq.heappush(heap, (l.val, i, l))
-        
+
         while heap:
             val, i, node = heapq.heappop(heap)
             current.next = node
