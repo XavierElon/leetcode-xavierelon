@@ -18,6 +18,6 @@ class Solution:
                 l2 = l2.next
             prev = prev.next
 
-        prev.next = l1 if l1 is not None else l2
+        prev.next = l1 or l2
 
         return prehead.next
