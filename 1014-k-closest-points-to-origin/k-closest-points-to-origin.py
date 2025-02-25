@@ -7,7 +7,6 @@ class Solution:
             if len(heap) < k:
                 heapq.heappush(heap, (-distance, i))
             elif -distance > heap[0][0]:
-                heapq.heappop(heap)
-                heapq.heappush(heap, (-distance, i))
-        
+                heapq.heappushpop(heap, (-distance, i))
+
         return [points[i] for (_, i) in heap]
