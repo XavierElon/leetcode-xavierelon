@@ -10,7 +10,7 @@ class Solution:
 
         reversed_head = self.reverse_list(mid)
 
-        return self.check_palindrome(copy_head, reversed_head)
+        return self.check_palindrome(head, reversed_head)
         
     def get_mid(self, head):
         slow = fast = head
