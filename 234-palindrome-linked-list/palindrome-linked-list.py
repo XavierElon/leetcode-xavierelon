@@ -5,48 +5,38 @@
 #         self.next = next
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        mid = self.find_middle(head)
-        second_head = self.reverse_list(mid)
-        ptr1 = head
-        ptr2 = second_head
+        copy_head = head
+        mid = self.get_mid(head)
 
-        while ptr2:
-            if ptr1.val != ptr2.val:
-                return False
-            ptr1, ptr2 = ptr1.next, ptr2.next
-        return True
-    
-    def reverse_list(self, head: ListNode) -> ListNode:
-        prev = None
-        next = None
-        current = head
+        reversed_head = self.reverse_list(mid)
 
-        while current:
-            next = current.next
-            current.next = prev
-            prev = current
-            current = next
-
-        return prev
-
-    def find_middle(self, head: ListNode) -> ListNode:
+        return self.check_palindrome(copy_head, reversed_head)
+        
+    def get_mid(self, head):
         slow = fast = head
         while fast and fast.next:
-            slow = slow.next
             fast = fast.next.next
+            slow = slow.next
+        
         return slow
 
-    def copy_linked_list(self, head: ListNode) -> ListNode:
-        if not head:
-            return None
+    def reverse_list(self, head):
+        curr, prev = head, None
 
-        dummy = ListNode(0)
-        current_copy = dummy
-        current_original = head
+        while curr:
+            next_ = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_
+        return prev
 
-        while current_original:
-            current_copy.next = ListNode(current_original.val)
-            current_copy = current_copy.next
-            current_original = current_original.next
+    def check_palindrome(self, head, reversed_head):
+        left, right = head, reversed_head
 
-        return dummy.next
+        while right:
+            if left.val != right.val:
+                return False
+            left = left.next
+            right = right.next
+
+        return True
