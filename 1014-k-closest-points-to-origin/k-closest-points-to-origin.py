@@ -9,5 +9,5 @@ class Solution:
             elif -distance > heap[0][0]:
                 heapq.heappop(heap)
                 heapq.heappush(heap, (-distance, i))
-
+        
         return [points[i] for (_, i) in heap]
