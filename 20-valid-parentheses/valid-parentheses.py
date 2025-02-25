@@ -1,22 +1,14 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        if len(s) == 0: return True
-        if len(s) % 2 != 0: return False
-
         stack = []
+        mapping = {"]": "[", ")": "(", "}": "{"}
 
         for char in s:
-            if char in "([{":
-                stack.append(char)
+            if char in mapping:
+                if not stack or stack[-1] != mapping[char]:
+                    return False
+                stack.pop()
             else:
-                if not stack:
-                    return False
-                top = stack.pop()
-                if char == ')' and top != '(':
-                    return False
-                if char == '}' and top != '{':
-                    return False
-                if char == ']' and top != '[':
-                    return False
+                stack.append(char)
 
         return len(stack) == 0
