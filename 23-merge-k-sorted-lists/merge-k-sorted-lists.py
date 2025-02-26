@@ -7,21 +7,19 @@ class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         dummy_head = ListNode()
         current = dummy_head
-        heap = []
+        min_heap = []
 
-        node_counter = 0
-        for head_node in lists:
+        for list_index, head_node in enumerate(lists):
             if head_node:
-                heapq.heappush(heap, (head_node.val, node_counter, head_node))
-                node_counter += 1
+                heapq.heappush(min_heap, (head_node.val, list_index, head_node))
 
-        while heap:
-            value, _, smallest_node = heapq.heappop(heap)
+        while min_heap:
+            value, list_index, smallest_node = heapq.heappop(min_heap)
+            
             current.next = smallest_node
             current = current.next
 
             if smallest_node.next:
-                heapq.heappush(heap, (smallest_node.next.val, node_counter, smallest_node.next))
-                node_counter += 1
+                heapq.heappush(min_heap, (smallest_node.next.val, list_index, smallest_node.next))
 
         return dummy_head.next
