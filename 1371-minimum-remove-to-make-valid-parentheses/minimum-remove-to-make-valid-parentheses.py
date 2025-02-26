@@ -1,43 +1,37 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        # First pass: Remove extra closing parentheses
-        extra_opens = 0
-        total_opens = 0
-        j = 0
-        result = [''] * len(s)  # Pre-allocate list for in-place modification
+        # First pass: remove invalid closing parentheses
+        extra_opens = 0  # Tracks number of open parentheses without matching closing ones
+        total_opens = 0  # Tracks total number of open parentheses kept
+        temp = []
         
         for ch in s:
             if ch == ')':
+                # Skip closing parenthesis if there's no matching opening one
                 if extra_opens == 0:
-                    continue  # Skip if no open parenthesis to match
+                    continue
                 extra_opens -= 1
-                result[j] = ch
-                j += 1
+                temp.append(ch)
             elif ch == '(':
                 total_opens += 1
                 extra_opens += 1
-                result[j] = ch
-                j += 1
+                temp.append(ch)
             else:
-                result[j] = ch
-                j += 1
-
-        # Second pass: Remove extra opening parentheses
-        length = j
-        j = 0
-        keep = total_opens - extra_opens  # Number of '(' to keep
-        final_result = [''] * length  # Pre-allocate for second pass
+                # Keep all non-parenthesis characters
+                temp.append(ch)
         
-        for i in range(length):
-            ch = result[i]
+        # Second pass: remove extra opening parentheses
+        result = []
+        keep = total_opens - extra_opens  # Number of opening parentheses to keep
+        
+        for ch in temp:
             if ch == '(':
+                # Skip extra opening parentheses
                 if keep == 0:
-                    continue  # Skip extra '('
-                final_result[j] = ch
-                j += 1
+                    continue
+                result.append(ch)
                 keep -= 1
             else:
-                final_result[j] = ch
-                j += 1
-
-        return ''.join(final_result[:j])
+                result.append(ch)
+        
+        return ''.join(result)
