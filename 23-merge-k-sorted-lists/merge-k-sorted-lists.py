@@ -9,9 +9,10 @@ class Solution:
             return None
 
         heap = []
-        for i, node in enumerate(lists):
-            if node:
-                heapq.heappush(heap, (node.val, i, node))
+
+        for i, head in enumerate(lists):
+            if head:
+                heapq.heappush(heap, (head.val, i, head))
 
         dummy = ListNode()
         curr = dummy
@@ -23,5 +24,5 @@ class Solution:
 
             if node.next:
                 heapq.heappush(heap, (node.next.val, idx, node.next))
-
+        
         return dummy.next
