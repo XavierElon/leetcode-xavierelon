@@ -9,6 +9,7 @@ class Solution:
         def dfs(node, max_):
             if not node:
                 return 0
+
             count = 0
             if node.val >= max_:
                 count += 1
@@ -18,5 +19,4 @@ class Solution:
             right = dfs(node.right, max_)
 
             return left + right + count
-
-        return dfs(root, -float('inf'))
+        return dfs(root, float('-inf'))
