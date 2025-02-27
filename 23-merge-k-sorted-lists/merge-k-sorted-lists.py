@@ -19,10 +19,11 @@ class Solution:
 
         while heap:
             val, idx, node = heapq.heappop(heap)
+
             curr.next = node
             curr = curr.next
 
             if node.next:
                 heapq.heappush(heap, (node.next.val, idx, node.next))
-        
+
         return dummy.next
