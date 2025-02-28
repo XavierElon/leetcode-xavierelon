@@ -11,7 +11,7 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return node
-
+        
         visited = {}
         clone = Node(node.val)
         visited[node] = clone
@@ -22,7 +22,7 @@ class Solution:
 
             for neighbor in current.neighbors:
                 if neighbor not in visited:
-                    visited[neighbor] = Node(neighbor.val, [])
+                    visited[neighbor] = Node(neighbor.val)
                     queue.append(neighbor)
                 visited[current].neighbors.append(visited[neighbor])
 
