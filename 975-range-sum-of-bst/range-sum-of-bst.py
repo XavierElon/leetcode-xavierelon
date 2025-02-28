@@ -6,25 +6,13 @@
 #         self.right = right
 class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        range_sum = 0 
-        def dfs(node):
-            nonlocal range_sum
-            if not node:
-                return
+        if not root:
+            return 0
 
-            if node.val < low:
-                dfs(node.right)
+        if root.val < low:
+            return self.rangeSumBST(root.right, low, high)
+        
+        elif root.val > high:
+            return self.rangeSumBST(root.left, low, high)
 
-            elif node.val > high:
-                dfs(node.left)
-
-            elif low <= node.val <= high:
-                range_sum += node.val
-                dfs(node.left)
-                dfs(node.right)
-            
-            
-
-
-        dfs(root)
-        return range_sum
+        return root.val + self.rangeSumBST(root.left, low, high) + self.rangeSumBST(root.right, low, high)
