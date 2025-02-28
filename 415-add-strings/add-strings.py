@@ -4,13 +4,14 @@ class Solution:
         carry = 0
         res = []
 
-        while i >= 0 or j >= 0 or carry:
-            digit1 = ord(num1[i]) - ord('0') if i >= 0 else 0
-            digit2 = ord(num2[j]) - ord('0') if j >= 0 else 0
+        while i >= 0 or j >= 0 or carry > 0:
+            first = ord(num1[i]) - ord('0') if i >= 0 else 0
+            second = ord(num2[j]) - ord('0') if j >= 0 else 0
 
-            total = digit1 + digit2 + carry
-            carry = total // 10
-            res.append(str(total % 10))
+            sum_ = first + second + carry
+            carry = sum_ // 10
+            ans = sum_ % 10
+            res.append(str(ans))
 
             i -= 1
             j -= 1
