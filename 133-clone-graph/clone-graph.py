@@ -13,19 +13,17 @@ class Solution:
             return node
 
         visited = {}
-        
-        def dfs(node):
-            clone = Node(node.val, [])
-            visited[node] = clone
+        clone = Node(node.val)
+        visited[node] = clone
+        queue = deque([node])
 
-            for neighbor in node.neighbors:
-                if neighbor in visited:
-                    clone.neighbors.append(visited[neighbor])
-                else:
-                    clone.neighbors.append(dfs(neighbor))
+        while queue:
+            current = queue.popleft()
 
-            return clone
+            for neighbor in current.neighbors:
+                if neighbor not in visited:
+                    visited[neighbor] = Node(neighbor.val, [])
+                    queue.append(neighbor)
+                visited[current].neighbors.append(visited[neighbor])
 
-        return dfs(node)
-            
-        
+        return clone
