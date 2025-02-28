@@ -9,13 +9,13 @@ class Solution:
         def dfs(node):
             if not node:
                 return 0, 0
+            
+            left_height, left_diam = dfs(node.left)
+            right_height, right_diam = dfs(node.right)
 
-            left_diam, left_height = dfs(node.left)
-            right_diam, right_height = dfs(node.right)
+            current_height = max(left_height, right_height) + 1
+            current_diam = max(left_diam, right_diam, left_height + right_height)
 
-            curr_diam = max(left_diam, right_diam, left_height + right_height)
-            curr_height = max(left_height, right_height) + 1
+            return current_height, current_diam
 
-            return curr_diam, curr_height
-
-        return dfs(root)[0]
+        return dfs(root)[1]
