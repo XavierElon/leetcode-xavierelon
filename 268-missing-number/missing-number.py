@@ -1,10 +1,14 @@
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        num_set = set(nums)
-        n = len(nums) + 1
+    def missingNumber(self, arr: List[int]) -> int:
+        n = len(arr)
 
-        for number in range(n):
-            if number not in num_set:
-                return number
 
-        
+        for i in range(n):
+            while arr[i] >= 0 and arr[i] < n and arr[arr[i]] != arr[i]:
+                arr[arr[i]], arr[i] = arr[i], arr[arr[i]]
+
+        for i in range(n):
+            if arr[i] != i:
+                return i
+
+        return n
