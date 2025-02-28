@@ -8,22 +8,20 @@ class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         prefix_sums = defaultdict(int)
         prefix_sums[0] = 1
+        count = 0
 
         def dfs(node, total):
+            nonlocal count
             if not node:
-                return 0
-            
-            count = 0
+                return
+
             total += node.val
-            count = prefix_sums[total - targetSum]
+            count += prefix_sums[total - targetSum]
 
             prefix_sums[total] += 1
-            count += dfs(node.left, total) + dfs(node.right, total)
-
+            dfs(node.left, total)
+            dfs(node.right, total)
             prefix_sums[total] -= 1
 
-            return count
-
-        
-
-        return dfs(root, 0)
+        dfs(root, 0)
+        return count
