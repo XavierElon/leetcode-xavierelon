@@ -11,19 +11,19 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return node
-
+        
         visited = {}
         clone = Node(node.val)
         visited[node] = clone
         queue = deque([node])
-        
+
         while queue:
             current = queue.popleft()
 
             for neighbor in current.neighbors:
                 if neighbor not in visited:
-                    queue.append(neighbor)
                     visited[neighbor] = Node(neighbor.val)
+                    queue.append(neighbor)
                 visited[current].neighbors.append(visited[neighbor])
 
         return clone
