@@ -11,7 +11,7 @@ class Solution:
 
             if s[left].lower() != s[right].lower():
                 return False
-
+            
             left += 1
             right -= 1
 
