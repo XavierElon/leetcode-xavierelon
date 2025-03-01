@@ -1,44 +1,40 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        lower_bound = self.lower_bound(nums, target)
-        upper_bound = self.upper_bound(nums, target)
-
-        return [lower_bound, upper_bound]
-
-    def lower_bound(self, nums, target):
-        left, right = 0, len(nums) - 1
-
-        while left < right:
-            mid = (left + right) // 2
-            if nums[mid] > target:
+        if not nums:
+            return [-1, -1]
+        if target < nums[0] or target > nums[-1]:
+            return [-1, -1]
+        
+        # Initialize result list with two elements
+        result = [0, 0]
+        
+        # Find leftmost occurrence
+        left = 0
+        right = len(nums) - 1
+        while left <= right:
+            mid = (right - left) // 2 + left
+            
+            if nums[mid] >= target:
                 right = mid - 1
-            elif nums[mid] < target:
+            else:
+                left = mid + 1
+        
+        # If target not found
+        if nums[left] != target:
+            return [-1, -1]
+        result[0] = left
+        
+        # Find rightmost occurrence
+        left = 0
+        right = len(nums) - 1
+        while left <= right:
+            mid = (right - left) // 2 + left
+            
+            if nums[mid] <= target:
                 left = mid + 1
             else:
-                right = mid
-
-        return left if nums and nums[left] == target else -1
-
-
-    def upper_bound(self, nums, target):
-        left, right = 0, len(nums) - 1
-
-        while left < right:
-            mid = (left + right) // 2 + 1
-
-            if nums[mid] > target:
                 right = mid - 1
-            elif nums[mid] < target:
-                left = mid + 1
-            else:
-                left = mid
-
-        return right if nums and nums[right] == target else -1
-
-
-'''
-[5,8,8,8,8,8,10]
- L     M       R
-mid = 1
-n = 7
-'''
+        
+        result[1] = right
+        
+        return result
