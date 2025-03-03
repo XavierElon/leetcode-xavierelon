@@ -6,6 +6,7 @@ class Solution:
         intervals.sort(key = lambda x: x[0])
 
         merged = [intervals[0]]
+
         for interval in intervals:
             prev_interval = merged[-1]
             if prev_interval[1] >= interval[0]:
