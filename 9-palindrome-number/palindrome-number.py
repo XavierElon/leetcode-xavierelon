@@ -3,13 +3,11 @@ class Solution:
         if x < 0:
             return False
 
-        inputNum = x
-        newNum = 0
+        original_num = x
+        reversed_num = 0
 
         while x > 0:
-            newNum  = newNum * 10 + x % 10
+            reversed_num = reversed_num * 10 + x % 10
             x = x // 10
         
-        return newNum == inputNum
-
-        
+        return original_num == reversed_num
