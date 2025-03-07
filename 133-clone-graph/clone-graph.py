@@ -13,7 +13,7 @@ class Solution:
             return node
 
         visited = {}
-        
+
         def dfs(node):
             clone = Node(node.val)
             visited[node] = clone
