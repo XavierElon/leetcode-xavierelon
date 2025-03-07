@@ -15,7 +15,8 @@ class Solution:
                     if isConnected[current][neighbor] == 1 and neighbor not in visited:
                         visited.add(neighbor)
                         queue.append(neighbor)
-        
+
+
         for i in range(n):
             if i not in visited:
                 count += 1
