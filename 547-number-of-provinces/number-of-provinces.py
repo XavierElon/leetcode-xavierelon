@@ -1,8 +1,8 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         n = len(isConnected)
-        visited = set()
         count = 0
+        visited = set()
 
         def bfs(start):
             queue = deque([start])
@@ -15,7 +15,6 @@ class Solution:
                     if isConnected[current][neighbor] == 1 and neighbor not in visited:
                         visited.add(neighbor)
                         queue.append(neighbor)
-
 
         for i in range(n):
             if i not in visited:
