@@ -3,24 +3,25 @@ class Solution:
         if source == destination:
             return True
 
-        adj_list = [[] for _ in range(n)]
+        graph = [[] for _ in range(n)]
 
         for u, v in edges:
-            adj_list[u].append(v)
-            adj_list[v].append(u)
+            graph[u].append(v)
+            graph[v].append(u)
 
         visited = set()
-        queue = deque([source])
 
-        while queue:
-            current = queue.popleft()
+        def dfs(current):
             if current == destination:
                 return True
-            
-            for node in adj_list[current]:
-                if node not in visited:
-                    queue.append(node)
-                    visited.add(node)
 
+            visited.add(current)
 
-        return False
+            for neighbor in graph[current]:
+                if neighbor not in visited:
+                    if dfs(neighbor):
+                        return True
+
+            return False
+
+        return dfs(source)
