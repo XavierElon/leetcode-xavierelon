@@ -13,9 +13,9 @@ class Solution:
             return node
 
         visited = {}
-        queue = deque([node])
         clone = Node(node.val)
         visited[node] = clone
+        queue = deque([node])
 
         while queue:
             current = queue.popleft()
@@ -27,4 +27,3 @@ class Solution:
                 visited[current].neighbors.append(visited[neighbor])
 
         return clone
-                    
