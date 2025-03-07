@@ -17,15 +17,15 @@ class Solution:
             for _ in range(len(queue)):
                 r, c = queue.popleft()
 
-                for d in dirs:
-                    next_r, next_c = r + d[0], c + d[1]
+                for dr, dc in dirs:
+                    new_r, new_c = r + dr, c + dc
 
-                    if (self.is_within_bounds(next_r, next_c, matrix) and matrix[next_r][next_c] == 1):
-                        matrix[next_r][next_c] = 2
+                    if self.is_within_bounds(new_r, new_c, matrix) and matrix[new_r][new_c] == 1:
+                        matrix[new_r][new_c] = 2
                         ones -= 1
-                        queue.append((next_r, next_c))
+                        queue.append((new_r, new_c))
 
         return seconds if ones == 0 else -1
     
-    def is_within_bounds(self, r: int, c: int, matrix: List[List[int]]) -> bool:
+    def is_within_bounds(self, r, c, matrix):
         return 0 <= r < len(matrix) and 0 <= c < len(matrix[0])
