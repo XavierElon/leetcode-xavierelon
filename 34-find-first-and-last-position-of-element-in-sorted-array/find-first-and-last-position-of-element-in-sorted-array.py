@@ -5,7 +5,7 @@ class Solution:
 
         return [lower, upper]
 
-    def lower(self, nums, target, left_sided):
+    def lower(self, nums, target, is_lower):
         left, right = 0, len(nums) - 1
         result = -1
 
@@ -14,7 +14,7 @@ class Solution:
 
             if nums[mid] == target:
                 result = mid
-                if left_sided:
+                if is_lower:
                     right = mid - 1
                 else:
                     left = mid + 1
