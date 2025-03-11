@@ -12,19 +12,18 @@ class Solution:
         :type root: 'Node'
         :rtype: int
         """
-        diameter = 0
-
-        def height(node):
-            nonlocal diameter
-
-            if node is None:
-                return 0
+        def dfs(node):
+            if not node:
+                return 0, 0
 
             max_height = 0
             second_max_height = 0
+            max_child_diameter = 0
 
             for child in node.children:
-                child_height = height(child)
+                child_height, child_diameter = dfs(child)
+
+                max_child_diameter = max(max_child_diameter, child_diameter)
 
                 if child_height > max_height:
                     second_max_height = max_height
@@ -32,10 +31,15 @@ class Solution:
                 elif child_height > second_max_height:
                     second_max_height = child_height
 
-            diameter = max(diameter, max_height + second_max_height)
+            current_height = 1 + max_height
 
-            return max_height + 1
+            path_through_node = max_height + second_max_height
 
-        if root:
-            height(root)
-        return diameter
+            current_diameter = max(max_child_diameter, path_through_node)
+
+            return current_height, current_diameter
+
+        if not root:
+            return 0
+
+        return dfs(root)[1]
