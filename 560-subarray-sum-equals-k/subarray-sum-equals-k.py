@@ -11,5 +11,5 @@ class Solution:
                 count += prefix_counts[sum_ - k]
 
             prefix_counts[sum_] = prefix_counts.get(sum_, 0) + 1
-
+        print(prefix_counts)
         return count
