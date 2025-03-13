@@ -45,12 +45,10 @@ class LRUCache:
         node.next = self.tail
         node.prev = prev_node
         self.tail.prev = node
-
+        
     def remove(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev
-        
-
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
