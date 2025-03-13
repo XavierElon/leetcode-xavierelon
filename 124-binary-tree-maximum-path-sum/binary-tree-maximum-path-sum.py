@@ -12,14 +12,14 @@ class Solution:
             if not node:
                 return 0
 
-            leftMax = dfs(node.left)
-            rightMax = dfs(node.right)
-            leftMax = max(leftMax, 0)
-            rightMax = max(rightMax, 0)
+            left_max = dfs(node.left)
+            right_max = dfs(node.right)
+            left_max = max(left_max, 0)
+            right_max = max(right_max, 0)
 
-            res[0] = max(res[0], node.val + leftMax + rightMax)
+            res[0] = max(res[0], node.val + left_max + right_max)
 
-            return node.val + max(leftMax, rightMax)
+            return node.val + max(left_max, right_max)
 
         dfs(root)
         return res[0]
