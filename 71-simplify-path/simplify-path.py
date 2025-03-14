@@ -13,4 +13,4 @@ class Solution:
             else:
                 stack.append(portion)
 
-        return '/' + '/'.join(stack)
+        return "/" + "/".join(stack)
