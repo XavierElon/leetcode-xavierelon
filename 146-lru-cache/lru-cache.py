@@ -8,7 +8,7 @@ class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.hashmap = {}
+        self.hashmap = defaultdict(None)
         self.tail = DoublyLinkedListNode(-1, -1)
         self.head = DoublyLinkedListNode(-1, -1)
         self.head.next = self.tail
