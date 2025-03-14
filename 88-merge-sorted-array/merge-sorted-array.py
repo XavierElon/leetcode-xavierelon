@@ -3,7 +3,7 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        a = m - 1
+        a = m -1
         b = n - 1
         i = m + n - 1
 
@@ -11,7 +11,9 @@ class Solution:
             if a >= 0 and nums1[a] >= nums2[b]:
                 nums1[i] = nums1[a]
                 a -= 1
+                i -= 1
             else:
                 nums1[i] = nums2[b]
                 b -= 1
-            i -= 1
+                i -= 1
+        
