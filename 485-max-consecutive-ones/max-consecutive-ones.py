@@ -8,4 +8,5 @@ class Solution:
                 max_ones = max(max_ones, current_ones)
             else:
                 current_ones = 0
+                
         return max_ones
