@@ -11,7 +11,7 @@ class MovingAverage:
 
         if len(self.queue) > self.size:
             self.window_sum -= self.queue.popleft()
-        
+
         return self.window_sum / len(self.queue)
 
 
