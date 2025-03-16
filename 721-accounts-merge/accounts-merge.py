@@ -6,8 +6,8 @@ class Solution:
             emails = account[1:]
             canonical = emails[0]
             for email in emails[1:]:
-                adj_list[canonical].append(email)
                 adj_list[email].append(canonical)
+                adj_list[canonical].append(email)
 
         visited = set()
 
