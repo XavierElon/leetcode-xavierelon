@@ -1,20 +1,26 @@
 class Solution:
-    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
-        rows, cols = len(image), len(image[0])
-        original_color = image[sr][sc]
-
-        if color == original_color:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:           
+        if image[sr][sc] == color:
             return image
+        
+        original_color = image[sr][sc]
+        directions = [[-1,0],[1,0],[0,-1],[0,1]]
+        rows, cols = len(image), len(image[0])
 
-        def dfs(r, c):
-            if image[r][c] == original_color:
-                image[r][c] = color
+        queue = deque([(sr, sc)])
+        image[sr][sc] = color
 
-                if r >= 1: dfs(r-1, c)
-                if r + 1  < rows: dfs(r+1, c)
-                if c >= 1: dfs(r, c-1)
-                if c + 1 < cols: dfs(r, c+1)
-            return
+        while queue:
+            row, col = queue.popleft()
+            image[row][col] = color
+            for dr, dc in directions:
+                new_r, new_c = row + dr, col + dc
+                if self.is_within_bounds(new_r, new_c, rows, cols) and image[new_r][new_c] == original_color:
+                    # image[new_r][new_c] = color
+                    queue.append((new_r, new_c))
 
-        dfs(sr, sc)
         return image
+
+    def is_within_bounds(self, r, c, rows, cols):
+        return 0 <= r < rows and 0 <= c < cols
+        
