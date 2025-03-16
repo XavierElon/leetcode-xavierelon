@@ -10,6 +10,7 @@ class Solution:
         for i in range(1, n):
             if knows(celebrity_candidate, i):
                 celebrity_candidate = i
+
         if self.is_celebrity(celebrity_candidate):
             return celebrity_candidate
 
@@ -22,3 +23,4 @@ class Solution:
                 return False
 
         return True
+        
