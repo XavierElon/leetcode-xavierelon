@@ -18,12 +18,11 @@ class Codec:
             j = i
             while s[j] != '#':
                 j += 1
-            length = int(s[i: j])
+            length = int(s[i:j])
             res.append(s[j + 1 : j + length + 1])
             i = j + 1 + length
 
         return res
-
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()
