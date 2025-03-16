@@ -3,7 +3,7 @@ class Solution:
         n, color = len(graph), {}
 
         for i in range(n):
-            if i not in color and graph[i]:
+            if i not in color:
                 color[i] = 1
                 queue = collections.deque([i])
                 
