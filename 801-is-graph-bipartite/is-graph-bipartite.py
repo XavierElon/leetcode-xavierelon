@@ -6,7 +6,7 @@ class Solution:
             if i not in color:
                 color[i] = 1
                 queue = collections.deque([i])
-                
+
                 while queue:
                     u = queue.popleft()
                     for v in graph[u]:
