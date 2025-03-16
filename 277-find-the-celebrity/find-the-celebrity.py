@@ -4,16 +4,21 @@
 
 class Solution:
     def findCelebrity(self, n: int) -> int:
-        candidate = 0
+        self.n = n
+        celebrity_candidate = 0
 
         for i in range(1, n):
-            if knows(candidate, i):
-                candidate = i
+            if knows(celebrity_candidate, i):
+                celebrity_candidate = i
+        if self.is_celebrity(celebrity_candidate):
+            return celebrity_candidate
 
-        for i in range(n):
-            if i != candidate:
-                if knows(candidate, i) or not knows(i, candidate):
-                    return -1
+        return -1
 
-        return candidate
-        
+    def is_celebrity(self, i):
+        for j in range(self.n):
+            if i == j: continue
+            if knows(i, j) or not knows(j, i):
+                return False
+
+        return True
