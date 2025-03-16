@@ -10,7 +10,7 @@ class Solution:
 
         def dfs(node):
             nonlocal max_
-
+            
             if not node:
                 return 0
 
