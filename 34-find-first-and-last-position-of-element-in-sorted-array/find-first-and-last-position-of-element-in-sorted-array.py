@@ -11,6 +11,7 @@ class Solution:
 
         while left <= right:
             mid = (left + right) // 2
+
             if nums[mid] == target:
                 res = mid
                 if is_lower:
