@@ -28,10 +28,9 @@ class NestedIterator:
     
     def next(self) -> int:
         return self.stack.pop() if self.hasNext() else None
-        
     
     def hasNext(self) -> bool:
-        return len(self.stack) > 0
+         return len(self.stack) > 0
 
     def dfs(self, nestedList):
         for n in nestedList:
@@ -39,7 +38,6 @@ class NestedIterator:
                 self.stack.append(n.getInteger())
             else:
                 self.dfs(n.getList())
-         
 
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
