@@ -7,12 +7,12 @@ class Solution:
 
     def lower(self, nums, target, is_lower):
         left, right = 0, len(nums) - 1
-        result = -1
+        res = -1
+
         while left <= right:
             mid = (left + right) // 2
-
             if nums[mid] == target:
-                result = mid
+                res = mid
                 if is_lower:
                     right = mid - 1
                 else:
@@ -22,4 +22,4 @@ class Solution:
             else:
                 right = mid - 1
 
-        return result
+        return res
