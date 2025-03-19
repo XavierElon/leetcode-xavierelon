@@ -6,11 +6,9 @@ class Solution:
             if portion == '..':
                 if stack:
                     stack.pop()
-
             elif portion == '.' or not portion:
                 continue
-
             else:
                 stack.append(portion)
 
-        return "/" + "/".join(stack)
+        return "/" + ('/').join(stack)
