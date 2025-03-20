@@ -1,37 +1,30 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
+        first_pass = []
+        open_count = 0
+
         # First pass: remove invalid closing parentheses
-        extra_opens = 0  # Tracks number of open parentheses without matching closing ones
-        total_opens = 0  # Tracks total number of open parentheses kept
-        temp = []
-        
-        for ch in s:
-            if ch == ')':
-                # Skip closing parenthesis if there's no matching opening one
-                if extra_opens == 0:
-                    continue
-                extra_opens -= 1
-                temp.append(ch)
-            elif ch == '(':
-                total_opens += 1
-                extra_opens += 1
-                temp.append(ch)
+        for char in s:
+            if char == '(':
+                open_count += 1
+                first_pass.append(char)
+            elif char == ')':
+                if open_count > 0:
+                    open_count -= 1
+                    first_pass.append(char)
             else:
-                # Keep all non-parenthesis characters
-                temp.append(ch)
+                first_pass.append(char)
         
-        # Second pass: remove extra opening parentheses
+        # Short-circuit if there are no unmatched opening parentheses
+        if open_count == 0:
+            return ''.join(first_pass)
+        
+        # Second pass: remove excess opening parentheses
         result = []
-        keep = total_opens - extra_opens  # Number of opening parentheses to keep
-        
-        for ch in temp:
-            if ch == '(':
-                # Skip extra opening parentheses
-                if keep == 0:
-                    continue
-                result.append(ch)
-                keep -= 1
+        for char in reversed(first_pass):
+            if char == '(' and open_count > 0:
+                open_count -= 1
             else:
-                result.append(ch)
+                result.append(char)
         
-        return ''.join(result)
+        return ''.join(reversed(result))
