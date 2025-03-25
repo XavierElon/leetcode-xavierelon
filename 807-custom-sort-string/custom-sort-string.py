@@ -4,11 +4,10 @@ class Solution:
         res = []
 
         for char in order:
-            if char in freq:
-                res.append(char * freq[char])
-                del freq[char]
+            res.append(char * freq[char])
+            del freq[char]
 
-        for char, count in freq.items():
-            res.append(char * count)
+        for char in freq:
+            res.append(freq[char] * char)
 
-        return "".join(res)
+        return ''.join(res)
