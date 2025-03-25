@@ -6,19 +6,15 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        total_sum = 0
-        queue = deque([(root, root.val)])
+        def dfs(node, current_sum):
+            if not node:
+                return 0
 
-        while queue:
-            node, current_sum = queue.popleft()
+            current_sum = current_sum * 10 + node.val
 
             if not node.left and not node.right:
-                total_sum += current_sum
+                return current_sum
 
-            if node.left:
-                queue.append((node.left, current_sum * 10 + node.left.val))
+            return dfs(node.left, current_sum) + dfs(node.right, current_sum)
 
-            if node.right:
-                queue.append((node.right, current_sum * 10 + node.right.val))
-
-        return total_sum
+        return dfs(root, 0)
