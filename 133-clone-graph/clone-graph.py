@@ -23,7 +23,6 @@ class Solution:
                     clone.neighbors.append(dfs(neighbor))
                 else:
                     clone.neighbors.append(visited[neighbor])
-
             return clone
-
+            
         return dfs(node)
