@@ -43,15 +43,17 @@
 
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
-        def dfs(nested_list, depth):
-            weighted_sum = 0
+        weighted_sum = 0
+        depth = 1
+        queue = deque([(nestedList, depth)])
 
-            for element in nested_list:
+        while queue:
+            current, depth = queue.popleft()
+
+            for element in current:
                 if element.isInteger():
                     weighted_sum += element.getInteger() * depth
                 else:
-                    weighted_sum += dfs(element.getList(), depth + 1)
+                    queue.append((element.getList(), depth + 1))
 
-            return weighted_sum
-
-        return dfs(nestedList, 1)
+        return weighted_sum
