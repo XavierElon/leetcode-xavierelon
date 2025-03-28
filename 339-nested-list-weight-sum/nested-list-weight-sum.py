@@ -44,14 +44,14 @@
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
         def dfs(nested_list, depth):
-            weight_sum = 0
+            weighted_sum = 0
 
             for element in nested_list:
                 if element.isInteger():
-                    weight_sum += element.getInteger() * depth
+                    weighted_sum += element.getInteger() * depth
                 else:
-                    weight_sum += dfs(element.getList(), depth + 1)
-            
-            return weight_sum
+                    weighted_sum += dfs(element.getList(), depth + 1)
+
+            return weighted_sum
 
         return dfs(nestedList, 1)
