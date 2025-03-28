@@ -17,14 +17,13 @@ class Solution:
         dummy = ListNode()
         curr = dummy
 
-        
         while heap:
-            curr_value, idx, node = heapq.heappop(heap)
+            value, list_idx, node = heapq.heappop(heap)
 
             curr.next = node
             curr = curr.next
 
             if node.next:
-                heapq.heappush(heap, (node.next.val, idx, node.next))
+                heapq.heappush(heap, (node.next.val, list_idx, node.next))
 
         return dummy.next
