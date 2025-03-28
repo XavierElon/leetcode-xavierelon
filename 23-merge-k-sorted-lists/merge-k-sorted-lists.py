@@ -10,6 +10,11 @@ class Solution:
 
         heap = []
 
+        new_lists = []
+        for lst in lists:
+            if lst:
+                new_lists.append(lst)
+
         for i, head in enumerate(lists):
             if head:
                 heapq.heappush(heap, (head.val, i, head))
@@ -27,3 +32,5 @@ class Solution:
                 heapq.heappush(heap, (node.next.val, idx, node.next))
 
         return dummy.next
+
+        
