@@ -7,12 +7,12 @@ class SparseVector:
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
-        if len(self.nonzeros) > len(vec.nonzeros):
-            smaller = vec.nonzeros
-            larger = self.nonzeros
-        else:
+        if len(vec.nonzeros) > len(self.nonzeros):
             smaller = self.nonzeros
             larger = vec.nonzeros
+        else:
+            smaller = vec.nonzeros
+            larger = self.nonzeros
 
         res = 0
 
