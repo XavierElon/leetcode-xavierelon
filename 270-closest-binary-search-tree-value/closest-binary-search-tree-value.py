@@ -6,14 +6,21 @@
 #         self.right = right
 class Solution:
     def closestValue(self, root: Optional[TreeNode], target: float) -> int:
-        closest = root.val
+        closest_distance = float('inf')
+        result = None
 
         while root:
-            # Update closest if the current node is closer to the target
-            if (abs(root.val - target) < abs(closest - target)) or \
-               (abs(root.val - target) == abs(closest - target) and root.val < closest):
-                closest = root.val
-            # Move left or right based on target value
-            root = root.left if target < root.val else root.right
-        
-        return closest
+            current_val = root.val
+            distance = abs(root.val - target)
+
+            if distance < closest_distance or (distance == closest_distance and current_val < result):
+                closest_distance = distance
+                result = current_val
+            if distance == 0:
+                return result
+            if current_val < target:
+                root = root.right
+            else:
+                root = root.left
+
+        return result
