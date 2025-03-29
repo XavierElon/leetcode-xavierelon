@@ -7,37 +7,49 @@
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        graph = defaultdict(list)
+        if not root:
+            return []
 
-        def buildGraph(node, parent=None):
-            if not node:
-                return
-            
-            if parent:
-                graph[node.val].append(parent.val)
-                graph[parent.val].append(node.val)
+        parent = {}
+        queue_parent = deque([root])
+        visited_parent = {root}
 
+        while queue_parent:
+            node = queue_parent.popleft()
             if node.left:
-                buildGraph(node.left, node)
+                if node.left not in visited_parent:
+                    parent[node.left] = node
+                    visited_parent.add(node.left)
+                    queue_parent.append(node.left)
             if node.right:
-                buildGraph(node.right, node)
+                if node.right not in visited_parent:
+                    parent[node.right] = node
+                    visited_parent.add(node.right)
+                    queue_parent.append(node.right)
 
-        buildGraph(root)  # Convert tree to graph
-        
-        queue = deque([(target.val, 0)])
-        visited = set()
-        visited.add(target.val)
+        queue = deque([(target, 0)])
+        visited = {target}
+        res = []
 
         while queue:
-            if queue[0][1] == k:
-                return [node for node, dist in queue]
+            curr_node, distance = queue.popleft()
 
-            for _ in range(len(queue)):
-                node, dist = queue.popleft()
+            if distance == k:
+                res.append(curr_node.val)
+                continue
 
-                for neighbor in graph[node]:
-                    if neighbor not in visited:
-                        visited.add(neighbor)
-                        queue.append((neighbor, dist + 1))
+            neighbors = []
 
-        return []
+            if curr_node.left:
+                neighbors.append(curr_node.left)
+            if curr_node.right:
+                neighbors.append(curr_node.right)
+            if curr_node in parent:
+                neighbors.append(parent[curr_node])
+
+            for neighbor in neighbors:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append((neighbor, distance + 1))
+
+        return res
