@@ -7,46 +7,31 @@
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        if not root:
-            return []
+        parent_map = {}
 
-        parent = {}
-        queue_parent = deque([root])
+        def build_parent_map(node, parent=None):
+            if not node:
+                return
 
-        while queue_parent:
-            node = queue_parent.popleft()
-            if node.left:
-                if node.left:
-                    parent[node.left] = node
-                    queue_parent.append(node.left)
-            if node.right:
-                if node.right:
-                    parent[node.right] = node
-                    queue_parent.append(node.right)
+            parent_map[node] = parent
+            build_parent_map(node.left, node)
+            build_parent_map(node.right, node)
+
+        build_parent_map(root)
 
         queue = deque([(target, 0)])
         visited = {target}
         res = []
 
         while queue:
-            curr_node, distance = queue.popleft()
+            node, distance = queue.popleft()
 
             if distance == k:
-                res.append(curr_node.val)
-                continue
-
-            neighbors = []
-
-            if curr_node.left:
-                neighbors.append(curr_node.left)
-            if curr_node.right:
-                neighbors.append(curr_node.right)
-            if curr_node in parent:
-                neighbors.append(parent[curr_node])
-
-            for neighbor in neighbors:
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    queue.append((neighbor, distance + 1))
+                res.append(node.val)
+            elif distance < k:
+                for neighbor in [node.left, node.right, parent_map.get(node)]:
+                    if neighbor and neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append((neighbor, distance + 1))
 
         return res
