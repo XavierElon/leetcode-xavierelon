@@ -12,19 +12,16 @@ class Solution:
 
         parent = {}
         queue_parent = deque([root])
-        visited_parent = {root}
 
         while queue_parent:
             node = queue_parent.popleft()
             if node.left:
-                if node.left not in visited_parent:
+                if node.left:
                     parent[node.left] = node
-                    visited_parent.add(node.left)
                     queue_parent.append(node.left)
             if node.right:
-                if node.right not in visited_parent:
+                if node.right:
                     parent[node.right] = node
-                    visited_parent.add(node.right)
                     queue_parent.append(node.right)
 
         queue = deque([(target, 0)])
