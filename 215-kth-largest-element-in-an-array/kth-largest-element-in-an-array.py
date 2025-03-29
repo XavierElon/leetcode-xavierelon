@@ -8,4 +8,4 @@ class Solution:
             if len(heap) > k:
                 heapq.heappop(heap)
 
-        return heapq.heappop(heap)
+        return heap[0]
