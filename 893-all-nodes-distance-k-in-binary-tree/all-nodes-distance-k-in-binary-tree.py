@@ -12,7 +12,7 @@ class Solution:
         def build_parent_map(node, parent=None):
             if not node:
                 return
-
+            
             parent_map[node] = parent
             build_parent_map(node.left, node)
             build_parent_map(node.right, node)
@@ -20,8 +20,8 @@ class Solution:
         build_parent_map(root)
 
         queue = deque([(target, 0)])
-        visited = {target}
         res = []
+        visited = {target}
 
         while queue:
             node, distance = queue.popleft()
@@ -31,7 +31,7 @@ class Solution:
             elif distance < k:
                 for neighbor in [node.left, node.right, parent_map[node]]:
                     if neighbor and neighbor not in visited:
-                        visited.add(neighbor)
                         queue.append((neighbor, distance + 1))
+                        visited.add(neighbor)
 
         return res
