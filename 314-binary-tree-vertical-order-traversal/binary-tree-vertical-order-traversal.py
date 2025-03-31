@@ -9,18 +9,19 @@ class Solution:
         if not root:
             return []
 
-        column_list = defaultdict(list)
+        column_map = defaultdict(list)
+
         queue = deque([(root, 0)])
 
         while queue:
             node, column = queue.popleft()
 
-            column_list[column].append(node.val)
+            column_map[column].append(node.val)
 
             if node.left:
                 queue.append((node.left, column - 1))
-
+            
             if node.right:
                 queue.append((node.right, column + 1))
 
-        return [column_list[k] for k in sorted(column_list)]
+        return [column_map[k] for k in sorted(column_map)]
