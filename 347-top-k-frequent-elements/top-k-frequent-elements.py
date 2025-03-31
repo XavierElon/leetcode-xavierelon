@@ -4,12 +4,13 @@ class Solution:
 
         n = len(nums)
 
-        buckets = [[] for _ in range(n+1)]
+        buckets = [[] for _ in range(n + 1)]
 
         for num, freq in freq_map.items():
             buckets[freq].append(num)
 
         res = []
+
         for i in range(n, -1, -1):
             for num in buckets[i]:
                 res.append(num)
