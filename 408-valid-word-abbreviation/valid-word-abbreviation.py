@@ -7,6 +7,7 @@ class Solution:
                 shift = 0
                 if abbr[p2] == '0':
                     return False
+
                 while p2 < len(abbr) and abbr[p2].isdigit():
                     shift = (shift * 10) + int(abbr[p2])
                     p2 += 1
@@ -19,5 +20,5 @@ class Solution:
             else:
                 p1 += 1
                 p2 += 1
-
+                
         return p1 == len(word) and p2 == len(abbr)
