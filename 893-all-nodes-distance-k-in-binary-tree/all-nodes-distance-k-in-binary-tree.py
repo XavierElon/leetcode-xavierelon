@@ -29,7 +29,7 @@ class Solution:
             if distance == k:
                 res.append(node.val)
             elif distance < k:
-                for neighbor in [node.left, node.right, parent_map.get(node)]:
+                for neighbor in [node.left, node.right, parent_map[node]]:
                     if neighbor and neighbor not in visited:
                         visited.add(neighbor)
                         queue.append((neighbor, distance + 1))
