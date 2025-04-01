@@ -5,7 +5,7 @@ class Solution:
 
         m, n = len(firstList), len(secondList)
         i = j = 0
-        merged = []
+        res = []
 
         while i < m and j < n:
             first_interval = firstList[i]
@@ -15,10 +15,10 @@ class Solution:
             end = min(first_interval[1], second_interval[1])
 
             if start <= end:
-                merged.append([start, end])
+                res.append([start, end])
             if first_interval[1] <= second_interval[1]:
                 i += 1
             else:
                 j += 1
 
-        return merged
+        return res
