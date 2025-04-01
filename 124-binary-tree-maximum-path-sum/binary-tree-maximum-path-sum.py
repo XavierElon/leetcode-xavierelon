@@ -18,6 +18,6 @@ class Solution:
             max_path_sum = max(max_path_sum, left_max + right_max + node.val)
 
             return max(left_max, right_max) + node.val
-
+        
         dfs(root)
         return max_path_sum
