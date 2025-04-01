@@ -10,6 +10,7 @@ class Solution:
             return None
 
         queue = deque([root])
+
         while queue:
             node = queue.popleft()
 
