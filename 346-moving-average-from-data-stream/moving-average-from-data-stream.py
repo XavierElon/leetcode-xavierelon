@@ -9,12 +9,11 @@ class MovingAverage:
         self.queue.append(val)
         self.window_sum += val
         n = len(self.queue)
-        
+
         if n > self.size:
             self.window_sum -= self.queue.popleft()
         
         return self.window_sum / len(self.queue)
-
 
 
 # Your MovingAverage object will be instantiated and called as such:
