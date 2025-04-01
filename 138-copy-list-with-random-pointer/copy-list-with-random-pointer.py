@@ -24,5 +24,5 @@ class Solution:
             if c.random:
                 old_to_new[c].random = old_to_new[c.random]
             c = c.next
-
+        
         return old_to_new.get(head)
