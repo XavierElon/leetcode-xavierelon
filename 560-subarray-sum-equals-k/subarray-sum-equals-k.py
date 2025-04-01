@@ -1,9 +1,9 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        count = 0
         prefix_sums = defaultdict(int)
-        prefix_sums[0] = 1
         current_sum = 0
+        count = 0
+        prefix_sums[0] = 1
 
         for num in nums:
             current_sum += num
