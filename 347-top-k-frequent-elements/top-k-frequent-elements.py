@@ -3,7 +3,6 @@ class Solution:
         freq = Counter(nums)
         res = []
         n = len(nums)
-        print(freq)
         
         heap = []
 
