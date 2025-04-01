@@ -1,11 +1,9 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         freq = Counter(nums)
-        n = len(nums)
         res = []
-
-        for num in nums:
-            freq[num] += 1
+        n = len(nums)
+        print(freq)
         
         heap = []
 
@@ -15,4 +13,3 @@ class Solution:
                 heapq.heappop(heap)
 
         return [key for (_, key) in heap]
-
