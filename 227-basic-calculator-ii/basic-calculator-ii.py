@@ -1,43 +1,43 @@
 class Solution:
     def calculate(self, s: str) -> int:
+        s
         i = 0
-
         cur = prev = res = 0
-        cur_operation = '+'
+        n = len(s)
+        operation = '+'
 
-        while i < len(s):
-            cur_char = s[i]
-
-            if cur_char.isdigit():
-                while i < len(s) and s[i].isdigit():
+        while i < n:
+            curr_char = s[i]
+            if curr_char.isdigit():
+                while i < n and s[i].isdigit():
                     cur = cur * 10 + int(s[i])
-
                     i += 1
                 i -= 1
-
-                if cur_operation == '+':
+                
+                if operation == '+':
                     res += cur
                     prev = cur
-
-                elif cur_operation == '-':
-                    res -= cur
-
+                elif operation == '-':
+                    res -= cur 
                     prev = -cur
-                elif cur_operation == '*':
+                elif operation == '*':
                     res -= prev
-                    res += prev * cur
+
+                    res += cur * prev
 
                     prev = cur * prev
+
                 else:
                     res -= prev
-                    res += int(prev / cur)
 
-                    prev = int(prev / cur)
-
+                    res += int(prev/cur)
+                    prev = int(prev/cur)
+                
                 cur = 0
-            elif cur_char != ' ':
-                cur_operation = cur_char
-            
+
+            elif curr_char != ' ':
+                operation = curr_char
+
             i += 1
 
         return res
