@@ -1,17 +1,21 @@
 class Solution:
     def maximumSwap(self, num: int) -> int:
-        num_str = list(str(num))
-        rightmost_index = [-1] * 10
+        s = list(str(num))
+        n = len(s)
 
-        for i, digit in enumerate(num_str):
-            rightmost_index[int(digit)] = i
+        last_occurrence = {digit: i for i, digit in enumerate(s)}
 
-        print(rightmost_index)
+        for i in range(n):
+            current_digit_char = s[i]
 
-        for i, digit in enumerate(num_str):
-            for j in range(9, int(digit), -1):
-                if rightmost_index[j] > i:
-                    num_str[i], num_str[rightmost_index[j]] = num_str[rightmost_index[j]], num_str[i]
-                    return int("".join(num_str))
+            for d_char in '987654321':
+                if d_char <= current_digit_char:
+                    break
+
+                if d_char in last_occurrence and last_occurrence[d_char] > i:
+                    swap_idx = last_occurrence[d_char]
+                    s[i], s[swap_idx] = s[swap_idx], s[i]
+
+                    return int(''.join(s))
 
         return num
