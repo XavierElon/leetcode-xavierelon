@@ -10,14 +10,15 @@ class Solution:
             return []
 
         column_map = defaultdict(list)
-        queue = deque([(root, 0, 0)])
         min_col = max_col = 0
+        queue = deque([(root, 0, 0)])
 
         while queue:
             node, row, col = queue.popleft()
-            column_map[col].append((row, node.val))
             min_col = min(min_col, col)
             max_col = max(max_col, col)
+
+            column_map[col].append((row, node.val))
 
             if node.left:
                 queue.append((node.left, row + 1, col - 1))
