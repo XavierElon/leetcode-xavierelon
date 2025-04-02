@@ -9,20 +9,22 @@ class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         if not root:
             return []
+
         parent_map = defaultdict(None)
 
         def build_parent_map(node, parent=None):
             if not node:
                 return
+
             parent_map[node] = parent
             build_parent_map(node.left, node)
             build_parent_map(node.right, node)
 
         build_parent_map(root)
+        visited = {target}
         queue = deque([(target, 0)])
         res = []
-        visited = {target}
-
+        
         while queue:
             node, distance = queue.popleft()
 
@@ -35,5 +37,3 @@ class Solution:
                         queue.append((neighbor, distance + 1))
 
         return res
-
-            
