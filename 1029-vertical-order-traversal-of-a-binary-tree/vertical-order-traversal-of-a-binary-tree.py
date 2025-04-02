@@ -15,7 +15,6 @@ class Solution:
 
         while queue:
             node, row, col = queue.popleft()
-
             min_col = min(min_col, col)
             max_col = max(max_col, col)
 
