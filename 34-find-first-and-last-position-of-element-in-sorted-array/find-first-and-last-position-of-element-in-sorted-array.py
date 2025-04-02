@@ -5,16 +5,15 @@ class Solution:
 
         return [lower, upper]
 
-    def upper(self, nums, target):
+    def lower(self, nums, target):
         l, r = 0, len(nums) - 1
         res = -1
 
         while l <= r:
             mid = (l + r) // 2
-
             if nums[mid] == target:
                 res = mid
-                l = mid + 1
+                r = mid - 1 
             elif nums[mid] < target:
                 l = mid + 1
             else:
@@ -22,16 +21,15 @@ class Solution:
 
         return res
 
-    def lower(self, nums, target):
+    def upper(self, nums, target):
         l, r = 0, len(nums) - 1
         res = -1
 
         while l <= r:
             mid = (l + r) // 2
-
             if nums[mid] == target:
                 res = mid
-                r = mid -1
+                l = mid + 1
             elif nums[mid] > target:
                 r = mid - 1
             else:
