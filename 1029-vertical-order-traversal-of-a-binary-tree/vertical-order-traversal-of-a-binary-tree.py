@@ -12,19 +12,19 @@ class Solution:
         column_map = defaultdict(list)
         queue = deque([(root, 0, 0)])
         min_col = max_col = 0
-        while queue:
-            node, row, col = queue.popleft()
-            min_col = min(min_col, col)
-            max_col = max(max_col, col)
 
-            column_map[col].append((row, node.val))
+        while queue:
+            node, row, column = queue.popleft()
+            min_col = min(min_col, column)
+            max_col = max(max_col, column)
+
+            column_map[column].append((row, node.val))
 
             if node.left:
-                queue.append((node.left, row + 1, col - 1))
+                queue.append((node.left, row + 1, column - 1))
             if node.right:
-                queue.append((node.right, row + 1, col + 1))
+                queue.append((node.right, row + 1, column + 1))
 
-        
         res = []
 
         for i in range(min_col, max_col + 1):
