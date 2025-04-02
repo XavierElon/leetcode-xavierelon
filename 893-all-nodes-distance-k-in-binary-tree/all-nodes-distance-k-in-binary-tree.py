@@ -15,16 +15,15 @@ class Solution:
         def build_parent_map(node, parent=None):
             if not node:
                 return
-
             parent_map[node] = parent
             build_parent_map(node.left, node)
             build_parent_map(node.right, node)
 
         build_parent_map(root)
         visited = {target}
-        queue = deque([(target, 0)])
         res = []
-        
+        queue = deque([(target, 0)])
+
         while queue:
             node, distance = queue.popleft()
 
