@@ -49,7 +49,6 @@ class Solution:
 
         while queue:
             current, depth = queue.popleft()
-
             for element in current:
                 if element.isInteger():
                     weighted_sum += element.getInteger() * depth
@@ -57,5 +56,4 @@ class Solution:
                     queue.append((element.getList(), depth + 1))
 
         return weighted_sum
-
             
