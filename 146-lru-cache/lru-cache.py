@@ -1,4 +1,4 @@
-class DoublyLinkedListNode:
+class DoublyLinkedListNode():
     def __init__(self, key=-1, value=-1):
         self.key = key
         self.value = value
@@ -14,6 +14,7 @@ class LRUCache:
         self.tail.prev = self.head
         self.head.next = self.tail
         
+
     def get(self, key: int) -> int:
         if key in self.hashmap:
             node = self.hashmap[key]
@@ -24,27 +25,27 @@ class LRUCache:
             return -1
 
     def put(self, key: int, value: int) -> None:
-        if key in self.hashmap:
+        if key not in self.hashmap:
+            if len(self.hashmap) >= self.capacity:
+                lru = self.head.next
+                del self.hashmap[lru.key]
+                self.remove(lru)
+            new_node = DoublyLinkedListNode(key, value)
+            self.hashmap[key] = new_node
+            self.add(new_node)
+        else:
             node = self.hashmap[key]
             node.value = value
             self.remove(node)
             self.add(node)
             return node.value
-        else:
-            if len(self.hashmap) >= self.capacity:
-                lru = self.head.next
-                self.remove(lru)
-                del self.hashmap[lru.key]
-            new_node = DoublyLinkedListNode(key, value)
-            self.add(new_node)
-            self.hashmap[key] = new_node
 
 
     def add(self, node):
         prev_node = self.tail.prev
         prev_node.next = node
-        node.next = self.tail
         node.prev = prev_node
+        node.next = self.tail
         self.tail.prev = node
 
     def remove(self, node):
@@ -52,7 +53,10 @@ class LRUCache:
         next_node = node.next
         prev_node.next = next_node
         next_node.prev = prev_node
+
         
+
+
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
