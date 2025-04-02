@@ -9,13 +9,13 @@ class Solution:
             c = s[i]
 
             if c.isdigit():
-                num = num * 10 + int(c) 
+                num = num * 10 + int(c)
             elif c == '+':
-                res += sign * num
+                res += num * sign
                 num = 0
                 sign = 1
             elif c == '-':
-                res += sign * num
+                res += num * sign
                 num = 0
                 sign = -1
             elif c == '(':
@@ -29,6 +29,6 @@ class Solution:
                 prev_sign = stack.pop()
                 prev_res = stack.pop()
                 res = prev_res + prev_sign * res
-
         res += sign * num
-        return res
+        return res                
+
