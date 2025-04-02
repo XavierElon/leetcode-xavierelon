@@ -1,19 +1,18 @@
 class Solution:
     def calculate(self, s: str) -> int:
         i = 0
-        cur = prev = res = 0
         n = len(s)
+        cur = prev = res = 0
         operation = '+'
 
         while i < n:
-            
             if s[i].isdigit():
                 while i < n and s[i].isdigit():
-                    cur = cur * 10 + int(s[i]) 
+                    cur = cur * 10 + int(s[i])
                     i += 1
                 
                 i -= 1
-                
+
                 if operation == '+':
                     res += cur
                     prev = cur
