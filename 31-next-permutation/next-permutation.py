@@ -4,11 +4,11 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         pivot = None
-
         for i in range(len(nums) - 1, 0, -1):
             if nums[i] > nums[i-1]:
                 pivot = i - 1
                 break
+
         else:
             nums.reverse()
             return
@@ -20,3 +20,9 @@ class Solution:
         nums[pivot], nums[swap] = nums[swap], nums[pivot]
 
         nums[pivot+1:] = reversed(nums[pivot+1:])
+
+
+'''
+1,3,4,2,7
+1,3,4,7,2
+'''
