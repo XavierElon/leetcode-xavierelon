@@ -15,10 +15,10 @@ class Solution:
 
         while queue:
             node, row, col = queue.popleft()
-            min_col = min(min_col, col)
-            max_col = max(max_col, col)
 
             column_map[col].append((row, node.val))
+            min_col = min(min_col, col)
+            max_col = max(max_col, col)
 
             if node.left:
                 queue.append((node.left, row + 1, col - 1))
