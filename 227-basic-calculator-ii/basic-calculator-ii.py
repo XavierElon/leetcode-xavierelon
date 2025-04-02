@@ -1,8 +1,8 @@
 class Solution:
     def calculate(self, s: str) -> int:
         i = 0
-        n = len(s)
         cur = prev = res = 0
+        n = len(s)
         operation = '+'
 
         while i < n:
@@ -10,9 +10,8 @@ class Solution:
                 while i < n and s[i].isdigit():
                     cur = cur * 10 + int(s[i])
                     i += 1
-                
                 i -= 1
-
+                
                 if operation == '+':
                     res += cur
                     prev = cur
@@ -27,10 +26,9 @@ class Solution:
                     res -= prev
                     res += int(prev/cur)
                     prev = int(prev/cur)
-
             elif s[i] != ' ':
                 operation = s[i]
-
+            
             i += 1
             cur = 0
 
