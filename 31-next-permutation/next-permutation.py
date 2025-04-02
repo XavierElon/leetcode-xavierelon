@@ -3,26 +3,23 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        def swap(i, j):
-            nums[i], nums[j] = nums[j], nums[i]
+        pivot = None
 
-        def reverse(start):
-            end = len(nums) - 1
-            while start < end:
-                swap(start, end)
-                start += 1
-                end -= 1
+        for i in range(len(nums) - 1, 0, -1):
+            if nums[i] > nums[i - 1]:
+                pivot = i - 1
 
-        def getNextLargest(idx):
-            for i in range(len(nums) - 1, idx, -1):
-                if nums[i] > nums[idx]:
-                    return i
+                break
+        else:
+            nums.reverse()
 
-        for i in range(len(nums) - 2, -1, -1):
-            if nums[i] < nums[i + 1]:
-                next_largest = getNextLargest(i)
-                swap(i, next_largest)
-                reverse(i + 1)
-                return
+            return
 
-        reverse(0)
+        swap = len(nums) - 1 
+        
+        while nums[swap] <= nums[pivot]:
+            swap -= 1
+        
+        nums[pivot], nums[swap] = nums[swap], nums[pivot]
+
+        nums[pivot+1:] = reversed(nums[pivot + 1:])
