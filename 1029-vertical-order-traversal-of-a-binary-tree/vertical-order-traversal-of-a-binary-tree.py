@@ -15,10 +15,9 @@ class Solution:
 
         while queue:
             node, row, col = queue.popleft()
-
-            column_map[col].append((row, node.val))
             min_col = min(min_col, col)
             max_col = max(max_col, col)
+            column_map[col].append((row, node.val))
 
             if node.left:
                 queue.append((node.left, row + 1, col - 1))
@@ -30,5 +29,5 @@ class Solution:
         for i in range(min_col, max_col + 1):
             column = [val for _, val in sorted(column_map[i], key=lambda x: (x[0], x[1]))]
             res.append(column)
-
+        
         return res
