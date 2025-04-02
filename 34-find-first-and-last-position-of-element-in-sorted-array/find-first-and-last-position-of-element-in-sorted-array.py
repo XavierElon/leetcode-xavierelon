@@ -1,26 +1,40 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        lower = self.lower(nums, target, True)
-        upper = self.lower(nums, target, False)
+        lower = self.lower(nums, target)
+        upper = self.upper(nums, target)
 
         return [lower, upper]
 
-    def lower(self, nums, target, is_lower):
-        left, right = 0, len(nums) - 1
+    def upper(self, nums, target):
+        l, r = 0, len(nums) - 1
         res = -1
 
-        while left <= right:
-            mid = (left + right) // 2
+        while l <= r:
+            mid = (l + r) // 2
 
             if nums[mid] == target:
                 res = mid
-                if is_lower:
-                    right = mid - 1
-                else:
-                    left = mid + 1
+                l = mid + 1
             elif nums[mid] < target:
-                left = mid + 1
+                l = mid + 1
             else:
-                right = mid - 1
+                r = mid - 1
+
+        return res
+
+    def lower(self, nums, target):
+        l, r = 0, len(nums) - 1
+        res = -1
+
+        while l <= r:
+            mid = (l + r) // 2
+
+            if nums[mid] == target:
+                res = mid
+                r = mid -1
+            elif nums[mid] > target:
+                r = mid - 1
+            else:
+                l = mid + 1
 
         return res
