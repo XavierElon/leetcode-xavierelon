@@ -14,16 +14,15 @@ class Solution:
         min_col = max_col = 0
 
         while queue:
-            node, row, column = queue.popleft()
-            min_col = min(min_col, column)
-            max_col = max(max_col, column)
-
-            column_map[column].append((row, node.val))
+            node, row, col = queue.popleft()
+            column_map[col].append((row, node.val))
+            min_col = min(min_col, col)
+            max_col = max(max_col, col)
 
             if node.left:
-                queue.append((node.left, row + 1, column - 1))
+                queue.append((node.left, row + 1, col - 1))
             if node.right:
-                queue.append((node.right, row + 1, column + 1))
+                queue.append((node.right, row + 1, col + 1))
 
         res = []
 
