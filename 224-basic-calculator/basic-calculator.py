@@ -9,7 +9,7 @@ class Solution:
             c = s[i]
 
             if c.isdigit():
-                num = num * 10 + int(c)
+                num = num * 10 + int(c) 
             elif c == '+':
                 res += sign * num
                 num = 0
@@ -32,5 +32,3 @@ class Solution:
 
         res += sign * num
         return res
-
-            
