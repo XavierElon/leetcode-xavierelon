@@ -57,3 +57,5 @@ class Solution:
                     queue.append((element.getList(), depth + 1))
 
         return weighted_sum
+
+            
