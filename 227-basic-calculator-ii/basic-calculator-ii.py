@@ -11,7 +11,7 @@ class Solution:
                     cur = cur * 10 + int(s[i])
                     i += 1
                 i -= 1
-                
+
                 if operation == '+':
                     res += cur
                     prev = cur
@@ -20,16 +20,19 @@ class Solution:
                     prev = -cur
                 elif operation == '*':
                     res -= prev
-                    res += prev * cur
+                    res += cur * prev
                     prev = prev * cur
-                else:
+                elif operation == '/':
                     res -= prev
                     res += int(prev/cur)
                     prev = int(prev/cur)
+
             elif s[i] != ' ':
                 operation = s[i]
-            
-            i += 1
-            cur = 0
 
+            cur = 0
+            i += 1
+            
         return res
+
+        
