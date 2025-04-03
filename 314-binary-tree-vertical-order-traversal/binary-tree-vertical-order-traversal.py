@@ -15,13 +15,12 @@ class Solution:
 
         while queue:
             node, column = queue.popleft()
-
             column_map[column].append(node.val)
 
             if node.left:
                 queue.append((node.left, column - 1))
-            
             if node.right:
                 queue.append((node.right, column + 1))
 
-        return [column_map[k] for k in sorted(column_map)]
+        return [column_map[i] for i in sorted(column_map)]
+            
