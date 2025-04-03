@@ -9,8 +9,8 @@ class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         if not root:
             return []
-        
-        parent_map = defaultdict(None)
+
+        parent_map = {}
 
         def build_parent_map(node, parent=None):
             if not node:
