@@ -1,7 +1,9 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        if x == 0: return 0
-        if n == 0: return 1
+        if x == 0:
+            return 0
+        if n == 0:
+            return 1
 
         abs_n = abs(n)
         result = 1.0
@@ -12,5 +14,5 @@ class Solution:
                 result *= base
             base *= base
             abs_n //= 2
-
+        
         return result if n >= 0 else 1 / result
