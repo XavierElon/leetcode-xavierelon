@@ -11,7 +11,7 @@ class Solution:
                     stack.pop()
                 else:
                     s[i] = ''
-
+        
         for i in stack:
             s[i] = ''
 
