@@ -8,16 +8,15 @@ class Solution:
             if nums[i] > nums[i-1]:
                 pivot = i - 1
                 break
-        else:
+        if pivot == None:
             nums.reverse()
             return
-
+        
         swap = len(nums) - 1
         while nums[swap] <= nums[pivot]:
             swap -= 1
         
-        nums[pivot], nums[swap] = nums[swap], nums[pivot]
+        nums[swap], nums[pivot] = nums[pivot], nums[swap]
 
         nums[pivot+1:] = reversed(nums[pivot+1:])
-            
-
+        return nums
