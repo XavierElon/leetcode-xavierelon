@@ -10,7 +10,6 @@ class Solution:
 
             if remainder in prefix_hash and i - prefix_hash[remainder] >= 2:
                 return True
-            
             if remainder not in prefix_hash:
                 prefix_hash[remainder] = i
 
