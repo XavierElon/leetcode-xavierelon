@@ -7,7 +7,7 @@ class Solution:
             if abbr[p2].isdigit():
                 if abbr[p2] == '0':
                     return False
-                
+
                 shift = 0
 
                 while p2 < n and abbr[p2].isdigit():
@@ -18,9 +18,9 @@ class Solution:
 
             elif abbr[p2] != word[p1]:
                 return False
+
             else:
                 p1 += 1
                 p2 += 1
-        
+
         return p1 == m and p2 == n
-                
