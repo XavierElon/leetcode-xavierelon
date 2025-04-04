@@ -16,15 +16,14 @@ class Solution:
         while curr:
             old_to_new[curr] = Node(curr.val)
             curr = curr.next
-
+        
         curr = head
 
         while curr:
-            new_node = old_to_new[curr]
             if curr.next:
-                new_node.next = old_to_new[curr.next]
+                old_to_new[curr].next = old_to_new[curr.next]
             if curr.random:
-                new_node.random = old_to_new[curr.random]
+                old_to_new[curr].random = old_to_new[curr.random]
             curr = curr.next
 
         return old_to_new.get(head)
