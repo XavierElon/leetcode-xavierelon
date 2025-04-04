@@ -16,7 +16,7 @@ class Solution:
         while curr:
             old_to_new[curr] = Node(curr.val)
             curr = curr.next
-        
+
         curr = head
 
         while curr:
