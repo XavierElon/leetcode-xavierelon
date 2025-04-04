@@ -7,14 +7,14 @@ class Solution:
         for prereq, course in prerequisites:
             indegree[course] += 1
             adj_list[prereq].append(course)
-        
+
         queue = deque()
 
         for i in range(numCourses):
             if indegree[i] == 0:
                 queue.append(i)
                 count += 1
-        
+
         while queue:
             current = queue.popleft()
 
@@ -23,5 +23,5 @@ class Solution:
                 if indegree[course] == 0:
                     queue.append(course)
                     count += 1
-        
+
         return count == numCourses
