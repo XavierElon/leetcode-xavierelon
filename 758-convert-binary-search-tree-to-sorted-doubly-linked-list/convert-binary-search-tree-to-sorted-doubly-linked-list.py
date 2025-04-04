@@ -18,7 +18,7 @@ class Solution:
         def inorder(node):
             if not node:
                 return
-
+            
             inorder(node.left)
 
             if self.last:
@@ -26,7 +26,7 @@ class Solution:
                 node.left = self.last
             else:
                 self.first = node
-            
+
             self.last = node
 
             inorder(node.right)
