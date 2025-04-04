@@ -13,4 +13,4 @@ class Solution:
             base *= base
             abs_n //= 2
 
-        return result if n >= 0 else 1 / result 
+        return result if n >= 0 else 1 / result
