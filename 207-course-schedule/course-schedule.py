@@ -17,7 +17,7 @@ class Solution:
 
         while queue:
             current = queue.popleft()
-             
+
             for course in adj_list[current]:
                 indegree[course] -= 1
                 if indegree[course] == 0:
