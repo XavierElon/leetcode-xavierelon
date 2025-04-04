@@ -11,9 +11,8 @@ class Solution:
                 while p2 < n and abbr[p2].isdigit():
                     shift = shift * 10 + int(abbr[p2])
                     p2 += 1
-
                 p1 += shift
-            
+
             elif abbr[p2] != word[p1]:
                 return False
             else:
