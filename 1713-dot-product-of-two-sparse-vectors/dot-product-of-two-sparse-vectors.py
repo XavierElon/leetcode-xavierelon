@@ -1,6 +1,6 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
-        self.pairs = [(i, val) for i, val in enumerate(nums)]
+        self.pairs = [(i, val) for i, val in enumerate(nums) if val != 0]
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
@@ -16,14 +16,12 @@ class SparseVector:
                 result += val1 * val2
                 i += 1
                 j += 1
-
             elif idx1 < idx2:
                 i += 1
             else:
                 j += 1
-
+                
         return result
-        
 
 # Your SparseVector object will be instantiated and called as such:
 # v1 = SparseVector(nums1)
