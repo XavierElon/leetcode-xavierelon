@@ -9,5 +9,4 @@ class Solution:
                 heapq.heappush(heap, (-distance, i))
             else:
                 heapq.heappushpop(heap, (-distance, i))
-        
-        return [points[i] for (_, i) in heap]
+        return [points[i] for _, i in heap]
