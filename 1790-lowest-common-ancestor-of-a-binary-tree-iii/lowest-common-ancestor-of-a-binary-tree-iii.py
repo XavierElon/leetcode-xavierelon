@@ -16,9 +16,7 @@ class Solution:
             p_ptr = p_ptr.parent
             if not p_ptr:
                 p_ptr = q
-
             q_ptr = q_ptr.parent
             if not q_ptr:
                 q_ptr = p
-
         return p_ptr
