@@ -12,5 +12,5 @@ class Solution:
                 return True
             if mod not in prefix_mod:
                 prefix_mod[mod] = i
-
+        
         return False
