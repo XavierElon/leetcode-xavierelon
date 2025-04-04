@@ -1,7 +1,6 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        i = 0
-        cur = prev = res = 0
+        i = cur = prev = res = 0
         n = len(s)
         operation = '+'
 
@@ -20,7 +19,7 @@ class Solution:
                     prev = -cur
                 elif operation == '*':
                     res -= prev
-                    res += cur * prev
+                    res += prev * cur
                     prev = prev * cur
                 elif operation == '/':
                     res -= prev
@@ -32,7 +31,5 @@ class Solution:
 
             cur = 0
             i += 1
-            
-        return res
 
-        
+        return res
