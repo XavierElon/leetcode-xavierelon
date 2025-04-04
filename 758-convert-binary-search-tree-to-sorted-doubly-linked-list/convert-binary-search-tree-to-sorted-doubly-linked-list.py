@@ -10,7 +10,7 @@ class Node:
 class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if not root:
-            return root
+            return None
 
         self.first = None
         self.last = None
@@ -18,7 +18,7 @@ class Solution:
         def inorder(node):
             if not node:
                 return
-            
+
             inorder(node.left)
 
             if self.last:
