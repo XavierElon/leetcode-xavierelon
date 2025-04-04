@@ -10,32 +10,30 @@ class Node:
 class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if not root:
-            return None
+            return root
 
-        def dfs(current):
-            if not current:
-                return None, None
+        self.first = None
+        self.last = None
 
-            left_head, left_tail = dfs(current.left)
+        def inorder(node):
+            if not node:
+                return
 
-            if left_tail:
-                left_tail.right = current
-                current.left = left_tail
+            inorder(node.left)
 
-            right_head, right_tail = dfs(current.right)
+            if self.last:
+                self.last.right = node
+                node.left = self.last
+            else:
+                self.first = node
+            
+            self.last = node
 
-            if right_head:
-                current.right = right_head
-                right_head.left = current
+            inorder(node.right)
 
-            head = left_head if left_head else current
-            tail = right_tail if right_tail else current
+        inorder(root)
 
-            return head, tail
+        self.first.left = self.last
+        self.last.right = self.first
 
-        head, tail = dfs(root)
-
-        head.left = tail
-        tail.right = head
-
-        return head
+        return self.first
