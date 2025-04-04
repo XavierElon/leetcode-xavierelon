@@ -13,7 +13,7 @@ class Solution:
         for i, head in enumerate(lists):
             if head:
                 heapq.heappush(heap, (head.val, i, head))
-        
+
         dummy = ListNode()
         curr = dummy
 
@@ -25,5 +25,6 @@ class Solution:
 
             if node.next:
                 heapq.heappush(heap, (node.next.val, list_idx, node.next))
-
+            
+        
         return dummy.next
