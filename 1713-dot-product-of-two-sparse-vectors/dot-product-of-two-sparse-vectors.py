@@ -1,38 +1,28 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
-        self.pairs = [(i, val) for i, val in enumerate(nums) if val != 0]
-        self.pairs.sort(key=lambda x: x[0])
+        self.pairs = [(i, val) for i, val in enumerate(nums)]
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
-        if len(self.pairs) > len(vec.pairs):
-            return vec.dotProduct(self)
-        
         result = 0
 
-        for idx, val in self.pairs:
-            match_val = self.bs(vec.pairs, idx)
-            if match_val is not None:
-                result += val * match_val
+        i = j = 0
 
+        while i < len(self.pairs) and j < len(vec.pairs):
+            idx1, val1 = self.pairs[i]
+            idx2, val2 = vec.pairs[j]
+
+            if idx1 == idx2:
+                result += val1 * val2
+                i += 1
+                j += 1
+
+            elif idx1 < idx2:
+                i += 1
+            else:
+                j += 1
 
         return result
-
-    def bs(self, pairs, target_idx):
-        l, r = 0, len(pairs) - 1
-
-        while l <= r:
-            mid = (l + r) // 2
-            idx, val = pairs[mid]
-
-            if idx == target_idx:
-                return val
-            elif idx < target_idx:
-                l = mid + 1
-            else:
-                r = mid - 1
-
-        return None
         
 
 # Your SparseVector object will be instantiated and called as such:
