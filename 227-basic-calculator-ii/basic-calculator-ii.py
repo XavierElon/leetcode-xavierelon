@@ -9,8 +9,7 @@ class Solution:
                 while i < n and s[i].isdigit():
                     cur = cur * 10 + int(s[i])
                     i += 1
-                i -= 1
-
+                
                 if operation == '+':
                     res += cur
                     prev = cur
@@ -26,10 +25,11 @@ class Solution:
                     res += int(prev/cur)
                     prev = int(prev/cur)
 
+                i -= 1
             elif s[i] != ' ':
                 operation = s[i]
-
-            cur = 0
             i += 1
+            cur = 0
 
         return res
+        
