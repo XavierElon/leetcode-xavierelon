@@ -14,7 +14,7 @@ class Solution:
             if indegree[i] == 0:
                 count += 1
                 queue.append(i)
-        
+
         while queue:
             current = queue.popleft()
 
