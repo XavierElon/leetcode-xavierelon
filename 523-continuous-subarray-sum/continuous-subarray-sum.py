@@ -1,8 +1,8 @@
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         prefix_hash = defaultdict(int)
-        current_sum = 0
         prefix_hash[0] = -1
+        current_sum = 0
 
         for i, num in enumerate(nums):
             current_sum += num
