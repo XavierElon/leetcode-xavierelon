@@ -15,4 +15,3 @@ class Solution:
                 nums1[i] = nums2[b]
                 b -= 1
             i -= 1
-            
