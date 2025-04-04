@@ -18,5 +18,5 @@ class Solution:
 
         if left_found and right_found:
             return root
-        
+
         return left_found if left_found else right_found
