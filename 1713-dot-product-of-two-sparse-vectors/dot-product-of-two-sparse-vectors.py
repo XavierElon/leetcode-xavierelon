@@ -6,11 +6,11 @@ class SparseVector:
     def dotProduct(self, vec: 'SparseVector') -> int:
         i = j = 0
         res = 0
+        m, n = len(vec.pairs), len(self.pairs)
 
-        while i < len(self.pairs) and j < len(vec.pairs):
-            idx1, val1 = self.pairs[i]
-            idx2, val2 = vec.pairs[j]
-            
+        while i < m and j < n:
+            idx1, val1 = vec.pairs[i]
+            idx2, val2 = self.pairs[j]
 
             if idx1 == idx2:
                 res += val1 * val2
@@ -22,7 +22,6 @@ class SparseVector:
                 j += 1
 
         return res
-
         
 
 # Your SparseVector object will be instantiated and called as such:
