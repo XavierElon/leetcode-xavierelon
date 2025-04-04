@@ -19,4 +19,5 @@ class Solution:
             q_ptr = q_ptr.parent
             if not q_ptr:
                 q_ptr = p
+
         return p_ptr
