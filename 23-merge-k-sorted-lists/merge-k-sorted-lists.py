@@ -10,10 +10,10 @@ class Solution:
 
         heap = []
 
-        for i, head in enumerate(lists):
+        for list_idx, head in enumerate(lists):
             if head:
-                heapq.heappush(heap, (head.val, i, head))
-
+                heapq.heappush(heap, (head.val, list_idx, head))
+        
         dummy = ListNode()
         curr = dummy
 
@@ -25,6 +25,5 @@ class Solution:
 
             if node.next:
                 heapq.heappush(heap, (node.next.val, list_idx, node.next))
-            
-        
+
         return dummy.next
