@@ -3,14 +3,16 @@ class Solution:
         if len(s) != len(t):
             return False
 
-        table = [0] * 26
+        char_count = {}
 
         for char in s:
-            table[ord(char) - ord('a')] += 1
+            char_count[char] = char_count.get(char, 0) + 1
 
         for char in t:
-            table[ord(char) - ord('a')] -= 1
-            if table[ord(char) - ord('a')] < 0:
+            if char not in char_count:
                 return False
-                
-        return True
+            char_count[char] -= 1
+            if char_count[char] == 0:
+                del char_count[char]
+
+        return len(char_count) == 0
