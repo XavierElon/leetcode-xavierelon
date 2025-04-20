@@ -2,12 +2,10 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
-
-        counts = [0] * 26
-        base = ord('a')
-
+        
+        diff = defaultdict(int)
         for cs, ct in zip(s, t):
-            counts[ord(cs) - base] += 1
-            counts[ord(ct) - base] -= 1
+            diff[cs] += 1
+            diff[ct] -= 1
 
-        return all(c == 0 for c in counts)
+        return all(v == 0 for v in diff.values())
