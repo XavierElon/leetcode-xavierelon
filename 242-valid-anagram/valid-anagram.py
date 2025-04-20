@@ -3,7 +3,11 @@ class Solution:
         if len(s) != len(t):
             return False
 
-        freq_s_counter = Counter(s)
-        freq_t_counter = Counter(t)
+        counts = [0] * 26
+        base = ord('a')
 
-        return freq_s_counter == freq_t_counter
+        for cs, ct in zip(s, t):
+            counts[ord(cs) - base] += 1
+            counts[ord(ct) - base] -= 1
+
+        return all(c == 0 for c in counts)
