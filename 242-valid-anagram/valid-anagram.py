@@ -7,5 +7,5 @@ class Solution:
         for cs, ct in zip(s, t):
             diff[cs] += 1
             diff[ct] -= 1
-
+        
         return all(v == 0 for v in diff.values())
