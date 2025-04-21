@@ -3,8 +3,8 @@ class Solution:
         n = len(nums)
 
         res = [1] * n
-        left_prod = 1
 
+        left_prod = 1
         for i in range(n):
             res[i] = left_prod
             left_prod *= nums[i]
