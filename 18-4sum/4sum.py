@@ -1,45 +1,37 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        results = []
-        n = len(nums)
         nums.sort()
+        return self.kSum(nums, target, 4, 0)
 
-        for i in range(n - 3):
-            if i > 0 and nums[i] == nums[i-1]: continue
+    def kSum(self, nums: List[int], target: int, k: int, start: int) -> List[List[int]]:
+        res = []
+        # Early termination: if the smallest or largest k numbers can't sum to target
+        if start == len(nums):
+            return res
+        avg = target / k
+        if nums[start] > avg or nums[-1] < avg:
+            return res
 
-            if nums[i] + nums[i+1] + nums[i+2] + nums[i+3] > target:
-                break
-            
-            if nums[i] + nums[n-3] + nums[n-2] + nums[n-1] < target:
-                continue
+        if k == 2:
+            return self.twoSum(nums, target, start)
 
-            for j in range(i+1, n-2):
-                if j > i + 1 and nums[j] == nums[j-1]:
-                    continue
-                if nums[i] + nums[j] + nums[j+1] + nums[j+2] > target:
-                    break
-                if nums[i] + nums[j] + nums[n-2] + nums[n-1] < target:
-                    continue
+        for i in range(start, len(nums)):
+            if i == start or nums[i] != nums[i-1]:
+                for subset in self.kSum(nums, target - nums[i], k - 1, i + 1):
+                    res.append([nums[i]] + subset)
+        return res
 
-                left, right = j+1, n-1
-
-                while left < right:
-                    current_sum = nums[i] + nums[j] + nums[left] + nums[right]
-
-                    if current_sum == target:
-                        results.append([nums[i], nums[j], nums[left], nums[right]])
-
-                        while left < right and nums[left] == nums[left + 1]:
-                            left += 1
-
-                        while left < right and nums[right] == nums[right-1]:
-                            right -= 1
-
-                        left += 1
-                        right -= 1
-                    
-                    elif current_sum < target:
-                        left += 1
-                    else:
-                        right -= 1
-        return results
+    def twoSum(self, nums: List[int], target: int, start: int) -> List[List[int]]:
+        res = []
+        lo, hi = start, len(nums) - 1
+        while lo < hi:
+            s = nums[lo] + nums[hi]
+            if s < target or (lo > start and nums[lo] == nums[lo-1]):
+                lo += 1
+            elif s > target or (hi < len(nums)-1 and nums[hi] == nums[hi+1]):
+                hi -= 1
+            else:
+                res.append([nums[lo], nums[hi]])
+                lo += 1
+                hi -= 1
+        return res
