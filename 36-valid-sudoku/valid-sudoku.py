@@ -20,3 +20,4 @@ class Solution:
                 seen.add(box_key)
 
         return True
+        
