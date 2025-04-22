@@ -14,8 +14,8 @@ class Solution:
                 stack.append(a * b)
             elif t == '/':
                 b, a = stack.pop(), stack.pop()
-                stack.append(int(a/b))
+                stack.append(int(a / b))
             else:
                 stack.append(int(t))
-        
-        return stack[0]
+
+        return stack[-1]
