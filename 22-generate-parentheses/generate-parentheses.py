@@ -3,7 +3,6 @@ class Solution:
         def backtrack(open_rem, close_rem, cur):
             if open_rem == 0 and close_rem == 0:
                 res.append("".join(cur))
-                return
             
             if open_rem > 0:
                 cur.append('(')
