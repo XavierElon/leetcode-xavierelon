@@ -9,7 +9,7 @@ class Solution:
                 left = char_index_map[char] + 1
             
             max_len = max(max_len, right - left + 1)
-            
+
             char_index_map[char] = right
 
         return max_len
