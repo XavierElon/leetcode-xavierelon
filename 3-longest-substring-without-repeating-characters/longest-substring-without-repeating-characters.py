@@ -11,5 +11,5 @@ class Solution:
             max_len = max(max_len, right - left + 1)
 
             char_index_map[char] = right
-
+        
         return max_len
