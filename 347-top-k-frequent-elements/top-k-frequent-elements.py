@@ -5,6 +5,7 @@ class Solution:
 
         for key, value in freq.items():
             heapq.heappush(heap, (value, key))
+
             if len(heap) > k:
                 heapq.heappop(heap)
 
