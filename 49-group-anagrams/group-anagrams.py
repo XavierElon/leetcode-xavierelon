@@ -5,6 +5,7 @@ class Solution:
 
         for s in strs:
             counts = [0] * 26
+
             for ch in s:
                 counts[ord(ch) - base] += 1
             
