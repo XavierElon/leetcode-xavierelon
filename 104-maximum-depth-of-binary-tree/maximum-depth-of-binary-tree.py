@@ -10,9 +10,20 @@ class Solution:
 
         max_depth = 0
 
-        left = self.maxDepth(root.left)
-        right = self.maxDepth(root.right)
+        queue = deque([root])
 
-        return 1 + max(left, right)
+        while queue:
+            level_size = len(queue)
+
+            for _ in range(level_size):
+                node = queue.popleft()
+
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            max_depth += 1
+
+        return max_depth
 
         
