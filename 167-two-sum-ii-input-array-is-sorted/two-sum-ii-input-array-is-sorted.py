@@ -3,10 +3,10 @@ class Solution:
         l, r = 0, len(numbers) - 1
 
         while l < r:
-            _sum = numbers[l] + numbers[r]
-            if _sum == target:
+            total = numbers[l] + numbers[r]
+            if total == target:
                 return [l + 1, r + 1]
-            elif _sum < target:
+            elif total < target:
                 l += 1
             else:
                 r -= 1
