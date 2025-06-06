@@ -16,7 +16,6 @@ class Solution:
             else:
                 current.next = list2
                 list2 = list2.next
-            
             current = current.next
 
         current.next = list1 if list1 else list2
