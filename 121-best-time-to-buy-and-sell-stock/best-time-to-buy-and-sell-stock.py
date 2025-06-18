@@ -4,7 +4,11 @@ class Solution:
         min_buying_price = prices[0]
 
         for price in prices:
-            min_buying_price = min(min_buying_price, price)
-            max_profit = max(max_profit, price - min_buying_price)
+            curr_profit = price - min_buying_price
+            max_profit = max(max_profit, curr_profit)
+            
+            if price < min_buying_price:
+                min_buying_price = price
 
-        return max_profit 
+        return max_profit
+
