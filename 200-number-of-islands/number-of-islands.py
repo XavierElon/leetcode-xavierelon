@@ -11,15 +11,17 @@ class Solution:
                     count += 1
 
         return count
+        
 
     def dfs(self, r, c, matrix):
         matrix[r][c] = '0'
-        dirs = [(-1, 0), (1,0), (0,-1), (0,1)]
+        dirs = [(-1,0),(1,0),(0,-1),(0,1)]
 
-        for d in dirs:
-            next_r, next_c = r + d[0], c + d[1]
-            if (self.is_within_bounds(next_r, next_c, matrix) and matrix[next_r][next_c] == '1'):
-                self.dfs(next_r, next_c, matrix)
+        for dr, dc in dirs:
+            new_r, new_c = r + dr, c + dc
+            
+            if (self.is_within_bounds(new_r, new_c, matrix) and matrix[new_r][new_c] == '1'):
+                self.dfs(new_r, new_c, matrix)
 
     def is_within_bounds(self, r, c, matrix):
         return 0 <= r < len(matrix) and 0 <= c < len(matrix[0])
