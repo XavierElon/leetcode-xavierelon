@@ -3,7 +3,8 @@ class Solution:
         hashmap = {}
 
         for i, num in enumerate(nums):
-            difference = target - num
-            if difference in hashmap:
-                return [i, hashmap[difference]]
+            complement = target - nums[i]
+            if complement in hashmap:
+                return [hashmap[complement], i]
+            
             hashmap[num] = i
