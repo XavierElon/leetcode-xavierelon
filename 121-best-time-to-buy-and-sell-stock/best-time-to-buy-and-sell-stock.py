@@ -5,10 +5,7 @@ class Solution:
 
         for price in prices:
             curr_profit = price - min_buying_price
+            min_buying_price = min(min_buying_price, price)
             max_profit = max(max_profit, curr_profit)
-            
-            if price < min_buying_price:
-                min_buying_price = price
 
         return max_profit
-
