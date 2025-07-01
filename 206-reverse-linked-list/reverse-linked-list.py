@@ -9,13 +9,13 @@ class Solution:
             return head
 
         curr = head
+        next_ = None
         prev = None
-        _next = None
 
         while curr:
-            _next = curr.next
+            next_ = curr.next
             curr.next = prev
             prev = curr
-            curr = _next
+            curr = next_
 
         return prev
