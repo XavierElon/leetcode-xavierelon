@@ -2,10 +2,10 @@ class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
         if image[sr][sc] == color:
             return image
-
-        rows, cols = len(image), len(image[0])
+        
         original_color = image[sr][sc]
-        directions = [(-1,0), (1,0),(0,-1),(0,1)]
+        rows, cols = len(image), len(image[0])
+        directions = [(-1,0),(1,0),(0,-1),(0,1)]
         queue = deque([(sr, sc)])
 
         while queue:
@@ -19,6 +19,5 @@ class Solution:
 
         return image
 
-    
     def is_within_bounds(self, r, c, rows, cols):
         return 0 <= r < rows and 0 <= c < cols
