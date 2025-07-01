@@ -8,6 +8,7 @@ class KthLargest:
         while len(self.heap) > k:
             heapq.heappop(self.heap)
 
+
     def add(self, val: int) -> int:
         heapq.heappush(self.heap, val)
 
