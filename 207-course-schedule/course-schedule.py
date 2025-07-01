@@ -7,7 +7,7 @@ class Solution:
         for course, prereq in prerequisites:
             indegree[course] += 1
             adj_list[prereq].append(course)
-
+        
         queue = deque()
 
         for i in range(numCourses):
