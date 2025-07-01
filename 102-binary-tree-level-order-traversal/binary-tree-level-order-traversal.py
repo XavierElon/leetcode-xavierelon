@@ -10,6 +10,7 @@ class Solution:
             return []
 
         res = []
+
         queue = deque([root])
 
         while queue:
