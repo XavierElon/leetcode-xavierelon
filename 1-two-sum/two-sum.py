@@ -5,6 +5,8 @@ class Solution:
         for i, num in enumerate(nums):
             complement = target - num
             if complement in hashmap:
-                return [hashmap[complement], i]
+                return [i, hashmap[complement]]
             
             hashmap[num] = i
+
+        
