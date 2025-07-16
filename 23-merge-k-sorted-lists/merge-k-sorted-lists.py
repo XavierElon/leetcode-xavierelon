@@ -10,10 +10,9 @@ class Solution:
 
         heap = []
 
-        for list_idx, head in enumerate(lists):
+        for i, head in enumerate(lists):
             if head:
-                heapq.heappush(heap, (head.val, list_idx, head))
-        
+                heapq.heappush(heap, (head.val, i, head))
         dummy = ListNode()
         curr = dummy
 
