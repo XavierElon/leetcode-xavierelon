@@ -2,13 +2,8 @@ class Solution:
     def missingNumber(self, arr: List[int]) -> int:
         n = len(arr)
 
+        expected_sum = n * (n + 1) // 2
 
-        for i in range(n):
-            while arr[i] >= 0 and arr[i] < n and arr[arr[i]] != arr[i]:
-                arr[arr[i]], arr[i] = arr[i], arr[arr[i]]
+        actual_sum = sum(arr)
 
-        for i in range(n):
-            if arr[i] != i:
-                return i
-
-        return n
+        return expected_sum - actual_sum
