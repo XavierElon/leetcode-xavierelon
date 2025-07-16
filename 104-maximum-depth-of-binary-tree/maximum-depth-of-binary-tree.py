@@ -16,7 +16,7 @@ class Solution:
         while queue:
             level_size = len(queue)
 
-            for _ in range(level_size):
+            for i in range(level_size):
                 node = queue.popleft()
 
                 if node.left:
@@ -25,5 +25,5 @@ class Solution:
                     queue.append(node.right)
             
             max_depth += 1
-    
+
         return max_depth
