@@ -23,7 +23,7 @@ class Solution:
                 old_to_new[curr].next = old_to_new[curr.next]
             if curr.random:
                 old_to_new[curr].random = old_to_new[curr.random]
-            
+
             curr = curr.next
-        
+
         return old_to_new.get(head)
