@@ -10,6 +10,5 @@ class Solution:
                     unmatched_open_count -= 1
                 else:
                     unmatched_close_count += 1
-
-
-        return unmatched_open_count + unmatched_close_count 
+                    
+        return unmatched_open_count + unmatched_close_count
