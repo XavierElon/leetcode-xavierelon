@@ -9,5 +9,5 @@ class Solution:
         while x > 0:
             reversed_num = reversed_num * 10 + x % 10
             x = x // 10
-        
+
         return original_num == reversed_num
