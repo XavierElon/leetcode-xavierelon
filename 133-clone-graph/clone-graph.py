@@ -12,11 +12,10 @@ class Solution:
         if not node:
             return node
 
-        queue = deque([node])
         visited = {}
+        queue = deque([node])
         clone = Node(node.val)
         visited[node] = clone
-        
 
         while queue:
             node = queue.popleft()
@@ -26,5 +25,5 @@ class Solution:
                     visited[neighbor] = Node(neighbor.val)
                     queue.append(neighbor)
                 visited[node].neighbors.append(visited[neighbor])
-
+        
         return clone
