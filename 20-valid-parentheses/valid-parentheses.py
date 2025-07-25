@@ -1,6 +1,6 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        mapping = { '{': '}', '(': ')', '[': ']'}
+        mapping = { '{': '}', '[': ']', '(': ')'}
         stack = []
 
         for ch in s:
@@ -8,7 +8,7 @@ class Solution:
                 stack.append(ch)
 
             else:
-                if not stack or ch != mapping[stack.pop()]:
+                if not stack or mapping[stack.pop()] != ch:
                     return False
 
         return not stack
