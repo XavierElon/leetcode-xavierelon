@@ -3,7 +3,7 @@ class Solution:
         s = list(s)
         n = len(s)
         count = 0
-
+        
         for i in range(n):
             if s[i] == '(':
                 count += 1
