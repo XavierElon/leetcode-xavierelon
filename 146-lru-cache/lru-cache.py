@@ -13,6 +13,7 @@ class LRUCache:
         self.tail = DoublyLinkedListNode()
         self.tail.prev = self.head
         self.head.next = self.tail
+        
 
     def get(self, key: int) -> int:
         if key in self.hashmap:
