@@ -3,7 +3,7 @@ class Solution:
         res = []
 
         def dfs(path, idx):
-            if idx == len(nums):
+            if (idx == len(nums)):
                 res.append(path)
             else:
                 dfs(path.copy(), idx + 1)
