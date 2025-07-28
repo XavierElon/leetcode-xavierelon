@@ -3,9 +3,9 @@ class Solution:
         heap = []
 
         for num in nums:
-            heapq.heappush(heap, num)
+            if len(heap) < k:
+                heapq.heappush(heap, num)
+            else:
+                heapq.heappushpop(heap, num)
 
-            if len(heap) > k:
-                heapq.heappop(heap)
-        
         return heap[0]
