@@ -19,10 +19,10 @@ class Solution:
             visited[node] = clone
 
             for neighbor in node.neighbors:
-                if neighbor in visited:
-                    visited[node].neighbors.append(visited[neighbor])
-                else:
+                if neighbor not in visited:
                     visited[node].neighbors.append(dfs(neighbor))
+                else:
+                    visited[node].neighbors.append(visited[neighbor])
 
             return clone
 
