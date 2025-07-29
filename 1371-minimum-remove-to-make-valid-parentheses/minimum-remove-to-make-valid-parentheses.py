@@ -23,5 +23,5 @@ class Solution:
                     count -= 1
                 else:
                     s[i] = ''
-        
+
         return ''.join(s)
