@@ -1,6 +1,6 @@
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
-        left = max_length = zero_count = 0
+        left = zero_count = max_length = 0
         n = len(nums)
 
         for right in range(n):
@@ -13,3 +13,4 @@ class Solution:
             max_length = max(max_length, right - left + 1)
 
         return max_length
+        
