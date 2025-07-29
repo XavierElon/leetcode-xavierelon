@@ -4,21 +4,20 @@ class Solution:
 
         while low < high:
             mid = (low + high) // 2
-
-            if self.canFinish(piles, h, mid):
+            if self.canFinish(piles, mid, h):
                 high = mid
             else:
                 low = mid + 1
-        
+
         return low
 
-    def canFinish(self, piles, h, mid):
+
+    def canFinish(self, piles, mid, h):
         hours = 0
 
         for pile in piles:
             hours += (pile + mid - 1) // mid
-
             if hours > h:
                 return False
-        
-        return True
+
+        return hours <= h
