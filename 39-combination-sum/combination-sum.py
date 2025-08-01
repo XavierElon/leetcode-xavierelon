@@ -1,6 +1,6 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        def backtrack(start: int, current: List[int], remaining: int) -> None:
+        def backtrack(start, current, remaining):
             if remaining == 0:
                 res.append(current.copy())
                 return
