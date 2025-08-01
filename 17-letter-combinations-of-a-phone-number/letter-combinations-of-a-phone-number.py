@@ -8,13 +8,13 @@ class Solution:
         }
 
         def backtrack(index, path):
-            if len(path) == len(digits):
+            if len(digits) == len(path):
                 res.append("".join(path))
                 return
 
             for letter in keypad_map[digits[index]]:
                 path.append(letter)
-                backtrack(index + 1, path)
+                backtrack(index+1, path)
                 path.pop()
 
         res = []
