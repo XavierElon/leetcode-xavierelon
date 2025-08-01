@@ -21,7 +21,7 @@ class Solution:
             else:
                 merged.append(right[j])
                 j += 1
-        
+            
         merged.extend(left[i:])
         merged.extend(right[j:])
 
