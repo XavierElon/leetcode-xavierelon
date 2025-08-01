@@ -4,7 +4,7 @@ class Solution:
             if len(current) == len(nums):
                 res.append(current.copy())
                 return
-
+            
             for num in counter:
                 if counter[num] > 0:
                     current.append(num)
