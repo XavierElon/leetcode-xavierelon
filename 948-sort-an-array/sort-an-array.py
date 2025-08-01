@@ -1,28 +1,22 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        if len(nums) <= 1:
-            return nums
+        if not nums:
+            return []
 
-        mid = len(nums) // 2
-        left_half = self.sortArray(nums[:mid])
-        right_half = self.sortArray(nums[mid:])
+        min_val = min(nums)
+        max_val = max(nums)
 
-        return self.merge(left_half, right_half)
+        # The size of the counts array is the range of the numbers
+        counts = [0] * (max_val - min_val + 1)
 
-    def merge(self, left, right):
-        merged = []
+        # Offset each number to fit into the counts array
+        for num in nums:
+            counts[num - min_val] += 1
 
-        i = j = 0
+        res = []
+        # Reconstruct the sorted array
+        for i, count in enumerate(counts):
+            # Add the offset back to get the original number
+            res.extend([i + min_val] * count)
 
-        while i < len(left) and j < len(right):
-            if left[i] <= right[j]:
-                merged.append(left[i])
-                i += 1
-            else:
-                merged.append(right[j])
-                j += 1
-            
-        merged.extend(left[i:])
-        merged.extend(right[j:])
-
-        return merged
+        return res
