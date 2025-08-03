@@ -1,18 +1,21 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        if not nums:
+    def rob(self, houses: List[int]) -> int:
+        if not houses:
             return 0
+        n = len(houses)
+        dp = [0] * n
 
-        memo = {}
+        if n == 1:
+            return houses[0]
+        
+        prev_house = houses[0]
+        curr_house = max(houses[0], houses[1])
 
-        def rob_house(index):
-            if index >= len(nums):
-                return 0
+        for i in range(2, n):
+            curr_max_profit = max(curr_house, houses[i] + prev_house)
+            prev_house = curr_house
+            curr_house = curr_max_profit
 
-            if index in memo:
-                return memo[index]
+        return curr_house
 
-            memo[index] = max(rob_house(index + 1), rob_house(index + 2) + nums[index])
-            return memo[index]
-
-        return rob_house(0)
+    
