@@ -8,7 +8,6 @@ class LFUCache:
 
     def _update_freq(self, key):
         value, freq = self.cache[key]
-
         self.freq_map[freq].pop(key)
 
         if not self.freq_map[freq] and freq == self.min_freq:
@@ -24,7 +23,6 @@ class LFUCache:
 
         self._update_freq(key)
         return self.cache[key][0]
-        
 
     def put(self, key: int, value: int) -> None:
         if self.capacity == 0:
@@ -41,7 +39,6 @@ class LFUCache:
             self.cache[key] = (value, 1)
             self.freq_map[1][key] = None
             self.min_freq = 1
-        
 
 
 # Your LFUCache object will be instantiated and called as such:
