@@ -5,19 +5,18 @@ class Solution:
 
         results = []
 
-        dq = deque()
+        queue = deque()
 
         for i in range(len(nums)):
-            if dq and dq[0] == i - k:
-                dq.popleft()
+            if queue and queue[0] == i - k:
+                queue.popleft()
 
-            while dq and nums[dq[-1]] <= nums[i]:
-                dq.pop()
-            
-            dq.append(i)
+            while queue and nums[queue[-1]] <= nums[i]:
+                queue.pop()
+
+            queue.append(i)
 
             if i >= k - 1:
-                results.append(nums[dq[0]])
+                results.append(nums[queue[0]])
 
         return results
-            
