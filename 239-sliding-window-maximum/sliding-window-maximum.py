@@ -5,7 +5,7 @@ class Solution:
 
         results = []
 
-        dq = collections.deque()
+        dq = deque()
 
         for i in range(len(nums)):
             if dq and dq[0] == i - k:
@@ -13,10 +13,11 @@ class Solution:
 
             while dq and nums[dq[-1]] <= nums[i]:
                 dq.pop()
-
+            
             dq.append(i)
 
             if i >= k - 1:
                 results.append(nums[dq[0]])
 
         return results
+            
