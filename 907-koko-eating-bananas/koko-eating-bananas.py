@@ -4,12 +4,14 @@ class Solution:
 
         while low < high:
             mid = (low + high) // 2
+
             if self.canFinish(piles, mid, h):
                 high = mid
             else:
                 low = mid + 1
 
         return low
+
 
     def canFinish(self, piles, mid, h):
         hours = 0
