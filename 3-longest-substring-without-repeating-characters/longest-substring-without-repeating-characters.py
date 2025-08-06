@@ -1,8 +1,8 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         max_len = 0
-        char_index_map = {}
         left = 0
+        char_index_map = {}
 
         for right, char in enumerate(s):
             if char in char_index_map and char_index_map[char] >= left:
