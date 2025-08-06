@@ -8,6 +8,7 @@ class Solution:
 
         left = 0
         formed = 0
+
         window_counts = defaultdict(int)
 
         min_len = float('inf')
@@ -39,4 +40,3 @@ class Solution:
         else:
             start, end = result_indices
             return s[start : end + 1]
-
