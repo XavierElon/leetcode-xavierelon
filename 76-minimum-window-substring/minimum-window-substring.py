@@ -6,11 +6,10 @@ class Solution:
         t_counts = Counter(t)
         required = len(t_counts)
 
-        left = 0
-        formed = 0
+        left = formed = 0
 
         window_counts = defaultdict(int)
-
+         
         min_len = float('inf')
         result_indices = (0, 0)
 
@@ -29,10 +28,10 @@ class Solution:
 
                 left_char = s[left]
                 window_counts[left_char] -= 1
-
+                
                 if left_char in t_counts and window_counts[left_char] < t_counts[left_char]:
                     formed -= 1
-                
+
                 left += 1
 
         if min_len == float('inf'):
