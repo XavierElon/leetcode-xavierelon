@@ -3,7 +3,7 @@ class Solution:
         if not nums or k == 0:
             return []
 
-        results = []
+        res = []
 
         queue = deque()
 
@@ -17,6 +17,6 @@ class Solution:
             queue.append(i)
 
             if i >= k - 1:
-                results.append(nums[queue[0]])
+                res.append(nums[queue[0]])
 
-        return results
+        return res
