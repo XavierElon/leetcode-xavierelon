@@ -3,17 +3,15 @@ class Solution:
         if not intervals:
             return []
 
-        n = len(intervals)
-
         intervals.sort(key=lambda x: x[0])
         merged = [intervals[0]]
 
-        for i in range(1, n):
-            prev_start, prev_end = merged[-1]
+        for i in range(1, len(intervals)):
             curr_start, curr_end = intervals[i]
+            prev_start, prev_end = merged[-1]
 
             if prev_end >= curr_start:
-                end = max(prev_end, curr_end)
+                end = max(prev_end, curr_end) 
                 merged[-1][1] = end
             else:
                 merged.append(intervals[i])
