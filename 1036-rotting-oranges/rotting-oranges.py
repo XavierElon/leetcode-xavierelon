@@ -19,9 +19,9 @@ class Solution:
                 r, c = queue.popleft()
 
                 for dr, dc in dirs:
-                    new_r, new_c = dr + r, c + dc
+                    new_r, new_c = r + dr, c + dc
 
-                    if self.is_within_bounds(new_r, new_c, grid) and grid[new_r][new_c] == 1:
+                    if (self.is_within_bounds(new_r, new_c, grid) and grid[new_r][new_c] == 1):
                         grid[new_r][new_c] = 2
                         ones -= 1
                         queue.append((new_r, new_c))
