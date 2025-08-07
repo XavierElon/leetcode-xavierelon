@@ -7,5 +7,5 @@ class Solution:
             for coin in coins:
                 if coin <= t:
                     dp[t] = min(dp[t], 1 + dp[t-coin])
-        
+
         return dp[amount] if dp[amount] != float('inf') else -1
