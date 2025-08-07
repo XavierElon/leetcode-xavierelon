@@ -4,6 +4,7 @@ class Solution:
             return []
 
         n = len(intervals)
+
         intervals.sort(key=lambda x: x[0])
         merged = [intervals[0]]
 
