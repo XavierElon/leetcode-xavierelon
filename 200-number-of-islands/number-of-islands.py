@@ -1,6 +1,6 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
+        if len(grid) == 0:
             return 0
 
         count = 0
@@ -12,7 +12,7 @@ class Solution:
                     count += 1
 
         return count
-
+        
     def dfs(self, r, c, grid):
         grid[r][c] = '0'
         dirs = [(-1,0),(1,0),(0,-1),(0,1)]
