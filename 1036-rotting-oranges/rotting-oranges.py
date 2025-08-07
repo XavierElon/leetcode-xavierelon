@@ -10,7 +10,7 @@ class Solution:
                 if grid[r][c] == 1:
                     ones += 1
                 elif grid[r][c] == 2:
-                    queue.append((r,c))
+                    queue.append((r, c))
 
         while queue and ones > 0:
             seconds += 1
@@ -19,7 +19,7 @@ class Solution:
                 r, c = queue.popleft()
 
                 for dr, dc in dirs:
-                    new_r, new_c = r + dr, c + dc
+                    new_r, new_c = dr + r, c + dc
 
                     if self.is_within_bounds(new_r, new_c, grid) and grid[new_r][new_c] == 1:
                         grid[new_r][new_c] = 2
@@ -27,7 +27,6 @@ class Solution:
                         queue.append((new_r, new_c))
 
         return seconds if ones == 0 else -1
-
     
     def is_within_bounds(self, r, c, grid):
         return 0 <= r and r < len(grid) and 0 <= c and c < len(grid[0])
