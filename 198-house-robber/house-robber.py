@@ -2,14 +2,14 @@ class Solution:
     def rob(self, houses: List[int]) -> int:
         if not houses:
             return 0
-        n = len(houses)
-        dp = [0] * n
 
+        n = len(houses)
         if n == 1:
             return houses[0]
-        
+
         prev_house = houses[0]
         curr_house = max(houses[0], houses[1])
+        curr_max_profit = 0
 
         for i in range(2, n):
             curr_max_profit = max(curr_house, houses[i] + prev_house)
@@ -17,5 +17,3 @@ class Solution:
             curr_house = curr_max_profit
 
         return curr_house
-
-    
