@@ -7,7 +7,7 @@ class Solution:
 
             for j in range(1, n):
                 new_row[j] = row[j] + new_row[j-1]
-            
+
             row = new_row
 
         return row[-1]
