@@ -8,7 +8,7 @@ class Solution:
         i = m + n - 1
 
         while b >= 0:
-            if a >= 0 and nums1[a] >= nums2[b]:
+            if a >= 0 and nums1[a] > nums2[b]:
                 nums1[i] = nums1[a]
                 a -= 1
             else:
