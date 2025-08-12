@@ -10,7 +10,6 @@ class Solution:
                 nums[i], nums[left] = nums[left], nums[i]
                 i += 1
                 left += 1
-
             elif nums[i] == 2:
                 nums[i], nums[right] = nums[right], nums[i]
                 right -= 1
