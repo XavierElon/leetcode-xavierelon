@@ -12,10 +12,9 @@ class Solution:
 
         return low
 
-
     def canFinish(self, piles, mid, h):
         hours = 0
-
+        
         for pile in piles:
             hours += (pile + mid - 1) // mid
 
