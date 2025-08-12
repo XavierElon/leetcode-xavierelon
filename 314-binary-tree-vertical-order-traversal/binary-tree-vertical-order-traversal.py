@@ -23,4 +23,3 @@ class Solution:
                 queue.append((node.right, column + 1))
 
         return [column_map[i] for i in sorted(column_map)]
-            
