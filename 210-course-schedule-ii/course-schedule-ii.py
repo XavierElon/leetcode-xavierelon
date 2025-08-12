@@ -22,5 +22,5 @@ class Solution:
                 indegree[next_course] -= 1
                 if indegree[next_course] == 0:
                     queue.append(next_course)
-        
+
         return order if len(order) == numCourses else []
