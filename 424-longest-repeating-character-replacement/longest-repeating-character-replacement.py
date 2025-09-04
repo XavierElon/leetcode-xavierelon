@@ -12,7 +12,7 @@ class Solution:
             if (right - left + 1) - k > max_freq:
                 count[s[left]] -= 1
                 left += 1
-
+            
             max_len = max(max_len, right - left + 1)
 
         return max_len
