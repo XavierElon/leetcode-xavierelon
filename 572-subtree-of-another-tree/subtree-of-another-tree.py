@@ -12,8 +12,7 @@ class Solution:
         if self.isSameTree(root, subRoot):
             return True
 
-        return (self.isSubtree(root.left, subRoot) or
-                self.isSubtree(root.right, subRoot))
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
     def isSameTree(self, r, s):
         if not r and not s:
@@ -22,4 +21,4 @@ class Solution:
         if not r or not s or r.val != s.val:
             return False
 
-        return (self.isSameTree(r.left, s.left) and self.isSameTree(r.right, s.right))
+        return self.isSameTree(r.left, s.left) and self.isSameTree(r.right, s.right)
