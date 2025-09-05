@@ -22,5 +22,4 @@ class Solution:
         if not r or not s or r.val != s.val:
             return False
 
-        return (self.isSameTree(r.left, s.left) and
-                self.isSameTree(r.right, s.right))
+        return (self.isSameTree(r.left, s.left) and self.isSameTree(r.right, s.right))
