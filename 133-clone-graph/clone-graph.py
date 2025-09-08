@@ -10,7 +10,7 @@ from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
-            return node
+            return None
 
         queue = deque([node])
         visited = {}
