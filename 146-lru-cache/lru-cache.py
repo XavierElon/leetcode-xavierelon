@@ -9,11 +9,10 @@ class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.hashmap = {}
-        self.tail = DoublyLinkedListNode()
         self.head = DoublyLinkedListNode()
+        self.tail = DoublyLinkedListNode()
         self.head.next = self.tail
         self.tail.prev = self.head
-        
 
     def get(self, key: int) -> int:
         if key in self.hashmap:
@@ -40,7 +39,7 @@ class LRUCache:
             self.hashmap[key] = new_node
             self.add(new_node)
             return new_node.value
-
+        
     def add(self, node):
         prev_node = self.tail.prev
         prev_node.next = node
@@ -53,8 +52,6 @@ class LRUCache:
         next_node = node.next
         prev_node.next = next_node
         next_node.prev = prev_node
-        
-
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
