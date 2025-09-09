@@ -38,7 +38,6 @@ class LRUCache:
             new_node = DoublyLinkedListNode(key, value)
             self.hashmap[key] = new_node
             self.add(new_node)
-            return new_node.value
         
     def add(self, node):
         prev_node = self.tail.prev
