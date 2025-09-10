@@ -16,4 +16,5 @@ class Solution:
             current_diameter = max(left_diam, right_diam, left_height + right_height)
 
             return current_height, current_diameter
+
         return dfs(root)[1]
