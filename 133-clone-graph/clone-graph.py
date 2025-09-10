@@ -12,18 +12,20 @@ class Solution:
         if not node:
             return None
 
-        queue = deque([node])
         visited = {}
-        clone = Node(node.val)
-        visited[node] = clone
 
-        while queue:
-            node = queue.popleft()
+        def dfs(node):
+            clone = Node(node.val)
+            visited[node] = clone
 
             for neighbor in node.neighbors:
                 if neighbor not in visited:
-                    visited[neighbor] = Node(neighbor.val)
-                    queue.append(neighbor)
-                visited[node].neighbors.append(visited[neighbor])
+                    visited[node].neighbors.append(dfs(neighbor))
+                else:
+                    visited[node].neighbors.append(visited[neighbor])
 
-        return clone
+            return clone
+
+        return dfs(node)
+
+        
