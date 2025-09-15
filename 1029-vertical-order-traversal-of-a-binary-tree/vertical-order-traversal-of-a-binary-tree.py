@@ -16,6 +16,7 @@ class Solution:
 
         while queue:
             node, row, col = queue.popleft()
+
             min_col = min(min_col, col)
             max_col = max(max_col, col)
 
@@ -25,7 +26,7 @@ class Solution:
                 queue.append((node.left, row + 1, col - 1))
             if node.right:
                 queue.append((node.right, row + 1, col + 1))
-
+        
         res = []
 
         for i in range(min_col, max_col + 1):
