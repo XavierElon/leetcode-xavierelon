@@ -9,4 +9,4 @@ class Solution:
             if len(heap) > k:
                 heapq.heappop(heap)
 
-        return [key for _, key in heap]
+        return [key for _,  key in heap]
