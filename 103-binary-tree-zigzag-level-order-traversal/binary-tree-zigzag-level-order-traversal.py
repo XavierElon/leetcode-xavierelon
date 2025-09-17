@@ -22,7 +22,7 @@ class Solution:
 
                 if zigzag:
                     level.append(node.val)
-                else: 
+                else:
                     level.appendleft(node.val)
 
                 if node.left:
@@ -32,5 +32,5 @@ class Solution:
 
             res.append(list(level))
             zigzag = not zigzag
-
+        
         return res
