@@ -11,7 +11,7 @@ class Solution:
 
         res = []
         queue = deque([root])
-        left_to_right = True
+        zigzag = True
 
         while queue:
             level_size = len(queue)
@@ -19,9 +19,10 @@ class Solution:
 
             for _ in range(level_size):
                 node = queue.popleft()
-                if left_to_right:
+
+                if zigzag:
                     level.append(node.val)
-                else:
+                else: 
                     level.appendleft(node.val)
 
                 if node.left:
@@ -30,6 +31,6 @@ class Solution:
                     queue.append(node.right)
 
             res.append(list(level))
-            left_to_right = not left_to_right
-        
+            zigzag = not zigzag
+
         return res
