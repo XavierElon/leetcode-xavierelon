@@ -9,14 +9,12 @@ class Solution:
         if not root:
             return 0
 
-        queue = deque([root])
-
         max_depth = 0
 
-        while queue:
-            level_size = len(queue)
+        queue = deque([root])
 
-            for _ in range(level_size):
+        while queue:
+            for _ in range(len(queue)):
                 node = queue.popleft()
 
                 if node.left:
