@@ -14,9 +14,9 @@ class Solution:
         queue = deque([(root, 0)])
 
         while queue:
-            node, column =  queue.popleft()
+            node, column = queue.popleft()
             column_map[column].append(node.val)
-
+            
             if node.left:
                 queue.append((node.left, column - 1))
             if node.right:
