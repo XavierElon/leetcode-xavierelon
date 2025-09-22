@@ -15,8 +15,9 @@ class Solution:
 
         while queue:
             node, column = queue.popleft()
+
             column_map[column].append(node.val)
-            
+
             if node.left:
                 queue.append((node.left, column - 1))
             if node.right:
