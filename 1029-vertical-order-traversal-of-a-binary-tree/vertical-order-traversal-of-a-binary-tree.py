@@ -26,7 +26,7 @@ class Solution:
                 queue.append((node.left, row + 1, col - 1))
             if node.right:
                 queue.append((node.right, row + 1, col + 1))
-        
+
         res = []
 
         for i in range(min_col, max_col + 1):
