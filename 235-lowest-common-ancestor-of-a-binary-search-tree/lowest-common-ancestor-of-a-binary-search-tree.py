@@ -14,6 +14,5 @@ class Solution:
                 current = current.left
             elif p.val > current.val and q.val > current.val:
                 current = current.right
-            else: 
+            else:
                 return current
-            
