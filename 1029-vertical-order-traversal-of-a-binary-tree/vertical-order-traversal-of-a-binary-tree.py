@@ -26,11 +26,11 @@ class Solution:
                 queue.append((node.left, row + 1, col - 1))
             if node.right:
                 queue.append((node.right, row + 1, col + 1))
-
+            
         res = []
 
         for i in range(min_col, max_col + 1):
             column = [val for _, val in sorted(column_map[i], key=lambda x: (x[0], x[1]))]
             res.append(column)
-
+        
         return res
