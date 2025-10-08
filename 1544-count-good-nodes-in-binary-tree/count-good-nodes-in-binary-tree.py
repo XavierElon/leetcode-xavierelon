@@ -11,6 +11,7 @@ class Solution:
                 return 0
 
             count = 0
+
             if node.val >= max_:
                 count += 1
                 max_ = node.val
@@ -19,4 +20,5 @@ class Solution:
             right = dfs(node.right, max_)
 
             return left + right + count
+
         return dfs(root, float('-inf'))
