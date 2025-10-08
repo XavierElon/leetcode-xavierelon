@@ -9,7 +9,7 @@ class Solution:
             return (sorted_array[mid-1] + sorted_array[mid]) / 2
         else:
             return sorted_array[total // 2]
-
+    
     def build_sorted(self, nums1, nums2):
         sorted_array = []
 
@@ -22,7 +22,7 @@ class Solution:
             else:
                 sorted_array.append(nums2[p2])
                 p2 += 1
-
+        
         sorted_array.extend(nums1[p1:])
         sorted_array.extend(nums2[p2:])
 
