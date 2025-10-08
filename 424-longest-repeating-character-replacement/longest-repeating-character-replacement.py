@@ -6,11 +6,16 @@ class Solution:
         left = 0
 
         for right in range(len(s)):
-            count[s[right]] += 1
-            max_freq = max(max_freq, count[s[right]])
+            current_char = s[right]
+            count[current_char] += 1
 
-            if (right - left + 1) - k > max_freq:
-                count[s[left]] -= 1
+            max_freq = max(max_freq, count[current_char])
+
+            window_len = max(max_freq, count[current_char])
+
+            while (right - left + 1) - max_freq > k:
+                left_char = s[left]
+                count[left_char] -= 1
                 left += 1
 
             max_len = max(max_len, right - left + 1)
