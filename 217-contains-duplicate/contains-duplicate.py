@@ -9,7 +9,3 @@ class Solution:
             hashset.add(num)
 
         return False
-
-
-
-        
