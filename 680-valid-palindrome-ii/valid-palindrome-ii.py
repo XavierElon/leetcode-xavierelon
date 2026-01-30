@@ -3,20 +3,29 @@ class Solution:
         l, r = 0, len(s) - 1
 
         while l < r:
-            if s[l] == s[r]:
+            while l < r and not s[l].isalpha():
+                l += 1
+            while l < r and not s[r].isalpha():
+                r -= 1
+
+            if s[l].lower() == s[r].lower():
                 l += 1
                 r -= 1
             else:
-                return self.isPalindrome(s, l + 1, r) or self.isPalindrome(s, l, r - 1)
-            
+                return self.check(s, l + 1, r) or self.check(s, l, r - 1)
+
         return True
 
-    def isPalindrome(self, s, l, r):
+    def check(self, s, l, r):
         while l < r:
-            if s[l] != s[r]:
-                return False
-            else:
+            while l < r and not s[l].isalpha():
                 l += 1
+            while l < r and not s[r].isalpha():
                 r -= 1
-                
+            
+            if s[l].lower() != s[r].lower():
+                return False
+            l += 1
+            r -= 1
+
         return True
