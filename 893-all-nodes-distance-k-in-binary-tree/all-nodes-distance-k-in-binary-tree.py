@@ -10,30 +10,27 @@ class Solution:
         if not root:
             return []
 
-        parent_map = defaultdict(None)
+        parent_map = {}
 
         def build_parent_map(node, parent=None):
-            if not node:
-                return
-
-            parent_map[node] = parent
-            build_parent_map(node.left, node)
-            build_parent_map(node.right, node)
+            if node:
+                parent_map[node] = parent
+                build_parent_map(node.left, node)
+                build_parent_map(node.right, node)
 
         build_parent_map(root)
         visited = {target}
         queue = deque([(target, 0)])
-        res = []
 
         while queue:
+            if queue[0][1] == k:
+                return [node.val for node, dist in queue]
+
             node, distance = queue.popleft()
 
-            if distance == k:
-                res.append(node.val)
-            elif distance < k:
-                for neighbor in [node.left, node.right, parent_map[node]]:
-                    if neighbor and neighbor not in visited:
-                        visited.add(neighbor)
-                        queue.append((neighbor, distance + 1))
+            for neighbor in [node.left, node.right, parent_map[node]]:
+                if neighbor and neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append((neighbor, distance + 1))
 
-        return res
+        return []
