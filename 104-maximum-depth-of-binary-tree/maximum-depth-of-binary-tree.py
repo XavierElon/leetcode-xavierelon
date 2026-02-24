@@ -24,4 +24,4 @@ class Solution:
 
             max_depth += 1
 
-        return max_depth
+        return max_depth  
