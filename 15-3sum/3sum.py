@@ -1,5 +1,5 @@
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
         nums.sort()
 
         res = []
@@ -7,7 +7,7 @@ class Solution:
         for i, val in enumerate(nums):
             if val > 0:
                 break
-            
+
             if i > 0 and val == nums[i-1]:
                 continue
 
@@ -23,7 +23,7 @@ class Solution:
                     res.append([val, nums[l], nums[r]])
                     l += 1
                     r -= 1
-                    
+
                     while l < r and nums[l] == nums[l-1]:
                         l += 1
                     while l < r and nums[r] == nums[r+1]:
