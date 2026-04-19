@@ -6,7 +6,6 @@ class Solution:
         for i, val in enumerate(nums):
             if val > 0:
                 break
-            
             if i > 0 and val == nums[i-1]:
                 continue
 
@@ -14,6 +13,7 @@ class Solution:
 
             while l < r:
                 total = val + nums[l] + nums[r]
+
                 if total < 0:
                     l += 1
                 elif total > 0:
