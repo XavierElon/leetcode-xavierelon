@@ -9,5 +9,5 @@ class Solution:
                 idx = stack.pop()
                 res[idx] = i - idx
             stack.append(i)
-
+        
         return res
