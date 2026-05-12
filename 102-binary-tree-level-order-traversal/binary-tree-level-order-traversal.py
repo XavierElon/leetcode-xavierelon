@@ -27,5 +27,5 @@ class Solution:
                     queue.append(node.right)
 
             levels.append(level)
-
+            
         return levels
