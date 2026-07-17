@@ -7,4 +7,4 @@ class Solution:
             if complement in hashmap:
                 return [hashmap[complement], i]
 
-            hashmap[num] = i
+            hashmap[num] = i         
