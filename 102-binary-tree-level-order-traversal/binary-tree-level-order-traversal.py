@@ -18,14 +18,13 @@ class Solution:
 
             for i in range(level_size):
                 node = queue.popleft()
-
                 level.append(node.val)
 
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
-
-            levels.append(level)
             
+            levels.append(level)
+
         return levels
