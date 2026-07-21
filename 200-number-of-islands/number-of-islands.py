@@ -23,4 +23,4 @@ class Solution:
                 self.dfs(new_r, new_c, grid)
 
     def isWithinBounds(self, r, c, grid):
-        return 0 <= r and r < len(grid) and 0 <= c and c < len(grid[0])
+        return 0 <= r < len(grid) and 0 <= c < len(grid[0])
