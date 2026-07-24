@@ -8,6 +8,6 @@ class Solution:
                 length = 1
                 while n + length in nums_set:
                     length += 1
-                longest = max(length, longest)
+                longest = max(longest, length)
 
         return longest
