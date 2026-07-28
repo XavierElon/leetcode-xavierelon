@@ -12,6 +12,7 @@ class Solution:
         column_map = defaultdict(list)
 
         queue = deque([(root, 0)])
+        min_col = max_col = 0
 
         while queue:
             node, column = queue.popleft()
@@ -20,7 +21,11 @@ class Solution:
 
             if node.left:
                 queue.append((node.left, column - 1))
+                if column - 1 < min_col:
+                    min_col = column - 1
             if node.right:
                 queue.append((node.right, column + 1))
+                if column + 1 > max_col:
+                    max_col = column + 1
 
-        return [column_map[i] for i in sorted(column_map)]
+        return [column_map[i] for i in range(min_col, max_col + 1)]
