@@ -20,17 +20,17 @@ class Solution:
 
         build_parent_map(root)
         visited = {target}
-        queue = deque([(target, 0)])
+        queue = deque([target])
 
-        while queue:
-            if queue[0][1] == k:
-                return [node.val for node, dist in queue]
+        while queue and k > 0:
+            k -= 1
 
-            node, distance = queue.popleft()
+            for _ in range(len(queue)):
+                curr = queue.popleft()
 
-            for neighbor in [node.left, node.right, parent_map[node]]:
-                if neighbor and neighbor not in visited:
-                    visited.add(neighbor)
-                    queue.append((neighbor, distance + 1))
+                for neighbor in (curr.left, curr.right, parent_map[curr]):
+                    if neighbor and neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append(neighbor)
 
-        return []
+        return [node.val for node in queue]
