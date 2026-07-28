@@ -11,7 +11,7 @@ class Solution:
             prev_start, prev_end = merged[-1]
 
             if prev_end >= curr_start:
-                end = max(prev_end, curr_end) 
+                end = max(prev_end, curr_end)
                 merged[-1][1] = end
             else:
                 merged.append(intervals[i])
