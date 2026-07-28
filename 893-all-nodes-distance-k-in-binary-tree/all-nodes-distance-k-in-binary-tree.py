@@ -22,8 +22,9 @@ class Solution:
         visited = {target}
         queue = deque([target])
 
-        while queue and k > 0:
-            k -= 1
+        while queue:
+            if k == 0:
+                return [node.val for node in queue]
 
             for _ in range(len(queue)):
                 curr = queue.popleft()
@@ -33,4 +34,6 @@ class Solution:
                         visited.add(neighbor)
                         queue.append(neighbor)
 
-        return [node.val for node in queue]
+            k -= 1
+        
+        return []
