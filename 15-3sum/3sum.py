@@ -8,7 +8,7 @@ class Solution:
                 break
             if i > 0 and val == nums[i-1]:
                 continue
-            
+
             l, r = i + 1, len(nums) - 1
 
             while l < r:
