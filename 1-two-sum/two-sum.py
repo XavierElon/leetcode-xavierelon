@@ -6,5 +6,7 @@ class Solution:
             complement = target - num
             if complement in hashmap:
                 return [hashmap[complement], i]
+            
+            hashmap[num] = i
 
-            hashmap[num] = i         
+            
